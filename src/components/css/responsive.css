@@ -1,0 +1,194 @@
+@media (min-width:0px) and (max-width:480px) {
+    
+    .banner{
+       background-size: auto !important;
+       background-position: -608px 13px !important;
+   
+    }
+    .p-black-small {
+       font-size: 10px;
+       color: var(--black);
+       font-weight: 400;
+       letter-spacing: 1px;
+      
+       word-wrap: break-word !important;
+     }
+     .p-blue-small {
+       font-size: 10px;
+       font-weight: 400;
+       letter-spacing: 1px;
+       font-weight: 700;
+       color: var(--blue);
+      
+       word-wrap: break-word !important;
+     }
+     .p-white-small {
+       font-size: 10px;
+     
+       font-weight: 400;
+       letter-spacing: 1px;
+       font-weight: 700;
+       color: var(--white);
+      
+       word-wrap: break-word !important;
+     }
+     .p-grey {
+       font-size: 12px;
+     
+       color: var(--grey);
+       font-weight: 400;
+       letter-spacing: 1px;
+      
+       word-wrap: break-word !important;
+     }
+     .p-black {
+       font-size: 12px;
+     
+       color: var(--black);
+       font-weight: 400;
+       letter-spacing: 1px;
+      
+       word-wrap: break-word !important;
+     }
+     .p-white {
+       font-size: 12px;
+     
+       font-weight: 400;
+       letter-spacing: 1px;
+       font-weight: 700;
+       color: var(--white);
+      
+       word-wrap: break-word !important;
+     }
+     .p-black-bold {
+       font-size: 13px;
+       line-height: 1.5rem;
+       color: var(--black);
+       text-transform: capitalize;
+       font-weight: 700;
+       letter-spacing: 1px;
+      
+       word-wrap: break-word !important;
+     }
+     .p-white-bold {
+       font-size: 13px;
+       line-height: 1.5rem;
+       text-transform: capitalize;
+       font-weight: 700;
+       color: var(--white);
+       letter-spacing: 1px;
+      
+       word-wrap: break-word !important;
+     }
+     .p-heading-black {
+       font-size: 14px !important;
+       line-height: 1.5rem;
+       text-transform: capitalize;
+       color: var(--black);
+       letter-spacing: 1px;
+       font-weight: 700;
+      
+       word-wrap: break-word !important;
+     }
+     .p-heading-white {
+       font-size: 14px !important;
+       line-height: 1.5rem;
+       text-transform: capitalize;
+       color: var(--white);
+       letter-spacing: 1px;
+       font-weight: 700;
+      
+       word-wrap: break-word !important;
+     }
+     
+     .section-heading-black {
+       font-size: 18px !important;
+       line-height: 1.7rem;
+       text-transform: uppercase;
+       color: var(--black);
+       letter-spacing: 1px;
+       font-weight: 800;
+      
+       word-wrap: break-word !important;
+     }
+     .section-heading-white {
+       font-size: 18px !important;
+       line-height: 1.7rem;
+       text-transform: uppercase;
+       color: var(--white);
+       letter-spacing: 1px;
+       font-weight: 800;
+      
+       word-wrap: break-word !important;
+     }
+     .sub-heading-black {
+       font-size: 16px !important;
+       line-height: 1.5rem;
+       color: var(--black);
+       text-transform: capitalize;
+       letter-spacing: 1px;
+       font-weight: 800;
+     
+       word-wrap: break-word !important;
+     }
+     .sub-heading-white {
+       font-size: 16px !important;
+       line-height: 1.5rem;
+       color: var(--white);
+       text-transform: capitalize;
+       letter-spacing: 1px;
+       font-weight: 800;
+       word-wrap: break-word !important;
+     }
+     
+     .banner-black {
+       font-size: 24px !important;
+     
+       color: var(--black);
+       text-transform: capitalize;
+       letter-spacing: 1px;
+       font-weight: 800;
+     
+       word-wrap: break-word !important;
+     }
+     .banner-white {
+       font-size: 24px !important;
+      
+       color: var(--white);
+       text-transform: capitalize;
+       letter-spacing: 1px;
+       font-weight: 800;
+       word-wrap: break-word !important;
+     }
+       
+     .mab1 {
+         position: absolute;
+         top: 0;
+         left: 0% !important;
+         border-radius: 10px;
+         background-color: var(--neon);
+         width: 100% !important;
+         height: fit-content;
+         padding: 1rem;
+         z-index: 2;
+     }
+     .mab2 {
+       position: absolute;
+       bottom: -7% !important;
+       right: -10% !important;
+       border-radius: 10px;
+       background-color: var(--pink);
+       width: 100% !important;
+       height: fit-content;
+       padding: 1rem;
+       z-index: 2;
+   }
+    .white-to-blue {
+       padding: 1rem !important;
+       margin-bottom: 3rem !important;
+    
+   }
+   div.s1 {
+       margin-bottom: 16px;
+   }
+   }
