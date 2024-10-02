@@ -59,7 +59,7 @@ export default function Header() {
                             </li>
                             <li className="nav-item" style={{background: 'linear-gradient(45deg, #313f70, #953986)', borderRadius: 6,padding:10 }}> 
                                 <a className="nav-link p-white-bold " href="tel:+01823222674" style={{color: 'var(--white' }}> 
-                                <MdWifiCalling3 className='sub-heading-white'  style={{marginRight: 6}}/>Call Us : 01823222674
+                                <MdWifiCalling3 className='sub-heading-white'  style={{marginRight: 6}}/>Call Us : 01823222674000
                                 </a>
                             </li>
                         </ul>
