@@ -3,9 +3,9 @@ import about from "./images/about.webp";
 import { FaCircleCheck } from "react-icons/fa6";
 import { MdWifiCalling3 } from "react-icons/md";
 import Masonry, {ResponsiveMasonry} from "react-responsive-masonry";
-import doc from "./images/doctor.webp"
-import doc2 from "./images/doctor2.webp"
-import doc3 from "./images/doctor3.webp"
+import doc from "./images/doctor.webp";
+import doc2 from "./images/doctor2.webp";
+import doc3 from "./images/doctor3.webp";
 import brain from "./images/brains.webp";
 import laser from "./images/laser.webp";
 import chest from "./images/chest.webp";

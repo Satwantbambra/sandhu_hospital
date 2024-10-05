@@ -514,3 +514,16 @@
   .animate__animated.animate__fadeInUp {
   animation-duration: 0.5s !important;
   }
+
+  .dropdown-item svg{
+    color: var(--pink);
+  }
+  .dropdown-item:hover svg{
+    color: var(--white);
+  }
+  .dropdown-item:hover {
+    color: var(--white) !important;
+  }
+  .dropdown-item:hover{
+    background: var(--pink) !important;
+  }
