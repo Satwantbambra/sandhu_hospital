@@ -16,7 +16,7 @@ export default function Footer() {
             <div className="row py-lg-4">
                   <div className="col-lg-4 mb-3 mb-lg-0">
                         <h3 className="sub-heading-white mt-0 mb-2">
-                              Meet Sandhu Hospital
+                        Your Wellness, Our Priority
                         </h3>
                         <p className="p-white my-0" style={{textAlign: 'justify'}}>
                               Sandhu Hospital, Nawanshahar, is a leading MultiSpeciality Hospital specializing in Brain

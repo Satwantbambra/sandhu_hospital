@@ -4,7 +4,7 @@
     --grey:#e7e7e7;
     --dark-grey:#d9d9d9;
     --neon-light: #7bdfc7;
-    --pink:#a7398dd7;
+    --pink:#a7398d;
     --neon: #41938c;
     --blue-light: #98b9e9;
     --blue: #232f61;
@@ -54,22 +54,20 @@
     word-wrap: break-word !important;
   }
   .p-black {
-    font-size: 13px;
+    font-size: 13px !important;
   
     color: var(--black);
-    font-weight: 400;
+    font-weight: 400 ;
     letter-spacing: 1px;
    
     word-wrap: break-word !important;
   }
   .p-white {
-    font-size: 13px;
-  
+    font-size: 13px !important;
     font-weight: 400;
     letter-spacing: 1px;
-    font-weight: 700;
+
     color: var(--white);
-   
     word-wrap: break-word !important;
   }
   .p-black-bold {
@@ -383,6 +381,13 @@
     -webkit-line-clamp: 3 !important;
   
   }
+  .overflow-4{
+    display: -webkit-box !important;
+    overflow: hidden !important;
+    -webkit-box-orient:vertical !important;
+    -webkit-line-clamp: 4 !important;
+  
+  }
   
   .space{
     padding: 2rem 0;
@@ -418,8 +423,7 @@
     resize: none; 
   }
   
-  
-  
+
   
   #navbar-sticky{
     
@@ -429,16 +433,24 @@
     background: #00000097;
     backdrop-filter: blur(5px);
   }
-  .navbar-not{
-    position: absolute;
-    width: 100%;
-    height: fit-content;
+  .navbar-not.bg-dark.navbar-dark{
+  
+    width: 100% !important;
+    height: fit-content !important;
     top: 0;
+    background: var(--blue) !important;
     left: 0;
     z-index: 100;
     padding: 0;
   }
+  .navbar.navbar-expand-lg.navbar-dark.bg-dark.fixed-top.trans-bg {
+    background-color:#1e1e1e !important;
+}
   
+  .navbar-collapse.collapse.show{
+    transition: all 0.1s;
+    background: #404680 !important;
+  }
   .nav-link{
     position: relative;
   display: inline-block;
@@ -484,4 +496,8 @@
   100%{
   width: 100%;
   }
+  }
+
+  .navbar-dark .navbar-nav .nav-link {
+    color: rgba(244, 244, 244, 0.775) ;
   }

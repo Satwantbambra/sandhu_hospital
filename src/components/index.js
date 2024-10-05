@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from "react";
+import React from "react";
 import brain from "./images/brains.webp";
 import addiction from "./images/addiction.webp";
 import laser from "./images/laser.webp";
@@ -6,87 +6,108 @@ import chest from "./images/chest.webp";
 import sandhu from "./images/sandhu.jpg";
 import bbrain from "./images/brain.png";
 import doc from "./images/doc.png";
+import hospital from "./images/sandhuhospital.jpg";
+import sandhuvideo from "./images/sandhu.mp4";
+import m1 from "./images/h1.jpg";
+import m2 from "./images/h2.jpg";
+import banner from "./images/banner2.webp"
+
 import { FaCircleCheck } from "react-icons/fa6";
 import { MdWifiCalling3 } from "react-icons/md";
+import { BsFillChatQuoteFill } from "react-icons/bs";
+import Masonry, {ResponsiveMasonry} from "react-responsive-masonry";
 
 export default function Index(props) {
-  const fadeTextRef = useRef(null);
-  const scrollSpyRef = useRef(null);
-
-  useEffect(() => {
-    // Set CSS variables for fade-text spans
-    if (fadeTextRef.current) {
-      const spans = fadeTextRef.current.querySelectorAll("span");
-      spans.forEach((span, index) => {
-        span.style.setProperty("--i", index);
-      });
-    }
-
-    // Initialize ScrollSpy
-    if (scrollSpyRef.current) {
-      // Ensure that Bootstrap's ScrollSpy is available
-      const bootstrap = require("bootstrap/dist/js/bootstrap.bundle.min.js");
-
-      // Initialize ScrollSpy on the scroll container
-      const scrollSpy = new bootstrap.ScrollSpy(scrollSpyRef.current, {
-        target: "#navbar-sticky",
-        offset: 570, // Adjust this value based on your navbar's height
-      });
-
-      // Cleanup ScrollSpy on component unmount
-      return () => {
-        scrollSpy.dispose();
-      };
-    }
-  }, []); // Runs only once when the component mounts
-
   return (
+    <>
+
     <div
       data-bs-spy="scroll"
       data-bs-target="#navbar-sticky"
       data-bs-offset="0"
-      className="scrollspy-example"
       tabIndex="0"
-      ref={scrollSpyRef}
+      className="scrollspy-example"
     >
       <div className="container-fluid p-0">
-        <div className="banner">
-          <div className="container">
-            <div className="row" style={{ height: "100%" }}>
-              <div
-                className=" col-lg-7 col-11 d-flex align-items-center"
-                style={{ height: "100%" }}
-              >
-                <div className="fade-text" ref={fadeTextRef}>
-                  <span className="word animated fadeIn banner-white">
-                    Dedicated
-                  </span>
-                  <span className="word animated fadeIn banner-white">to</span>
-                  <span className="word animated fadeIn banner-white">
-                    Your
-                  </span>
-                  <span className="word animated fadeIn banner-white">
-                    Health,
-                  </span>
-                  <br />
-                  <span className="word animated fadeIn banner-white">
-                    Committed
-                  </span>
-                  <span className="word animated fadeIn banner-white">to</span>
-                  <span className="word animated fadeIn banner-white">
-                    Your
-                  </span>
-                  <span className="word animated fadeIn banner-white">
-                    Future
-                  </span>
+        <div className="banner ">
+           <img src={banner} alt="sandhu hospital" />
+        </div>
+      </div>
+
+      <section className="space" style={{background:"aliceblue"}}>
+        <div className="container">
+          <div className="row">
+            <div className="col-xl">
+              <div className="bluepromotion promotion">
+                <h2 className="p-white-bold"> WE CARE FOR YOUR HEALTH</h2>
+                <h3 className="section-heading-white"> FAMILY CARE</h3>
+                <h4 className="sub-heading-white">
+                  We Provide Healthcare Services
+                </h4>
+                <h5 className="p-white">
+                  At Sandhu Hospital, Nawanshahar, we are dedicated to providing
+                  exceptional healthcare across a wide range of specialties. As
+                  a MultiSpeciality Hospital,Our compassionate and highly
+                  skilled medical team ensures that every patient receives
+                  personalized.
+                </h5>
+                <div className="h-100 d-flex align-items-end">
+
+                <p className="sub-heading-white mb-1" style={{color:"var(--blue)"}}>
+                        from 8 oct to 10 oct
+                </p>
+                </div>
+              </div>
+            </div>
+            <div className="col-xl">
+              <div className="pinkpromotion promotion">
+              <h2 className="p-white-bold"> WE CARE FOR YOUR HEALTH</h2>
+                <h3 className="section-heading-white"> FAMILY CARE</h3>
+                <h4 className="sub-heading-white">
+                  We Provide Healthcare Services
+                </h4>
+                <h5 className="p-white">
+                  At Sandhu Hospital, Nawanshahar, we are dedicated to providing
+                  exceptional healthcare across a wide range of specialties. As
+                  a MultiSpeciality Hospital,Our compassionate and highly
+                  skilled medical team ensures that every patient receives
+                  personalized.
+                </h5>
+                <div className="h-100 d-flex align-items-end">
+
+                <p className="sub-heading-white mb-1" style={{color:"var(--pink)"}}>
+    from 8 oct to 10 oct
+                </p>
+                </div> 
+              </div>
+            </div>
+            <div className="col-xl">
+              <div className="neonpromotion promotion">
+              <h2 className="p-white-bold"> WE CARE FOR YOUR HEALTH</h2>
+                <h3 className="section-heading-white"> FAMILY CARE</h3>
+                <h4 className="sub-heading-white">
+                  We Provide Healthcare Services
+                </h4>
+                <h5 className="p-white">
+                  At Sandhu Hospital, Nawanshahar, we are dedicated to providing
+                  exceptional healthcare across a wide range of specialties. As
+                  a MultiSpeciality Hospital,Our compassionate and highly
+                  skilled medical team ensures that every patient receives
+                  personalized.
+                </h5>
+                <div className="h-100 d-flex align-items-end">
+
+                <p className="sub-heading-white mb-1" style={{color:"var(--neon)"}}>
+    from 8 oct to 10 oct
+                </p>
                 </div>
               </div>
             </div>
           </div>
         </div>
-      </div>
+      </section>
 
-      <section id="services">
+      <section  className="space" id="services">
         <div className="container">
           <h2 className="section-top ">Our Services</h2>
           <div className="row">
@@ -171,7 +192,7 @@ export default function Index(props) {
           </div>
         </div>
       </section>
-      <section>
+      <section className="space" style={{background:"azure"}}>
         <div className="container">
           <div className="row">
             <div className="col-lg-12">
@@ -192,9 +213,30 @@ export default function Index(props) {
                             </h3>
 
                             <div className="d-flex justify-content-between pe-3">
-                              <button className="btn-white">
-                                book appointment
-                              </button>
+                              <div
+                                className="d-inline-block"
+                                style={{
+                                  background:
+                                    "linear-gradient(45deg, #313f70, #953986)",
+                                  borderRadius: 6,
+                                  padding: "2px 10px",
+                                }}
+                              >
+                                <a
+                                  className=" p-white-bold "
+                                  href="tel:+01823222674"
+                                  style={{
+                                    textDecoration: "none",
+                                    color: "var(--white)",
+                                  }}
+                                >
+                                  <MdWifiCalling3
+                                    className="sub-heading-white"
+                                    style={{ marginRight: 6 }}
+                                  />
+                                  Call Us : 01823222674
+                                </a>
+                              </div>
                             </div>
                           </div>
                           <div className="simg">
@@ -241,15 +283,13 @@ export default function Index(props) {
                 </div>
               </div>
 
-              <h1></h1>
+           
             </div>
           </div>
         </div>
       </section>
 
-      <section
-        className="space"
-        id="about"
+      <section  className="space"  id="about"
         style={{ background: "floralwhite" }}
       >
         <div className="container">
@@ -257,7 +297,7 @@ export default function Index(props) {
             <div className="col-lg-6">
               <h2 className="section-top ">About us</h2>
               <h3 className="section-heading-black mt-3">
-                Welcome to sandhu hospital
+                Healing  <span style={{color:"var(--pink)"}}>Hands</span>, Caring  <span style={{color:"var(--neon)"}}>Hearts</span>
               </h3>
 
               <p className="p-black mt-4">
@@ -338,17 +378,20 @@ export default function Index(props) {
               </div>
             </div>
             <div className="col-lg-6 d-flex align-items-center justify-content-center">
-  <div className="doctor" style={{ position: 'relative', zIndex: 1 }}>
-    <div className="doctor-inner">
-      <img src={doc} alt="sadhu hospital" />
-    </div>
-  </div>
-</div>
+              <div
+                className="doctor"
+                style={{ position: "relative", zIndex: 1 }}
+              >
+                <div className="doctor-inner">
+                  <img src={doc} alt="sadhu hospital" />
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </section>
 
-      <section id="who">
+      <section className="space" id="who">
         <div className="container">
           <h2 className="section-top ">Conditions We Treat</h2>
           <div className="row mt-3">
@@ -452,6 +495,125 @@ export default function Index(props) {
           </div>
         </div>
       </section>
+
+      <section id="gallery" className="space" style={{background:"aliceblue"}}>
+        <div className="container">
+
+          <div className="d-flex flex-lg-row justify-content-lg-between flex-column justify-content-start align-items-lg-center">
+          <h2 className="section-top me-lg-5 " style={{whiteSpace:"nowrap"}}>Our Gallery</h2>
+          <p className="p-black mb-0">
+          Discover the heart of Sandhu Hospital through our gallery. 
+          Browse images that showcase our advanced facilities, 
+          compassionate staff, and the welcoming environment 
+          we provide for our patients. Each photo reflects our
+           commitment to excellence in healthcare
+          </p>
+
+          </div>
+           <div className="space">
+           <ResponsiveMasonry
+                columnsCountBreakPoints={{350: 1, 750: 2, 900: 3, 1400 :4}}
+            >
+                <Masonry  gutter="20px" className=" masonry"  >
+               
+                    <a href="">
+                      <img src={brain} style={{width: "100%", display: "block" }} alt="sandhu hospital Nawanshahar images"/>
+                      </a>
+                    <img src={laser} style={{width: "100%", display: "block"}} alt="sandhu hospital Nawanshahar images" />
+                    <img  src={chest} style={{width: "100%", display: "block"}} alt="sandhu hospital Nawanshahar images" />
+                    <div style={{position: "relative", width:"100%", height:'100%', margin:"0px"}}>
+                      <div className="overlaygll m-0">
+
+                       <div className="play-btn m-0"></div>
+                      </div>
+                    <video loop autoPlay>
+                      <source src={sandhuvideo} type="video/mp4"/>
+                  
+                     Your browser does not support the video tag.
+                    </video>
+                    </div>
+                    <img  src={hospital} style={{width: "100%", display: "block"}} alt="sandhu hospital Nawanshahar images" />
+                    <img  src={m1} style={{width: "100%", display: "block"}} alt="sandhu hospital Nawanshahar images" />
+                    <img  src={m2} style={{width: "100%", display: "block"}} alt="sandhu hospital Nawanshahar images" />
+                </Masonry>
+            </ResponsiveMasonry>
+           </div>
+        </div>
+      </section>
+
+
+      <section id="testimonial" className="space">
+     <div className="container">
+          <h2 className="section-top mb-4 " style={{whiteSpace:"nowrap"}}>What Our Patients Say</h2>
+     <div className="row">
+       <div className="col-lg-5">
+
+          <h3 className="section-heading-black ">
+          Stories of <span style={{color:"var(--pink)"}}>Healing,</span>   <br /> Voices of  <span style={{color:"var(--neon)"}}>Trust</span> 
+          </h3>
+       </div>
+         <div className="col-lg-7">
+          
+          <p className="p-black mb-0">
+          Discover the heart of Sandhu Hospital through our gallery. 
+          Browse images that showcase our advanced facilities, 
+          compassionate staff, and the welcoming environment 
+          we provide for our patients. Each photo reflects our
+           commitment to excellence in healthcare
+          </p>
+         </div>
+
+          </div>
+      <div className="row space">
+        <div className="col-lg-4">
+          <div className="testimonial">
+            <div className="outer-tag">
+              <div className="inner-tag">
+                <h3 className="section-heading-white"><BsFillChatQuoteFill /></h3>
+              </div>
+            </div>
+<p className="p-black">
+
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Optio laborum aut esse illum corporis vel deserunt a. Libero voluptatibus eaque facere possimus?
+</p>
+
+          </div>
+        </div>
+        <div className="col-lg-4">
+          <div className="testimonial">
+            <div className="outer-tag">
+              <div className="inner-tag">
+                <h3 className="section-heading-white"><BsFillChatQuoteFill /></h3>
+              </div>
+            </div>
+<p className="p-black">
+
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Optio laborum aut esse illum corporis vel deserunt a. Libero voluptatibus eaque facere possimus?
+</p>
+
+          </div>
+        </div>
+        <div className="col-lg-4">
+          <div className="testimonial">
+            <div className="outer-tag">
+              <div className="inner-tag">
+                <h3 className="section-heading-white"><BsFillChatQuoteFill /></h3>
+              </div>
+            </div>
+<p className="p-black">
+
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Optio laborum aut esse illum corporis vel deserunt a. Libero voluptatibus eaque facere possimus?
+</p>
+
+          </div>
+        </div>
+        
+      </div>
+     </div>
+      </section>
     </div>
+    </>
   );
 }
+
+// src/components/Index.js
