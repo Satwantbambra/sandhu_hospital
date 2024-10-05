@@ -516,9 +516,8 @@ export default function Index(props) {
             >
                 <Masonry  gutter="20px" className=" masonry"  >
                
-                    <a href="">
-                      <img src={brain} style={{width: "100%", display: "block" }} alt="sandhu hospital Nawanshahar images"/>
-                      </a>
+                    
+                    <img src={brain} style={{width: "100%", display: "block" }} alt="sandhu hospital Nawanshahar images"/>
                     <img src={laser} style={{width: "100%", display: "block"}} alt="sandhu hospital Nawanshahar images" />
                     <img  src={chest} style={{width: "100%", display: "block"}} alt="sandhu hospital Nawanshahar images" />
                     <div style={{position: "relative", width:"100%", height:'100%', margin:"0px"}}>

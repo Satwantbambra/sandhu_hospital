@@ -9,8 +9,12 @@ import Header from "./components/Header";
 import Index from "./components/index";
 import About from "./components/About";
 import Footer from "./components/Footer";
+
+import Service from "./components/service";
+
 import Search from "./components/Search";
 import Team from "./components/Team";
+
 
 function App() {
 
@@ -24,6 +28,7 @@ function App() {
       <Routes>
         <Route exact path="/" element={<Index/>} />
         <Route exact path="/about" element={<About/>} />
+        <Route exact path="/service" element={<Service/>} />
         <Route exact path="/search" element={<Search/>} />
         <Route exact path="/team" element={<Team/>} />
       </Routes>

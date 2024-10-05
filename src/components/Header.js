@@ -2,6 +2,7 @@
 import React, { useEffect, useRef } from 'react';
 import { MdWifiCalling3 } from "react-icons/md";
 import { Link } from 'react-router-dom';
+import { MdDoubleArrow } from "react-icons/md";
 
 
 export default function Header() {
@@ -76,13 +77,15 @@ export default function Header() {
                                 Services
                               </Link>
                   <ul class="dropdown-menu animate__animated animate__fadeInUp" aria-labelledby="dropdownMenuButton">
-                     <li><Link class="dropdown-item p-black" to="#">De-addiction</Link></li>
-                          <li><Link class="dropdown-item p-black" to="#">Psychiatry</Link></li>
-                      <li><Link class="dropdown-item p-black" to="#">Dermatology</Link></li>
-                      <li><Link class="dropdown-item p-black" to="#">Skin(Dermatology)</Link></li>
+                     <li><Link class="dropdown-item p-black" to="/Service"><MdDoubleArrow className='me-2'/>De-addiction</Link></li>
+                          <li><Link class="dropdown-item p-black" to="/Service"><MdDoubleArrow className='me-2' />Psychiatry</Link></li>
+                      <li><Link class="dropdown-item p-black" to="/Service"><MdDoubleArrow className='me-2' />Dermatology</Link></li>
+                      <li><Link class="dropdown-item p-black" to="/Service"><MdDoubleArrow className='me-2' />Skin(Dermatology)</Link></li>
+                      <li><Link class="dropdown-item p-black" to="/Service"><MdDoubleArrow className='me-2' />Medicine and Chest Diseases</Link></li>
+                      
                       </ul>
                             </div>
-                            
+                         
                             </li>
                             <li className="nav-item">
                                 <Link className="nav-link p-white-bold" to="/about">About us</Link>
