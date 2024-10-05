@@ -344,10 +344,10 @@ function About() {
 
                        <div className="play-btn m-0"></div>
                       </div>
-                    <video loop autoPlay>
+                    <video loop autoPlay muted>
                       <source src={sandhuvideo} type="video/mp4"/>
                   
-                     Your browser does not support the video tag.
+                   
                     </video>
                     </div>
                     <img  src={hospital} style={{width: "100%", display: "block"}} alt="sandhu hospital Nawanshahar images" />
