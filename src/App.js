@@ -4,7 +4,7 @@ import "./App.css";
 import "./components/css/common.css";
 import "./components/css/responsive.css";
 import  float from "./components/images/247.webp";
-
+import 'animate.css';
 import Header from "./components/Header";
 import Index from "./components/index";
 import About from "./components/About";

@@ -501,3 +501,16 @@
   .navbar-dark .navbar-nav .nav-link {
     color: rgba(244, 244, 244, 0.775) ;
   }
+
+
+  .dropdown:hover>.dropdown-menu {
+    display: block;
+  }
+  
+  .dropdown>.dropdown-toggle:active {
+    /*Without this, clicking will make it sticky*/
+      pointer-events: none;
+  }
+  .animate__animated.animate__fadeInUp {
+  animation-duration: 0.5s !important;
+  }

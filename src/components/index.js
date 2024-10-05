@@ -526,7 +526,7 @@ export default function Index(props) {
 
                        <div className="play-btn m-0"></div>
                       </div>
-                    <video loop autoPlay>
+                    <video loop autoPlay muted>
                       <source src={sandhuvideo} type="video/mp4"/>
                   
                      Your browser does not support the video tag.
@@ -547,13 +547,11 @@ export default function Index(props) {
           <h2 className="section-top mb-4 " style={{whiteSpace:"nowrap"}}>What Our Patients Say</h2>
      <div className="row">
        <div className="col-lg-5">
-
           <h3 className="section-heading-black ">
           Stories of <span style={{color:"var(--pink)"}}>Healing,</span>   <br /> Voices of  <span style={{color:"var(--neon)"}}>Trust</span> 
           </h3>
        </div>
          <div className="col-lg-7">
-          
           <p className="p-black mb-0">
           Discover the heart of Sandhu Hospital through our gallery. 
           Browse images that showcase our advanced facilities, 
@@ -562,7 +560,6 @@ export default function Index(props) {
            commitment to excellence in healthcare
           </p>
          </div>
-
           </div>
       <div className="row space">
         <div className="col-lg-4">
@@ -572,11 +569,34 @@ export default function Index(props) {
                 <h3 className="section-heading-white"><BsFillChatQuoteFill /></h3>
               </div>
             </div>
-<p className="p-black">
-
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Optio laborum aut esse illum corporis vel deserunt a. Libero voluptatibus eaque facere possimus?
-</p>
-
+         <p className="p-black">
+            Lorem ipsum dolor sit amet
+             consectetur adipisicing elit.
+              Optio laborum aut esse illum
+               corporis vel deserunt a. Libero voluptatibus eaque facere possimus?
+                </p>
+                <p className="p-black-bold text-end">
+            ---sakshi sharma
+          </p>
+          </div>
+        </div>
+        <div className="col-lg-4">
+          <div className="testimonial">
+            <div className="outer-tag">
+              <div className="inner-tag">
+                <h3 className="section-heading-white"><BsFillChatQuoteFill /></h3>
+              </div>
+            </div>
+         <p className="p-black">
+         "I had an excellent experience at Sandhu Hospital.
+          The staff were professional and attentive, making
+           me feel comfortable throughout my treatment. The
+            facilities were clean, and the doctors took the 
+            time to explain everything. Highly recommend!"
+               </p>
+              <p className="p-black-bold text-end">
+            ---Rakesh sharma
+          </p>
           </div>
         </div>
         <div className="col-lg-4">
@@ -587,27 +607,17 @@ export default function Index(props) {
               </div>
             </div>
 <p className="p-black">
-
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Optio laborum aut esse illum corporis vel deserunt a. Libero voluptatibus eaque facere possimus?
-</p>
-
+"The care I received at Sandhu Hospital
+ was exceptional. From the nurses to the doctors,
+  everyone showed genuine 
+compassion and concern for my well-being
+. They made a stressful situation much easier to handle. 
+Thank you for your excellent service!"</p>
+<p className="p-black-bold text-end">
+            ---Himesh sharma
+          </p>
           </div>
         </div>
-        <div className="col-lg-4">
-          <div className="testimonial">
-            <div className="outer-tag">
-              <div className="inner-tag">
-                <h3 className="section-heading-white"><BsFillChatQuoteFill /></h3>
-              </div>
-            </div>
-<p className="p-black">
-
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Optio laborum aut esse illum corporis vel deserunt a. Libero voluptatibus eaque facere possimus?
-</p>
-
-          </div>
-        </div>
-        
       </div>
      </div>
       </section>
