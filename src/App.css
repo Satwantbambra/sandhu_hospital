@@ -496,3 +496,7 @@ border-radius: 10px;
   width: 120% !important;
 }
 
+.form-control.search-input:focus{
+  color:#000 !important;
+}
+

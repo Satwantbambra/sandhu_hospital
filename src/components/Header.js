@@ -99,13 +99,15 @@ export default function Header() {
                             <li className="nav-item">
                                 <Link className="nav-link p-white-bold" to="/"> Testimonials</Link>
                             </li>
+                            <li className="nav-item">
+                                <Link className="nav-link p-white-bold" to="/search"> Search</Link>
+                            </li>
 
                             <li className="nav-item" style={{background: 'linear-gradient(45deg, #313f70, #953986)', borderRadius: 6, padding: 10 }}> 
                                 <Link className="nav-link p-white-bold" to="tel:+01823222674" style={{color: 'var(--white)' }}> 
                                     <MdWifiCalling3 className='sub-heading-white' style={{marginRight: 6}}/>Call Us : 01823222674
 
                                 </Link>
-                           
                             </li>
                         </ul>
                     </div>
