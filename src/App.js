@@ -9,6 +9,10 @@ import Header from "./components/Header";
 import Index from "./components/index";
 import About from "./components/About";
 import Footer from "./components/Footer";
+import Service from "./components/service";
+
+
+
 
 function App() {
 
@@ -22,6 +26,11 @@ function App() {
       <Routes>
         <Route exact path="/" element={<Index/>} />
         <Route exact path="/about" element={<About/>} />
+        <Route exact path="/service" element={<Service/>} />
+
+        
+     
+    
       </Routes>
       <Footer/>
     </Router>
