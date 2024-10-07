@@ -69,7 +69,7 @@ function About() {
                       className="me-2"
                       style={{ color: "var(--pink)" }}
                     />
-                    <p className="p-black mb-0"> 15 years of Excellence</p>
+                    <p className="p-black mb-0">General Surgery</p>
                   </div>
                 </div>
                 <div className="col-lg-6 mb-2">
@@ -78,7 +78,7 @@ function About() {
                       className="me-2"
                       style={{ color: "var(--pink)" }}
                     />
-                    <p className="p-black mb-0"> 24/7 Hours Medical Service</p>
+                    <p className="p-black mb-0">Laparoscope Surgery Laboratory</p>
                   </div>
                 </div>
                 <div className="col-lg-6 mb-2">
@@ -87,7 +87,7 @@ function About() {
                       className="me-2"
                       style={{ color: "var(--pink)" }}
                     />
-                    <p className="p-black mb-0"> A Multispecialty hospital</p>
+                    <p className="p-black mb-0">  24Hr Emergency</p>
                   </div>
                 </div>
                 <div className="col-lg-6 mb-2">
@@ -96,7 +96,7 @@ function About() {
                       className="me-2"
                       style={{ color: "var(--pink)" }}
                     />
-                    <p className="p-black mb-0"> A Team of professionals</p>
+                    <p className="p-black mb-0">Advanced Medical I.C.U.</p>
                   </div>
                 </div>
               </div>

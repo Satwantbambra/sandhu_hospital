@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
-import doc from "./images/doctor.webp"
-import doc2 from "./images/doctor2.webp"
-import doc3 from "./images/doctor3.webp"
+import { Link } from 'react-router-dom';
+import doc from "./images/doctor.webp";
+import doc2 from "./images/doctor2.webp";
+import doc3 from "./images/doctor3.webp";
+
 const Team = () => {
     // Team data
     const teamMembers = [
@@ -92,10 +94,15 @@ const Team = () => {
           {/* Team Cards */}
           <div className="mt-5">
             <div className="row">
-              {filteredTeam.length > 0 ? (
+              {filteredTeam.length > 0 ?  (
                 filteredTeam.map((member) => (
                   <div className="col-lg-4" key={member.id}>
                     <div className="team-card">
+                      <div className="view animate__fadeIn animate__animated">
+                        <Link to="/doctor" className="btn-pink">
+                          View More
+                        </Link>
+                      </div>
                       <div className="row">
                         <div className="col-6">
                           <div className="pt-5 pb-3 ps-4">
