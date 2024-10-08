@@ -1,4 +1,4 @@
-import React from "react";
+import React,{useEffect} from "react";
 import brain from "./images/brains.webp";
 import addiction from "./images/addiction.webp";
 import laser from "./images/laser.webp";
@@ -11,13 +11,37 @@ import sandhuvideo from "./images/sandhu.mp4";
 import m1 from "./images/h1.jpg";
 import m2 from "./images/h2.jpg";
 import banner from "./images/banner2.webp"
-
+import { Fancybox } from "@fancyapps/ui";
+import "@fancyapps/ui/dist/fancybox/fancybox.css";
 import { FaCircleCheck } from "react-icons/fa6";
 import { MdWifiCalling3 } from "react-icons/md";
 import { BsFillChatQuoteFill } from "react-icons/bs";
 import Masonry, {ResponsiveMasonry} from "react-responsive-masonry";
 
 export default function Index(props) {
+  useEffect(() => {
+    Fancybox.bind("[data-fancybox]", {
+      // Custom options
+      loop: true,
+      keyboard: {
+        Escape: "close",
+        Delete: "close",
+        Backspace: "close",
+      },
+      buttons: [
+        "zoom",
+        "slideShow",
+        "fullScreen",
+        "close",
+      ],
+      transitionEffect: "fade",
+      idleTime: 5,
+      animationEffect: "zoom-in-out",
+    });
+    return () => {
+      Fancybox.unbind("[data-fancybox]");
+    };
+  }, []);
   return (
     <>
 
@@ -319,7 +343,7 @@ export default function Index(props) {
                       className="me-2"
                       style={{ color: "var(--pink)" }}
                     />
-                    <p className="p-black mb-0"> 15 years of Excellence</p>
+                    <p className="p-black mb-0">General Surgery</p>
                   </div>
                 </div>
                 <div className="col-lg-6 mb-2">
@@ -328,7 +352,7 @@ export default function Index(props) {
                       className="me-2"
                       style={{ color: "var(--pink)" }}
                     />
-                    <p className="p-black mb-0"> 24/7 Hours Medical Service</p>
+                    <p className="p-black mb-0">Laparoscope Surgery Laboratory</p>
                   </div>
                 </div>
                 <div className="col-lg-6 mb-2">
@@ -337,7 +361,7 @@ export default function Index(props) {
                       className="me-2"
                       style={{ color: "var(--pink)" }}
                     />
-                    <p className="p-black mb-0"> A Multispecialty hospital</p>
+                    <p className="p-black mb-0">  24Hr Emergency</p>
                   </div>
                 </div>
                 <div className="col-lg-6 mb-2">
@@ -346,7 +370,7 @@ export default function Index(props) {
                       className="me-2"
                       style={{ color: "var(--pink)" }}
                     />
-                    <p className="p-black mb-0"> A Team of professionals</p>
+                    <p className="p-black mb-0">Advanced Medical I.C.U.</p>
                   </div>
                 </div>
               </div>
@@ -514,27 +538,74 @@ export default function Index(props) {
            <ResponsiveMasonry
                 columnsCountBreakPoints={{350: 1, 750: 2, 900: 3, 1400 :4}}
             >
-                <Masonry  gutter="20px" className=" masonry"  >
-               
-                    
-                    <img src={brain} style={{width: "100%", display: "block" }} alt="sandhu hospital Nawanshahar images"/>
-                    <img src={laser} style={{width: "100%", display: "block"}} alt="sandhu hospital Nawanshahar images" />
-                    <img  src={chest} style={{width: "100%", display: "block"}} alt="sandhu hospital Nawanshahar images" />
-                    <div style={{position: "relative", width:"100%", height:'100%', margin:"0px"}}>
-                      <div className="overlaygll m-0">
+                <Masonry
+      className=" masonry"
+      columnClassName="masonry-grid_column"
+      gutter="20px"
+    >
+      {/* Image Items */}
+      <a data-fancybox="gallery" href={brain}>
+        <img
+          src={brain}
+          style={{ width: "100%", display: "block" }}
+          alt="sandhu hospital Nawanshahar images"
+        />
+      </a>
+      <a data-fancybox="gallery" href={laser}>
+        <img
+          src={laser}
+          style={{ width: "100%", display: "block" }}
+          alt="sandhu hospital Nawanshahar images"
+        />
+      </a>
+      <a data-fancybox="gallery" href={chest}>
+        <img
+          src={chest}
+          style={{ width: "100%", display: "block" }}
+          alt="sandhu hospital Nawanshahar images"
+        />
+      </a>
 
-                       <div className="play-btn m-0"></div>
-                      </div>
-                    <video loop autoPlay muted>
-                      <source src={sandhuvideo} type="video/mp4"/>
-                  
-                     Your browser does not support the video tag.
-                    </video>
-                    </div>
-                    <img  src={hospital} style={{width: "100%", display: "block"}} alt="sandhu hospital Nawanshahar images" />
-                    <img  src={m1} style={{width: "100%", display: "block"}} alt="sandhu hospital Nawanshahar images" />
-                    <img  src={m2} style={{width: "100%", display: "block"}} alt="sandhu hospital Nawanshahar images" />
-                </Masonry>
+      {/* Video Item */}
+      <a
+        data-fancybox="gallery"
+        href={sandhuvideo}
+        data-caption="Sandhu Hospital Video"
+      >
+        <div style={{ position: "relative", width: "100%", height: "100%" }}>
+          <div className="overlaygll m-0">
+            <div className="play-btn m-0"></div>
+          </div>
+          <video loop autoPlay muted style={{ width: "100%" }}>
+            <source src={sandhuvideo} type="video/mp4" />
+            Your browser does not support the video tag.
+          </video>
+        </div>
+      </a>
+
+      {/* More Image Items */}
+      <a data-fancybox="gallery" href={hospital}>
+        <img
+          src={hospital}
+          style={{ width: "100%", display: "block" }}
+          alt="sandhu hospital Nawanshahar images"
+        />
+      </a>
+      <a data-fancybox="gallery" href={m1}>
+        <img
+          src={m1}
+          style={{ width: "100%", display: "block" }}
+          alt="sandhu hospital Nawanshahar images"
+        />
+      </a>
+      <a data-fancybox="gallery" href={m2}>
+        <img
+          src={m2}
+          style={{ width: "100%", display: "block" }}
+          alt="sandhu hospital Nawanshahar images"
+        />
+      </a>
+    </Masonry>
             </ResponsiveMasonry>
            </div>
         </div>

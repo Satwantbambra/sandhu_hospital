@@ -1,5 +1,11 @@
 import React from 'react'
 import { MdWifiCalling3 } from "react-icons/md";
+import { Link } from 'react-router-dom';
+import { FaLocationDot } from "react-icons/fa6";
+import { FaArrowCircleRight } from "react-icons/fa";
+import { IoLogoWhatsapp } from "react-icons/io";
+import { FaFacebook } from "react-icons/fa";
+import { IoMail } from "react-icons/io5";
 export default function Footer() {
   return (
     <div>
@@ -14,34 +20,35 @@ export default function Footer() {
             </div>
             <hr style={{border:'1px solid #fff'}}/>
             <div className="row py-lg-4">
-                  <div className="col-lg-4 mb-3 mb-lg-0">
+                  <div className="col-lg-3 mb-3 mb-lg-0">
                         <h3 className="sub-heading-white mt-0 mb-2">
                         Your Wellness, Our Priority
                         </h3>
                         <p className="p-white my-0" style={{textAlign: 'justify'}}>
                               Sandhu Hospital, Nawanshahar, is a leading MultiSpeciality Hospital specializing in Brain
-                              Diseases, De-addiction, Skin, Medicine, and Surgery, offering 24/7 emergency care with
-                              advanced diagnostics and an ICU. Compassionate care for every patient.</p>
+                              Diseases, De-addiction, Skin, Medicine, and Surgery.</p>
 
                         <ul className="footer-ul mt-3">
                               <li>
-                                    <a href="#" className="p-white"><i className="fa-solid fa-location-dot"></i>
+                                   <Link to="#" className="p-white"> <i><FaLocationDot /></i>
                                           CHANDIGARH ROAD, Near Barnala Gate, NAWANSHAHAR (Old address Saloh Rd, Nsr) ,
-                                          Nawanshahr Doaba, India, Punjab region</a>
+                                          Nawanshahr Doaba, India, Punjab region</Link>
                               </li>
 
                               <li>
-                                    <a href="tel:09872620674" className="p-white"><i className="fa-solid fa-phone"></i> 09872620674</a>
+                                   <Link to="tel:09872620674" className="p-white"><i> <MdWifiCalling3/></i> 09872620674</Link>
                               </li>
                               <li>
-                                    <a href="mailto:sandhuhospital@yahoo.in" className="p-white"><i
-                                                className="fa-solid fa-envelope"></i>sandhuhospital@yahoo.in</a>
+                                   <Link to="mailto:sandhuhospital@yahoo.in" className="p-white"><i><IoMail /></i>sandhuhospital@yahoo.in</Link>
                               </li>
 
                         </ul>
+                     
 
 
                   </div>
+                  <div className="col-lg-9">
+                        <div className="row">
                   <div className="col-lg-4 mb-3 mb-lg-0 d-flex align-items-start justify-content-lg-center ">
                         <div>
                               <h3 className="sub-heading-white mt-0 mb-2">
@@ -49,26 +56,69 @@ export default function Footer() {
                               </h3>
                               <ul className="footer-ul">
                                     <li>
-                                          <a href="#" className="p-white-bold">
-                                                <i className="fa-solid fa-circle-arrow-right"></i>Home
-                                          </a>
+                                         <Link to="#" className="p-white-bold">
+                                                <i><FaArrowCircleRight /></i>Home
+                                          </Link>
                                     </li>
                                     <li>
-                                          <a href="#" className="p-white-bold">
-                                                <i className="fa-solid fa-circle-arrow-right"></i>About us
-                                          </a>
+                                         <Link to="#" className="p-white-bold">
+                                                <i><FaArrowCircleRight /></i>About us
+                                          </Link>
                                     </li>
                                     <li>
-                                          <a href="#" className="p-white-bold">
-                                    <i className="fa-solid fa-circle-arrow-right"></i>OurServices</a>
+                                         <Link to="#" className="p-white-bold">
+                                    <i ><FaArrowCircleRight /></i>Team</Link>
                                     </li>
                                     <li>
-                                          <a href="#" className="p-white-bold">
-                                          <i className="fa-solid fa-circle-arrow-right"></i>How We Care</a>
+                                         <Link to="#" className="p-white-bold">
+                                          <i><FaArrowCircleRight /></i>Search</Link>
+                                    </li>
+                                    <li>
+                                         <Link to="#" className="p-white-bold">
+                                          <i ><FaArrowCircleRight /></i>Gallery</Link>
                                     </li>
                                 
                               </ul>
                         </div>
+
+                  </div>
+                  <div className="col-lg-4 mb-3 mb-lg-0 d-flex align-items-start justify-content-lg-center ">
+                        <div>
+                              <h3 className="sub-heading-white mt-0 mb-2">
+                              Specialized Care
+                              </h3>
+                             
+
+
+
+
+                              <ul className="footer-ul">
+                                    <li>
+                                         <Link to="#" className="p-white-bold">
+                                                <i ><FaArrowCircleRight /></i> De-addiction
+                                          </Link>
+                                    </li>
+                                    <li>
+                                         <Link to="#" className="p-white-bold">
+                                                <i><FaArrowCircleRight /></i>Psychiatry
+                                          </Link>
+                                    </li>
+                                    <li>
+                                         <Link to="#" className="p-white-bold">
+                                    <i><FaArrowCircleRight /></i>Dermatology</Link>
+                                    </li>
+                                    <li>
+                                         <Link to="#" className="p-white-bold">
+                                          <i><FaArrowCircleRight /></i>Skin(Dermatology)</Link>
+                                    </li>
+                                    <li>
+                                         <Link to="#" className="p-white-bold" >
+                                          <i><FaArrowCircleRight /></i>Medicine and Chest Diseases, </Link>
+                                    </li>
+                                
+                              </ul>
+                        </div>
+
 
                   </div>
                   <div className="col-lg-4 mb-3 mb-lg-0">
@@ -76,44 +126,50 @@ export default function Footer() {
                               <h3 className="sub-heading-white mt-0 mb-2">
                                     Join the Conversation
                               </h3>
+                              
                               <ul className="footer-ul">
                                     <li className="d-flex mb-1">
-                                          <a href="https://www.facebook.com/profile.php?id=100063722508860" className="p-white-bold" >
-                                      <i className="fa-brands fa-facebook"></i>Facebook</a></li>
+                                         <Link to="https://www.facebook.com/profile.php?id=100063722508860" className="p-white-bold"  target='_blank'>
+                                      <i><FaFacebook /></i>Facebook</Link></li>
                                       <li className="d-flex mb-1">
-                                          <a href="https://api.whatsapp.com/send?phone=%2B919872620674&context=ARB6o1Ic__xCNYvIJiWLOIx2K9cFkuVCLcvYUiK89e-0vVD5cdUSUPrMzRCuxWiPCanb42fuoMWc5-qkntQHx5iO_895LRdYsTxfR158BIjwXjf7-T9UNJ6Xv_Kxk9Nh67k21an873kRxrnX5kNFW3Tdnw&source=FB_Page&app=facebook&entry_point=page_cta&fbclid=IwY2xjawFWAelleHRuA2FlbQIxMAABHVNQfjquyj1K2dZkp8ZA8-2U9tygqUn5-2Xy1uR74jJpa1nt6l_o4YKwfw_aem_T_4k8jbdHxKsRzpXQ8cjcg"
-                                           className="p-white-bold" >
-                                          <i className="fa-brands fa-whatsapp"></i>Whatsapp</a></li>
+                                         <Link to="https://api.whatsapp.com/send?phone=%2B919872620674&context=ARB6o1Ic__xCNYvIJiWLOIx2K9cFkuVCLcvYUiK89e-0vVD5cdUSUPrMzRCuxWiPCanb42fuoMWc5-qkntQHx5iO_895LRdYsTxfR158BIjwXjf7-T9UNJ6Xv_Kxk9Nh67k21an873kRxrnX5kNFW3Tdnw&source=FB_Page&app=facebook&entry_point=page_cta&fbclid=IwY2xjawFWAelleHRuA2FlbQIxMAABHVNQfjquyj1K2dZkp8ZA8-2U9tygqUn5-2Xy1uR74jJpa1nt6l_o4YKwfw_aem_T_4k8jbdHxKsRzpXQ8cjcg"
+                                           className="p-white-bold" target='_blank'>
+                                          <i><IoLogoWhatsapp /></i>Whatsapp</Link></li>
 
                               </ul>
-
-                        </div>
-                        <div className="mt-3">
+                              <div className="mt-3">
                               <h3 className="sub-heading-white mt-0 mb-2">
                         We’re Here to Help
                               </h3>
                               <div className="d-inline-block" style={{background: 'linear-gradient(45deg, #313f70, #953986)', borderRadius: 6,padding:10 }}> 
-                                <a className=" p-white-bold " href="tel:+01823222674" style={{ textDecoration:'none', color: 'var(--white)', padding:'10px !important'}}> 
+                               <Link className=" p-white-bold " to="tel:+01823222674" style={{ textDecoration:'none', color: 'var(--white)', padding:'10px !important'}}> 
                                 <MdWifiCalling3 className='sub-heading-white'  style={{marginRight: 6}}/>Call Us : 01823222674
-                                </a>
+                                </Link>
                             </div>
                         </div>
+
+                        </div>
+                      
+                      
                        
+                  </div>
+                
+                  </div>
                   </div>
             </div>
   <div className="row">
     <div className="col-lg-5 mb-3 mb-lg-0">
       <div className="d-flex justify-content-start">
             <div className="d-flex footer-ul justify-content-between ">
-                  <a href="#" className="p-white-bold">
+                 <Link to="#" className="p-white-bold">
                         Privacy Policy
-                  </a>
-                  <a href="#" className="p-white-bold mx-lg-3">
+                  </Link>
+                 <Link to="#" className="p-white-bold mx-lg-3">
                       Terms and Conditions
-                  </a>   
-                  <a href="#" className="p-white-bold">
+                  </Link>   
+                 <Link to="#" className="p-white-bold">
                        24/7 Services
-                  </a>
+                  </Link>
             </div>
       </div>
 

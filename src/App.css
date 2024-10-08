@@ -5,6 +5,7 @@ body{
   background: #fff !important;
   width: 100%;
   position: relative;
+
 }
 
 .banner img{
@@ -159,7 +160,7 @@ height: fit-content;
 
 footer{
  
-  background:  linear-gradient(269deg, #3f6999, #669cda, #92c0ec, #a7d0ee);
+  background:  #1e1e1e;
   background-blend-mode: multiply;
   background-size: cover;
   background-position: top;
@@ -186,7 +187,12 @@ list-style: none;
     display: inline-flex; 
     align-items: baseline;
     justify-content: start;
+    transition:  all 0.6s;
     
+}
+.footer-ul  a:hover{
+
+  color: var(--pink);
 }
 
 .footer-ul li a::before{
@@ -287,15 +293,15 @@ animation: width 0.5s linear forwards;
 
 .float{
   position: fixed;
-  width: 120px;
-  height: 120px;
+  width: 70px;
+  height: 70px;
   border-radius: 50%;
   padding: 10px;
   z-index: 1000;
   background: #fff;
-  bottom: 40px;
+  bottom: 5%;
   border: 1px solid #e4e3e3;
-  right:50px;
+  right:3%;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -473,7 +479,24 @@ border-radius: 10px;
     border: 1px solid #e0dede;
     background: linear-gradient(184deg, #efefef, #4041745c, #4041745c, #00000030);
     height: 340px;
+    position: relative;
     min-height: 340px;
+
+}
+.view{
+  position: absolute;
+  width: 100%;
+  left: 0;
+  top: 0;
+  display: none;
+  background: #0000002a;
+  height: 100%;
+  justify-content: center;
+  align-items: center;
+  transition: all 0.6s ;
+}
+.team-card:hover .view{
+  display: flex !important;
 
 }
 
@@ -498,5 +521,415 @@ border-radius: 10px;
 
 .form-control.search-input:focus{
   color:#000 !important;
+}
+
+
+
+
+.doc-s{
+  min-height: 200px;
+  height: 400px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+.doc-s img{
+  width: 100%;
+  height: 100%;
+ object-fit: contain;
+ position: relative;
+ z-index: 3;
+
+}
+.doc-s::after{
+  content: "";
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  z-index: 4;
+  bottom: 0;
+  left: 0;
+  background: linear-gradient(0deg, #ffffff, #ffffff0b, transparent);
+
+}
+.doc-s::before {
+  content: "";
+  z-index: 1;
+  position: absolute;
+  height: 90%;
+  background: url(./components/images/medical-symbol.png);
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: end;
+  width: 51%;
+  bottom: -7px;
+  left: 0;
+}
+.days-ul li
+{
+  border-top-right-radius: 10px;
+  border-bottom-right-radius: 10px;
+  position: relative;
+  margin-bottom: 30px;
+}
+
+
+
+.outerday-tag {
+  margin-left: 16px;
+  position: relative;
+  width: fit-content;
+  display: flex;
+  align-items: center;
+  padding: 10px;
+  background: var(--pink);
+  height: fit-content;
+  width: 60px;
+  margin-top: -12px;
+}
+
+.innerday-tag::before {
+  position: absolute;
+  content: "";
+  left: -16px ;
+  top: 0px;
+
+}
+
+/* First item and every 3rd after */
+.days-ul li:not(.off):nth-child(3n + 1) {
+  background: #ffc6f2;
+}
+.days-ul li:not(.off):nth-child(3n + 1) .outerday-tag {
+  background: var(--pink);
+}
+.days-ul li:not(.off):nth-child(3n + 1) .innerday-tag::before {
+  border-right: 17px solid #480c3a;
+  border-bottom: 1px solid #490c3a;
+  border-top: 14px solid #00000000;
+}
+.days-ul li:not(.off):nth-child(3n + 1) p.p-heading-white.color {
+  color: var(--pink) !important;
+}
+
+/* Second item and every 3rd after */
+.days-ul li:not(.off):nth-child(3n + 2) {
+  background: #dce2ff;
+}
+.days-ul li:not(.off):nth-child(3n + 2) .outerday-tag {
+  background: var(--blue);
+}
+.days-ul li:not(.off):nth-child(3n + 2) .innerday-tag::before {
+  border-right: 17px solid #0f152d;
+  border-bottom: 1px solid #0f152d;
+  border-top: 14px solid #00000000;
+}
+.days-ul li:not(.off):nth-child(3n + 2) p.p-heading-white.color {
+  color: var(--blue) !important;
+}
+
+/* Third item and every 3rd after */
+.days-ul li:not(.off):nth-child(3n + 3) {
+  background: #c7f8ed;
+}
+.days-ul li:not(.off):nth-child(3n + 3) .outerday-tag {
+  background: var(--neon);
+}
+.days-ul li:not(.off):nth-child(3n + 3) .innerday-tag::before {
+  border-right: 17px solid #153432;
+  border-bottom: 1px solid #153432;
+  border-top: 14px solid #00000000;
+}
+.days-ul li:not(.off):nth-child(3n + 3) p.p-heading-white.color {
+  color: var(--neon) !important;
+}
+
+
+
+
+.days-ul li.off  {
+  background: #ecebeb;
+}
+.days-ul li.off .outerday-tag {
+  background: #ccc;
+}
+.days-ul li.off .innerday-tag::before {
+  border-right: 17px solid #676767;
+  border-bottom: 1px solid #676767;
+  border-top: 14px solid #00000000;
+}
+.days-ul li.off p.p-heading-white {
+  color: var(--black) !important;
+}
+
+
+
+.cwt{
+ 
+  border-radius: 20px;
+  height: fit-content;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+}
+.cwt{
+  border: 1px solid var(--grey);
+  border-radius: 20px;
+  display: flex;
+  align-items: start;
+  flex-direction: column;
+  justify-content: start;
+
+}
+
+
+.cwt img{
+  border: 1px solid var(--grey);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+  border-radius: 20px;
+
+}
+
+
+.doc-img{
+  height: 100%;
+  width: 100%;
+  position: relative;
+  display: flex ;
+  align-items: top;
+  justify-content: center;
+}
+.doc-img img{
+  height: 100%;
+
+  object-fit: contain;
+
+}
+.doc-img::before {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 45%;
+  bottom: 0;
+  left: 0;
+  background: linear-gradient(360deg, #ffffff, transparent);
+}
+.d-wrap{
+  position: relative;
+  padding: 36px 10px 0px;
+  margin: 10px 0px;
+  display: inline-block;
+}
+.d-wrap::before{
+  content: "";
+  position: absolute;
+  width: 3px;
+  height: 100%;
+  border-top-left-radius: 10px;
+  top: 0;
+  left: 0;
+  background: var(--pink);
+
+}
+.d-wrap::after{
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 3px;
+  top: 26px;
+  right: 0;
+  background: var(--pink);
+
+}
+.dd-title {
+  background: var(--pink);
+  border-top-left-radius: 6px;
+  display: inline-block;
+  position: absolute;
+  padding: 4px 8px;
+  top: -4px;
+  left: 0px;
+}
+
+.d-d{
+  background: var(--blue);
+  padding: 4px 10px; 
+  margin: 0px 10px 0 0;
+  border-radius: 20px;
+  font-weight: 700;
+}
+.d-d p{
+ 
+  font-weight: 700 !important;
+  text-transform: uppercase !important;
+}
+.d-d a{
+  font-weight: 700 !important;
+ }
+.d-d a:hover{
+ color: #fff !important;
+}
+
+
+
+
+/* skin sections */
+
+.skin-facility-img{
+  height: 400px;
+  width: 100%;
+  position: relative;
+
+}
+
+
+.skin-facility-img img{
+  height: 100%;
+  object-fit: cover;
+  width: 100%;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  
+}
+
+.skname{
+  position: absolute;
+  bottom: 0;
+  left: -20px;
+  
+}
+
+.skname {
+  position: absolute;
+  bottom: 3px;
+  left: -14px;
+}
+.skinner-tag{
+  position: relative;
+  padding: 10px;
+  background: var(--pink);
+  height: fit-content;
+  width: fit-content;
+}
+
+.skinner-tag::before {
+  border-right: 16px solid #480c3a;
+  position: absolute;
+  content: "";
+  border-left: -6px solid #490c3a;
+  left: 1px;
+  border-top: 12px solid #00000000;
+  top: -12px;
+  left: -1px;
+}
+
+
+.sfacility{
+  position: absolute;
+  height: fit-content;
+  border: 2px solid var(--pink);
+  width: fit-content;
+  border-radius: 10px;
+  background: #f5f5f5d7;
+  backdrop-filter: blur(3px);
+  padding: 1rem;
+}
+.sktreat{
+  left: -80px;
+  top: 20%;
+  width: 40%;
+}
+.skcure{
+  right: -80px;
+  bottom: 20%;
+  width: 40%;
+}
+
+
+.decob{
+  position: relative;
+}
+
+.decob::before{
+  position: absolute;
+  content: "";
+  width:20px;
+top: 90%;  height: 20px;
+left: 3%;
+background: var(--pink);
+transform: rotate(45deg);
+}
+
+.decob::after{
+  position: absolute;
+  content: "";
+  width:20px;
+bottom: 90%;  height: 20px;
+right: 3%;
+background: var(--pink);
+transform: rotate(55deg);
+}
+
+
+.deco{
+  position: relative;
+  margin-bottom: 2rem;
+  border-radius: 10px;
+  
+}
+
+.deco:nth-child(even){
+  background: #f0f0f0;
+  
+}
+.deco:nth-child(odd){
+  background: #ffeded;
+}
+
+.deco::before{
+  position: absolute;
+  content: "";
+  width:20px;
+top: 90%;  height: 20px;
+left: 3%;
+background: var(--pink);
+transform: rotate(45deg);
+}
+
+.deco::after{
+  position: absolute;
+  content: "";
+  width:20px;
+bottom: 90%;  height: 20px;
+right: 3%;
+background: var(--pink);
+transform: rotate(55deg);
+}
+
+.gallery-cap{
+  position: relative;
+}
+
+.gallery-capi{
+  position: absolute;
+  background: #0000003b;
+  display: none;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+  transition:  all 0.6s;
+  height: 100%;
+  top: 0;
+  left: 0;
+}
+.gallery-cap:hover .gallery-capi{
+display: flex;
 }
 

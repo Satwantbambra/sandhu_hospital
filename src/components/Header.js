@@ -1,46 +1,20 @@
-// src/components/Header.js
 import React, { useEffect, useRef } from 'react';
-import { MdWifiCalling3 } from "react-icons/md";
-import { Link } from 'react-router-dom';
-import { MdDoubleArrow } from "react-icons/md";
-
+import { MdWifiCalling3, MdDoubleArrow } from "react-icons/md";
+import { NavLink, useLocation } from 'react-router-dom';
 
 export default function Header() {
     const navbarRef = useRef(null);
-    const offset = 130; // Set your desired offset value (adjust this value as needed)
+    const location = useLocation();
 
     useEffect(() => {
         const handleScroll = () => {
             if (!navbarRef.current) return;
-
-            const sections = document.querySelectorAll('section'); // Select all sections
             const scrollPosition = window.scrollY;
-
-            // Check each section to see if it's in the viewport
-            sections.forEach(section => {
-                const sectionId = section.getAttribute('id');
-                const navLink = navbarRef.current.querySelector(`a[to="#${sectionId}"]`);
-
-                if (navLink) {
-                    const sectionTop = section.offsetTop - offset; // Adjust the section top by the offset
-                    const sectionHeight = section.offsetHeight;
-
-                    // Check if section is in viewport with offset
-                    if (scrollPosition >= sectionTop && scrollPosition < sectionTop + sectionHeight) {
-                        navLink.classList.add('active'); // Add active class
-                    } else {
-                        navLink.classList.remove('active'); // Remove active class
-                    }
-                }
-            });
-
             // Sticky Navbar
             if (scrollPosition > 100) {
-                navbarRef.current.classList.add('fixed-top', 'trans-bg');
-               
+                navbarRef.current.classList.add('fixed-top', 'trans-bg');  
             } else {
                 navbarRef.current.classList.remove('fixed-top', 'trans-bg');
-              
             }
         };
 
@@ -51,71 +25,92 @@ export default function Header() {
             window.removeEventListener('scroll', handleScroll);
         };
     }, []);
+
+    // Check if the current location is one of the services routes
+    const isServiceActive = location.pathname.startsWith('/service');
+
     return (
-       
-            <nav className="navbar navbar-expand-lg navbar-not  navbar-dark bg-dark py-0" id="navbar-sticky"
-             ref={navbarRef}
-             >
-                <div className="container-fluid py-3  " style={{position:"relative", zIndex:3}}>
-                    <Link className="navbar-brand d-flex align-items-center" to="/" style={{position:"relative",zIndex:3}}>
-                        <i className="fa-solid fa-house-medical section-heading-white me-2" style={{color: 'var(--pink)'}}></i>
-                        <h2 className="section-heading-white my-0">
-                            Sandhu <span style={{color: 'var(--pink)'}}> hospital</span> 
-                        </h2>
-                    </Link>
-                    <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-           <span className="navbar-toggler-icon"></span>
-                 </button>
-                    <div className="collapse navbar-collapse" id="navbarSupportedContent" style={{position:"relative",zIndex:3}}>
-                        <ul className="navbar-nav ms-auto mb-2 mb-lg-0 nav-pills align-items-lg-center">
-                            <li className="nav-item">
-                              
-                                <div class="dropdown">
-                          <Link data-mdb-button-init
-                                data-mdb-ripple-init data-mdb-dropdown-init class="nav-link p-white-bold dropdown-toggle" 
-                                 type="button"  id="dropdownMenuButton"  data-mdb-toggle="dropdown" aria-expanded="false">
+        <nav className="navbar navbar-expand-lg navbar-not navbar-dark bg-dark py-0" ref={navbarRef}>
+            <div className="container-fluid py-3" style={{position: "relative", zIndex: 3}}>
+                <NavLink className="navbar-brand d-flex align-items-center" to="/" style={{position: "relative", zIndex: 3}}>
+                    <i className="fa-solid fa-house-medical section-heading-white me-2" style={{color: 'var(--pink)'}}></i>
+                    <h2 className="section-heading-white my-0">
+                        Sandhu <span style={{color: 'var(--pink)'}}>Hospital</span> 
+                    </h2>
+                </NavLink>
+
+                <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <span className="navbar-toggler-icon"></span>
+                </button>
+
+                <div className="collapse navbar-collapse" id="navbarSupportedContent" style={{position: "relative", zIndex: 3}}>
+                    <ul className="navbar-nav ms-auto mb-2 mb-lg-0 nav-pills align-items-lg-center">
+                        {/* Dropdown for Services */}
+                        <li className="nav-item dropdown">
+                            <NavLink
+                                 to="/service"
+                                 className={({ isActive }) => {
+                                     const isServiceActive = window.location.pathname.includes("/service");
+                                     return isActive || isServiceActive ? 'active nav-link p-white-bold dropdown-toggle' : 'nav-link p-white-bold dropdown-toggle';
+                                 }}
+                                 data-mdb-toggle="dropdown"
+                                 aria-expanded="false"
+                             >
+                            
                                 Services
-                              </Link>
-                  <ul class="dropdown-menu animate__animated animate__fadeInUp" aria-labelledby="dropdownMenuButton">
-                     <li><Link class="dropdown-item p-black" to="/Service"><MdDoubleArrow className='me-2'/>De-addiction</Link></li>
-                          <li><Link class="dropdown-item p-black" to="/Service"><MdDoubleArrow className='me-2' />Psychiatry</Link></li>
-                      <li><Link class="dropdown-item p-black" to="/Service"><MdDoubleArrow className='me-2' />Dermatology</Link></li>
-                      <li><Link class="dropdown-item p-black" to="/Service"><MdDoubleArrow className='me-2' />Skin(Dermatology)</Link></li>
-                      <li><Link class="dropdown-item p-black" to="/Service"><MdDoubleArrow className='me-2' />Medicine and Chest Diseases</Link></li>
-                      
-                      </ul>
-                            </div>
-                         
-                            </li>
-                            <li className="nav-item">
-                                <Link className="nav-link p-white-bold" to="/about">About us</Link>
-                            </li>
-                            <li className="nav-item">
-                                <Link className="nav-link p-white-bold" to="/team">Team</Link>
-                            </li>
-                            <li className="nav-item">
-                                <Link className="nav-link p-white-bold" to="/">Who we cure</Link>
-                            </li>
-                            <li className="nav-item">
-                                <Link className="nav-link p-white-bold" to="/">Gallery</Link>
-                            </li>
-                            <li className="nav-item">
-                                <Link className="nav-link p-white-bold" to="/"> Testimonials</Link>
-                            </li>
-                            <li className="nav-item">
-                                <Link className="nav-link p-white-bold" to="/search"> Search</Link>
-                            </li>
+                            </NavLink>
+                            <ul className="dropdown-menu animate__animated animate__fadeInUp">
+                                <li>
+                                    <NavLink className={({ isActive }) => (isActive ? 'active dropdown-item p-black' : 'dropdown-item p-black')} to="/service/De-addiction">
+                                        <MdDoubleArrow className='me-2'/> De-addiction
+                                    </NavLink>
+                                </li>
+                                <li>
+                                    <NavLink className={({ isActive }) => (isActive ? 'active dropdown-item p-black' : 'dropdown-item p-black')} to="/service/Psychiatry">
+                                        <MdDoubleArrow className='me-2'/> Psychiatry
+                                    </NavLink>
+                                </li>
+                                <li>
+                                    <NavLink className={({ isActive }) => (isActive ? 'active dropdown-item p-black' : 'dropdown-item p-black')} to="/service/Dermatology">
+                                        <MdDoubleArrow className='me-2'/> Dermatology
+                                    </NavLink>
+                                </li>
+                                <li>
+                                    <NavLink className={({ isActive }) => (isActive ? 'active dropdown-item p-black' : 'dropdown-item p-black')} to="/service/Skin (Dermatology)">
+                                        <MdDoubleArrow className='me-2'/> Skin (Dermatology)
+                                    </NavLink>
+                                </li>
+                                <li>
+                                    <NavLink className={({ isActive }) => (isActive ? 'active dropdown-item p-black' : 'dropdown-item p-black')} to="/service/Medicine & Chest Diseases">
+                                        <MdDoubleArrow className='me-2'/> Medicine & Chest Diseases
+                                    </NavLink>
+                                </li>
+                            </ul>
+                        </li>
 
-                            <li className="nav-item" style={{background: 'linear-gradient(45deg, #313f70, #953986)', borderRadius: 6, padding: 10 }}> 
-                                <Link className="nav-link p-white-bold" to="tel:+01823222674" style={{color: 'var(--white)' }}> 
-                                    <MdWifiCalling3 className='sub-heading-white' style={{marginRight: 6}}/>Call Us : 01823222674
+                        {/* Other Nav Links */}
+                        <li className="nav-item">
+                            <NavLink className={({ isActive }) => (isActive ? 'nav-link p-white-bold active' : 'nav-link p-white-bold')} to="/about">About Us</NavLink>
+                        </li>
+                        <li className="nav-item">
+                            <NavLink className={({ isActive }) => (isActive ? 'nav-link p-white-bold active' : 'nav-link p-white-bold')} to="/team">Team</NavLink>
+                        </li>
+                        <li className="nav-item">
+                            <NavLink className={({ isActive }) => (isActive ? 'nav-link p-white-bold active' : 'nav-link p-white-bold')} to="/gallery">Gallery</NavLink>
+                        </li>
+                        <li className="nav-item">
+                            <NavLink className={({ isActive }) => (isActive ? 'nav-link p-white-bold active' : 'nav-link p-white-bold')} to="/search">Search</NavLink>
+                        </li>
 
-                                </Link>
-                            </li>
-                        </ul>
-                    </div>
+                        {/* Call Us Button */}
+                        <li className="nav-item" style={{background: 'linear-gradient(45deg, #313f70, #953986)', borderRadius: 6, padding: 10 }}> 
+                            <NavLink className="nav-link p-white-bold" to="tel:+01823222674" style={{color: 'var(--white)' }}> 
+                                <MdWifiCalling3 className='sub-heading-white' style={{marginRight: 6}}/> Call Us: 01823222674
+                            </NavLink>
+                        </li>
+                    </ul>
                 </div>
-            </nav>
-        
+            </div>
+        </nav>
     );
 }
