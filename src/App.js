@@ -5,6 +5,7 @@ import "./components/css/common.css";
 import "./components/css/responsive.css";
 import float from "./components/images/247.webp";
 import 'animate.css';
+import "animate.css/animate.compat.css"
 import Header from "./components/Header";
 import Index from "./components/index";
 import About from "./components/About";
@@ -13,8 +14,11 @@ import Service from "./components/service";
 import Search from "./components/Search";
 import Team from "./components/Team";
 import Doctor from "./components/doctor";
+import Gallery from "./components/gallery";
+import Skin from "./components/skin";
 
 function ScrollToTop() {
+
   const { pathname } = useLocation();
 
   useEffect(() => {
@@ -43,7 +47,9 @@ function App() {
         <Route exact path="/about" element={<About />} />
         <Route exact path="/service" element={<Service />} />
         <Route exact path="/search" element={<Search />} />
+        <Route exact path="/gallery" element={<Gallery />} />
         <Route exact path="/team" element={<Team />} />
+        <Route exact path="/skin" element={<Skin />} />
         <Route exact path="/doctor" element={<Doctor />} />
       </Routes>
       <Footer />

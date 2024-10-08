@@ -1,10 +1,10 @@
-// src/components/Header.js
 import React, { useEffect, useRef } from 'react';
 import { MdWifiCalling3, MdDoubleArrow } from "react-icons/md";
-import { NavLink } from 'react-router-dom';
+import { NavLink, useLocation } from 'react-router-dom';
 
 export default function Header() {
     const navbarRef = useRef(null);
+    const location = useLocation();
 
     useEffect(() => {
         const handleScroll = () => {
@@ -26,6 +26,9 @@ export default function Header() {
         };
     }, []);
 
+    // Check if the current location is one of the services routes
+    const isServiceActive = location.pathname.startsWith('/service');
+
     return (
         <nav className="navbar navbar-expand-lg navbar-not navbar-dark bg-dark py-0" ref={navbarRef}>
             <div className="container-fluid py-3" style={{position: "relative", zIndex: 3}}>
@@ -45,36 +48,40 @@ export default function Header() {
                         {/* Dropdown for Services */}
                         <li className="nav-item dropdown">
                             <NavLink
-                                to="/service"
-                                className={({ isActive }) => (isActive ? 'active nav-link p-white-bold dropdown-toggle' : 'nav-link p-white-bold dropdown-toggle')}
-                                data-mdb-toggle="dropdown"
-                                aria-expanded="false"
-                            >
+                                 to="/service"
+                                 className={({ isActive }) => {
+                                     const isServiceActive = window.location.pathname.includes("/service");
+                                     return isActive || isServiceActive ? 'active nav-link p-white-bold dropdown-toggle' : 'nav-link p-white-bold dropdown-toggle';
+                                 }}
+                                 data-mdb-toggle="dropdown"
+                                 aria-expanded="false"
+                             >
+                            
                                 Services
                             </NavLink>
                             <ul className="dropdown-menu animate__animated animate__fadeInUp">
                                 <li>
-                                    <NavLink className="dropdown-item p-black" to="/service">
+                                    <NavLink className={({ isActive }) => (isActive ? 'active dropdown-item p-black' : 'dropdown-item p-black')} to="/service/De-addiction">
                                         <MdDoubleArrow className='me-2'/> De-addiction
                                     </NavLink>
                                 </li>
                                 <li>
-                                    <NavLink className="dropdown-item p-black" to="/">
+                                    <NavLink className={({ isActive }) => (isActive ? 'active dropdown-item p-black' : 'dropdown-item p-black')} to="/service/Psychiatry">
                                         <MdDoubleArrow className='me-2'/> Psychiatry
                                     </NavLink>
                                 </li>
                                 <li>
-                                    <NavLink className="dropdown-item p-black" to="/service">
+                                    <NavLink className={({ isActive }) => (isActive ? 'active dropdown-item p-black' : 'dropdown-item p-black')} to="/service/Dermatology">
                                         <MdDoubleArrow className='me-2'/> Dermatology
                                     </NavLink>
                                 </li>
                                 <li>
-                                    <NavLink className="dropdown-item p-black" to="/service">
+                                    <NavLink className={({ isActive }) => (isActive ? 'active dropdown-item p-black' : 'dropdown-item p-black')} to="/service/Skin (Dermatology)">
                                         <MdDoubleArrow className='me-2'/> Skin (Dermatology)
                                     </NavLink>
                                 </li>
                                 <li>
-                                    <NavLink className="dropdown-item p-black" to="/service">
+                                    <NavLink className={({ isActive }) => (isActive ? 'active dropdown-item p-black' : 'dropdown-item p-black')} to="/service/Medicine & Chest Diseases">
                                         <MdDoubleArrow className='me-2'/> Medicine & Chest Diseases
                                     </NavLink>
                                 </li>
@@ -89,7 +96,7 @@ export default function Header() {
                             <NavLink className={({ isActive }) => (isActive ? 'nav-link p-white-bold active' : 'nav-link p-white-bold')} to="/team">Team</NavLink>
                         </li>
                         <li className="nav-item">
-                            <NavLink className={({ isActive }) => (isActive ? ' nav-link p-white-bold active' : 'nav-link p-white-bold')} to="/gallery">Gallery</NavLink>
+                            <NavLink className={({ isActive }) => (isActive ? 'nav-link p-white-bold active' : 'nav-link p-white-bold')} to="/gallery">Gallery</NavLink>
                         </li>
                         <li className="nav-item">
                             <NavLink className={({ isActive }) => (isActive ? 'nav-link p-white-bold active' : 'nav-link p-white-bold')} to="/search">Search</NavLink>

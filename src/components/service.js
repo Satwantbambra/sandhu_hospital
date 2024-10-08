@@ -1,5 +1,7 @@
 import React ,{useEffect} from 'react';
 import { Link } from 'react-router-dom';
+import { Fancybox } from "@fancyapps/ui";
+import "@fancyapps/ui/dist/fancybox/fancybox.css";
 import Masonry, {ResponsiveMasonry} from "react-responsive-masonry";
 import addiction from "./images/addiction.webp";
 import doc from "./images/doctor.webp";
@@ -27,6 +29,28 @@ export default function Service() {
       // Execute the word change effect once the component is mounted
       useEffect(() => {
         changeLastWord();
+      }, []);
+      useEffect(() => {
+        changeLastWord();
+      }, []);
+    
+      useEffect(() => {
+        Fancybox.bind("[data-fancybox]", {
+          // Custom options
+          loop: true,
+          keyboard: {
+            Escape: "close",
+            Delete: "close",
+            Backspace: "close",
+          },
+          buttons: ["zoom", "slideShow", "fullScreen", "close"],
+          transitionEffect: "fade",
+          idleTime: 5,
+          animationEffect: "zoom-in-out",
+        });
+        return () => {
+          Fancybox.unbind("[data-fancybox]");
+        };
       }, []);
   return (
     <div>
@@ -327,27 +351,116 @@ export default function Service() {
            <ResponsiveMasonry
                 columnsCountBreakPoints={{350: 1, 750: 2, 900: 3, 1400 :4}}
             >
-                <Masonry  gutter="20px" className=" masonry"  >
-               
-                    <a href="">
-                      <img src={brain} style={{width: "100%", display: "block" }} alt="sandhu hospital Nawanshahar images"/>
-                      </a>
-                    <img src={laser} style={{width: "100%", display: "block"}} alt="sandhu hospital Nawanshahar images" />
-                    <img  src={chest} style={{width: "100%", display: "block"}} alt="sandhu hospital Nawanshahar images" />
-                    <div style={{position: "relative", width:"100%", height:'100%', margin:"0px"}}>
-                      <div className="overlaygll m-0">
-
-                       <div className="play-btn m-0"></div>
-                      </div>
-                    <video loop autoPlay muted>
-                      <source src={sandhuvideo} type="video/mp4"/>
-                  
-                   
-                    </video>
+              <Masonry
+                  className=" masonry"
+                  columnClassName="masonry-grid_column"
+                  gutter="20px"
+                >
+                  {/* Image Items */}
+                  <a
+                    data-fancybox="gallery"
+                    href={brain}
+                    className="gallery-cap"
+                  >
+                    <div className="gallery-capi">
+                      <p className="p-white-bold mb-0">brain disease</p>
                     </div>
-                    <img  src={hospital} style={{width: "100%", display: "block"}} alt="sandhu hospital Nawanshahar images" />
-                    <img  src={m1} style={{width: "100%", display: "block"}} alt="sandhu hospital Nawanshahar images" />
-                    <img  src={m2} style={{width: "100%", display: "block"}} alt="sandhu hospital Nawanshahar images" />
+                    <img
+                      src={brain}
+                      style={{ width: "100%", display: "block" }}
+                      alt="sandhu hospital Nawanshahar images"
+                    />
+                  </a>
+                  <a
+                    data-fancybox="gallery"
+                    href={laser}
+                    className="gallery-cap"
+                  >
+                    <div className="gallery-capi">
+                      <p className="p-white-bold mb-0">laser treatment</p>
+                    </div>
+                    <img
+                      src={laser}
+                      style={{ width: "100%", display: "block" }}
+                      alt="sandhu hospital Nawanshahar images"
+                    />
+                  </a>
+                  <a
+                    data-fancybox="gallery"
+                    href={chest}
+                    className="gallery-cap"
+                  >
+                    <div className="gallery-capi">
+                      <p className="p-white-bold mb-0">Chest Disease</p>
+                    </div>
+                    <img
+                      src={chest}
+                      style={{ width: "100%", display: "block" }}
+                      alt="sandhu hospital Nawanshahar images"
+                    />
+                  </a>
+
+                  {/* Video Item */}
+                  <a
+                    data-fancybox="gallery"
+                    href={sandhuvideo}
+                    className="gallery-cap"
+                  >
+                    <div className="gallery-capi">
+                      <p className="p-white-bold mb-0">message</p>
+                    </div>
+                    <div
+                      style={{
+                        position: "relative",
+                        width: "100%",
+                        height: "100%",
+                      }}
+                    >
+                      <div className="overlaygll m-0">
+                        <div className="play-btn m-0"></div>
+                      </div>
+                      <video loop autoPlay muted style={{ width: "100%" }}>
+                        <source src={sandhuvideo} type="video/mp4" />
+                        Your browser does not support the video tag.
+                      </video>
+                    </div>
+                  </a>
+
+                  {/* More Image Items */}
+                  <a
+                    data-fancybox="gallery"
+                    href={hospital}
+                    className="gallery-cap"
+                  >
+                    <div className="gallery-capi">
+                      <p className="p-white-bold mb-0">skin care</p>
+                    </div>
+                    <img
+                      src={hospital}
+                      style={{ width: "100%", display: "block" }}
+                      alt="sandhu hospital Nawanshahar images"
+                    />
+                  </a>
+                  <a data-fancybox="gallery" href={m1} className="gallery-cap">
+                    <div className="gallery-capi">
+                      <p className="p-white-bold mb-0">skin care</p>
+                    </div>
+                    <img
+                      src={m1}
+                      style={{ width: "100%", display: "block" }}
+                      alt="sandhu hospital Nawanshahar images"
+                    />
+                  </a>
+                  <a data-fancybox="gallery" href={m2} className="gallery-cap">
+                    <div className="gallery-capi">
+                      <p className="p-white-bold mb-0">skin care</p>
+                    </div>
+                    <img
+                      src={m2}
+                      style={{ width: "100%", display: "block" }}
+                      alt="sandhu hospital Nawanshahar images"
+                    />
+                  </a>
                 </Masonry>
             </ResponsiveMasonry>
            </div>
