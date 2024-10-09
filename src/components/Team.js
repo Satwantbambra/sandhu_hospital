@@ -53,7 +53,8 @@ const Team = () => {
     member.experience.toLowerCase().includes(searchInput.toLowerCase())
   );
     return (
-        <div className="container space">
+        <div className="container">
+          <div className="space">
           {/* Search Input */}
           <div className="row mb-4">
             <div className="col-lg-12">
@@ -96,7 +97,7 @@ const Team = () => {
             <div className="row">
               {filteredTeam.length > 0 ?  (
                 filteredTeam.map((member) => (
-                  <div className="col-lg-4" key={member.id}>
+                  <div className="col-lg-4 mb-3 mb-lg-0" key={member.id}>
                     <div className="team-card">
                       <div className="view animate__fadeIn animate__animated">
                         <Link to="/doctor" className="btn-pink">
@@ -143,6 +144,7 @@ const Team = () => {
                 </div>
               )}
             </div>
+          </div>
           </div>
         </div>
       );

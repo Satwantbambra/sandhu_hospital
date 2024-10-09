@@ -56,7 +56,7 @@ function About() {
     };
   }, []);
   return (
-    <div>
+    <div className="container">
       <div className="container-fluid px-0 about space pb-0">
         <div
           className="container space "
@@ -259,7 +259,7 @@ function About() {
 
           <div className="mt-5">
             <div className="row">
-              <div className="col-lg-4">
+              <div className="col-lg-4 mb-3 mb-lg-0">
                 <div className="team-card">
                   <div className="view animate__fadeIn animate__animated">
                     <Link to="/doctor" className="btn-pink">
@@ -297,7 +297,7 @@ function About() {
                   </div>
                 </div>
               </div>
-              <div className="col-lg-4">
+              <div className="col-lg-4 mb-3 mb-lg-0">
                 <div className="team-card">
                   <div className="view animate__fadeIn animate__animated">
                     <Link to="/doctor" className="btn-pink">
@@ -335,7 +335,7 @@ function About() {
                   </div>
                 </div>
               </div>
-              <div className="col-lg-4">
+              <div className="col-lg-4 mb-3 mb-lg-0">
                 <div className="team-card">
                   <div className="view animate__fadeIn animate__animated">
                     <Link to="/doctor" className="btn-pink">
