@@ -1,5 +1,6 @@
 import React, { useEffect } from "react";
 import { useLocation, BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import logo from './components/images/logo.png';
 import "./App.css";
 import "./components/css/common.css";
 import "./components/css/responsive.css";
@@ -16,6 +17,9 @@ import Team from "./components/Team";
 import Doctor from "./components/doctor";
 import Gallery from "./components/gallery";
 import Skin from "./components/skin";
+import Contact from "./components/contact";
+import Privacy from "./components/privacy";
+import Terms from "./components/terms";
 
 function ScrollToTop() {
 
@@ -36,7 +40,7 @@ function App() {
   return (
     <Router>
       <ScrollToTop /> {/* Ensure ScrollToTop is inside Router */}
-      <Header />
+      <Header logo={logo} />
       <div className="float">
         <a href="tel:+01823222674">
           <img src={float} alt="24/7 services sandhu hospital" />
@@ -51,6 +55,9 @@ function App() {
         <Route exact path="/team" element={<Team />} />
         <Route exact path="/skin" element={<Skin />} />
         <Route exact path="/doctor" element={<Doctor />} />
+        <Route exact path="/contact_us" element={<Contact />} />
+        <Route exact path="/privacy-policy" element={<Privacy />} />
+        <Route exact path="/terms&condition" element={<Terms />} />
       </Routes>
       <Footer />
     </Router>

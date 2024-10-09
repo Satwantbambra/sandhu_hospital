@@ -61,7 +61,7 @@ export default function Index(props) {
       <section className="space" style={{background:"aliceblue"}}>
         <div className="container">
           <div className="row">
-            <div className="col-xl">
+            <div className="col-xl my-2">
               <div className="bluepromotion promotion">
                 <h2 className="p-white-bold"> WE CARE FOR YOUR HEALTH</h2>
                 <h3 className="section-heading-white"> FAMILY CARE</h3>
@@ -83,7 +83,7 @@ export default function Index(props) {
                 </div>
               </div>
             </div>
-            <div className="col-xl">
+            <div className="col-xl my-2">
               <div className="pinkpromotion promotion">
               <h2 className="p-white-bold"> WE CARE FOR YOUR HEALTH</h2>
                 <h3 className="section-heading-white"> FAMILY CARE</h3>
@@ -105,7 +105,7 @@ export default function Index(props) {
                 </div> 
               </div>
             </div>
-            <div className="col-xl">
+            <div className="col-xl my-2">
               <div className="neonpromotion promotion">
               <h2 className="p-white-bold"> WE CARE FOR YOUR HEALTH</h2>
                 <h3 className="section-heading-white"> FAMILY CARE</h3>
@@ -318,7 +318,7 @@ export default function Index(props) {
       >
         <div className="container">
           <div className="row">
-            <div className="col-lg-6">
+            <div className="col-lg-6 mb-lg-0 mb-5">
               <h2 className="section-top ">About us</h2>
               <h3 className="section-heading-black mt-3">
                 Healing  <span style={{color:"var(--pink)"}}>Hands</span>, Caring  <span style={{color:"var(--neon)"}}>Hearts</span>

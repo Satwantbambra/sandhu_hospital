@@ -147,13 +147,8 @@ export default function Footer() {
                                 </Link>
                             </div>
                         </div>
-
-                        </div>
-                      
-                      
-                       
+                        </div>     
                   </div>
-                
                   </div>
                   </div>
             </div>
@@ -161,13 +156,13 @@ export default function Footer() {
     <div className="col-lg-5 mb-3 mb-lg-0">
       <div className="d-flex justify-content-start">
             <div className="d-flex footer-ul justify-content-between ">
-                 <Link to="#" className="p-white-bold">
+                 <Link to="/privacy-policy" className="p-white-bold">
                         Privacy Policy
                   </Link>
-                 <Link to="#" className="p-white-bold mx-lg-3">
+                 <Link to="/terms&condition" className="p-white-bold mx-lg-3">
                       Terms and Conditions
                   </Link>   
-                 <Link to="#" className="p-white-bold">
+                 <Link to="tel:+01823222674" className="p-white-bold">
                        24/7 Services
                   </Link>
             </div>

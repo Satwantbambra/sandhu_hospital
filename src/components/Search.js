@@ -56,13 +56,13 @@ function About() {
   }, [searchQuery]);
 
   return (
-    <div>
+    <div className='container'>
       <div className="container-fluid px-0 about space pb-0">
-        <div className="container space">
+        <div>
             <h1 className='banner-black text-lg-center'>
               Search <span style={{color:" var(--pink)"}}>Doctors</span> or <span style={{color: " var(--neon)"}}>Services</span>
             </h1>
-          <div className="mt-5">
+          <div className="mt-lg-5 mt-3" >
             <input
               type="text"
               className="form-control mb-4" style={{color:"var(--black) !important"}}
@@ -73,7 +73,7 @@ function About() {
             <div className="row">
             {filteredDoctors.length > 0 ? (
               filteredDoctors.map((doctor, index) => (
-                <div className="col-lg-4" key={index}>
+                <div className="col-lg-4 mb-3 mb-lg-0" key={index}>
                   <div className="team-card">
                     <div className="row">
                       <div className="col-6">

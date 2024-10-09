@@ -405,14 +405,13 @@
   }
   
   .form-control:focus {
-    color: #fff !important;
     background-color: var(--bs-body-bg);
     border-color: #a24d9b;
     outline: 0;
     box-shadow: 0 0 0 .25rem rgb(162 77 155 / 23%);
   }
   .form-control::placeholder {
-    color: var(--dark-grey);
+    color: #ccc;
   
   }
   

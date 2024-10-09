@@ -36,15 +36,15 @@ function Gallery() {
     };
   }, []);
   return (
-    <div>
-            <div className="container-fluid px-0 about space pb-0">
+    <div className='container'>
+            <div className="container-fluid px-0 about  pb-0">
           <div className="container space">
           <div className="row">
             <div className="col-lg-5">
             <h2 className="section-top me-lg-5 " style={{whiteSpace:"nowrap"}}>Our Gallery</h2>
               <div
                 className=" d-flex align-items-center"
-                style={{ height: "100%" }}
+              
               >
                 <h3 className="section-heading-black my-0">
                 Snapshots of{" "}
@@ -64,13 +64,11 @@ function Gallery() {
               </p>
             </div>
           </div>
-            <h1 className='banner-black text-lg-center'>
-           <span style={{color:" var(--pink)"}}></span> <span style={{color: " var(--neon)"}}></span>
-            </h1> 
+         
           </div>
           <section id="gallery" className="space">
         <div className="container">
-           <div className="space">
+           <div >
            <ResponsiveMasonry
                 columnsCountBreakPoints={{350: 1, 750: 2, 900: 3, 1400 :4}}
             >

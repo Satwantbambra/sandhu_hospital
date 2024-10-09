@@ -85,7 +85,7 @@ function Doctor() {
               </div>
             </div>
 
-            <div className="col-12 mt-3">
+            <div className="col-12 mt-3 px-3">
               <div className="d-contain">
                 <div className="d-wrap">
                   <div className="dd-title p-heading-white">More Info</div>

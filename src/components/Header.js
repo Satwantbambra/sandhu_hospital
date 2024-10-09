@@ -2,7 +2,7 @@ import React, { useEffect, useRef } from 'react';
 import { MdWifiCalling3, MdDoubleArrow } from "react-icons/md";
 import { NavLink, useLocation } from 'react-router-dom';
 
-export default function Header() {
+export default function Header(props) {
     const navbarRef = useRef(null);
     const location = useLocation();
 
@@ -31,12 +31,9 @@ export default function Header() {
 
     return (
         <nav className="navbar navbar-expand-lg navbar-not navbar-dark bg-dark py-0" ref={navbarRef}>
-            <div className="container-fluid py-3" style={{position: "relative", zIndex: 3}}>
+            <div className="container py-3" style={{position: "relative", zIndex: 3}}>
                 <NavLink className="navbar-brand d-flex align-items-center" to="/" style={{position: "relative", zIndex: 3}}>
-                    <i className="fa-solid fa-house-medical section-heading-white me-2" style={{color: 'var(--pink)'}}></i>
-                    <h2 className="section-heading-white my-0">
-                        Sandhu <span style={{color: 'var(--pink)'}}>Hospital</span> 
-                    </h2>
+                  <img src={props.logo} alt="sandhu_logo" style={{height:60, width: "100%"}} />
                 </NavLink>
 
                 <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -49,10 +46,8 @@ export default function Header() {
                         <li className="nav-item dropdown">
                             <NavLink
                                  to="/service"
-                                 className={({ isActive }) => {
-                                     const isServiceActive = window.location.pathname.includes("/service");
-                                     return isActive || isServiceActive ? 'active nav-link p-white-bold dropdown-toggle' : 'nav-link p-white-bold dropdown-toggle';
-                                 }}
+                                 className= {({ isActive }) => (isActive ? 'active nav-link p-white-bold dropdown-toggle' : ' nav-link p-white-bold dropdown-toggle')}
+                              
                                  data-mdb-toggle="dropdown"
                                  aria-expanded="false"
                              >
@@ -100,7 +95,10 @@ export default function Header() {
                         </li>
                         <li className="nav-item">
                             <NavLink className={({ isActive }) => (isActive ? 'nav-link p-white-bold active' : 'nav-link p-white-bold')} to="/search">Search</NavLink>
+                        </li>   <li className="nav-item">
+                            <NavLink className={({ isActive }) => (isActive ? 'nav-link p-white-bold active' : 'nav-link p-white-bold')} to="/contact_us">Contact us</NavLink>
                         </li>
+
 
                         {/* Call Us Button */}
                         <li className="nav-item" style={{background: 'linear-gradient(45deg, #313f70, #953986)', borderRadius: 6, padding: 10 }}> 

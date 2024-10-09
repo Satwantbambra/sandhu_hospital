@@ -1,4 +1,4 @@
-@media (min-width:0px) and (max-width:480px) {
+@media (min-width:0px) and (max-width:580px) {
     
     .banner{
        background-size: auto !important;
@@ -191,4 +191,54 @@
    div.s1 {
        margin-bottom: 16px;
    }
+   }
+
+
+   @media (min-width:0px) and (max-width:786px) {
+    .sfacility{
+      position: relative !important;
+      height: fit-content;
+      border: 2px solid var(--pink);
+      width: fit-content;
+      border-radius: 10px;
+      background: #f5f5f5d7;
+      backdrop-filter: blur(3px);
+      padding: 1rem;
+    }
+    .sktreat{
+      position:  relative !important;
+      left: 0 !important;
+      top: 0 !important;
+      width: 100% !important;
+    }
+    .skcure{
+      position:  relative !important;
+      right: 0px !important;
+      bottom: 0 !important;
+      width: 100%  !important;
+    }
+    .skin-facility-img{
+      height: auto !important;
+      width: 100%;
+      position: relative;
+    
+    }
+    .skname{
+      position:relative !important;
+      bottom: 0;
+      left: -20px;
+      margin-bottom: 10px;
+      
+    }
+    .deco{
+      position: relative;
+      margin-bottom: 0rem !important;
+      border-radius: 10px;
+      
+    }
+    .team-img img {
+      height: auto !important;
+      object-fit: contain;
+      width: 100%;
+  }
    }

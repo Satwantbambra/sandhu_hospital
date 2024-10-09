@@ -14,9 +14,6 @@ body{
   object-fit: cover; 
 }
 
-
-
-
 /* services  */
 
 .servicelimg{
@@ -172,6 +169,11 @@ margin-right: 4px;
 color: var(--pink);
 font-size: 16px;
 }
+.footer-ucl i{
+  margin-left: 10px ;
+  color: var(--pink);
+  font-size: 30px;
+  }
 
 .footer-ul{
   margin: 0;
@@ -267,10 +269,8 @@ animation: width 0.5s linear forwards;
 
 .promotion{
   border: 1px solid #ccc;
-  height: 300px;
-  min-height: 300px;
   padding: 1rem;
-  max-height: 300px;
+  max-height: 350px;
   display: flex;
   flex-direction: column;
   align-items: start;
