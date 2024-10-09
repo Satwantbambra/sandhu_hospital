@@ -17,32 +17,63 @@ import { FaCircleCheck } from "react-icons/fa6";
 import { MdWifiCalling3 } from "react-icons/md";
 import { BsFillChatQuoteFill } from "react-icons/bs";
 import Masonry, {ResponsiveMasonry} from "react-responsive-masonry";
+import axios from "axios";
+class Index extends React.Component {
+    constructor(props) {
+      super(props);
+      this.state = {
+        services: [],
+      };
+    }
+  
+    fetchServices() {
+        const apiUrl = `${process.env.REACT_APP_API_BASE_URL}/services`;
+      axios
+        .get(apiUrl)
+        .then((response) => {
+          this.setState({ services: response.data.data });
+        })
+        .catch((error) => {
+          console.error("There was an error fetching the services!", error);
+        });
+    }
 
-export default function Index(props) {
-  useEffect(() => {
-    Fancybox.bind("[data-fancybox]", {
-      // Custom options
-      loop: true,
-      keyboard: {
-        Escape: "close",
-        Delete: "close",
-        Backspace: "close",
-      },
-      buttons: [
-        "zoom",
-        "slideShow",
-        "fullScreen",
-        "close",
-      ],
-      transitionEffect: "fade",
-      idleTime: 5,
-      animationEffect: "zoom-in-out",
-    });
-    return () => {
+    fetchSubServices() {
+        const apiUrl = `${process.env.REACT_APP_API_BASE_URL}/sub-services`;
+      axios
+        .get(apiUrl)
+        .then((response) => {
+          this.setState({ subservices: response.data.data });
+        })
+        .catch((error) => {
+          console.error("There was an error fetching the sub services!", error);
+        });
+    }
+  
+    componentDidMount() {
+      this.fetchServices();
+      this.fetchSubServices();
+      
+      Fancybox.bind("[data-fancybox]", {
+        loop: true,
+        keyboard: {
+          Escape: "close",
+          Delete: "close",
+          Backspace: "close",
+        },
+        buttons: ["zoom", "slideShow", "fullScreen", "close"],
+        transitionEffect: "fade",
+        idleTime: 5,
+        animationEffect: "zoom-in-out",
+      });
+    }
+  
+    componentWillUnmount() {
       Fancybox.unbind("[data-fancybox]");
-    };
-  }, []);
-  return (
+    }
+  
+    render() {
+      return (
     <>
 
     <div
@@ -163,56 +194,22 @@ export default function Index(props) {
           </div>
 
           <div className="row my-2 py-3">
-            <div className="services-contain col-lg-3 mb-3 mb-lg-0">
-              <div className="servicelimg">
-                <img src={brain} alt="brain disease treatment" />
-              </div>
-              <div className="service-t mt-3">
-                <h2 className="p-heading-black mt-0 mb-1">Brain Diseases,</h2>
-                <p className="p-black my-0 overflow-2">
-                  Advanced treatments for neurological disorders and brain
-                  health.
-                </p>
-              </div>
-            </div>
-            <div className="services-contain col-lg-3 mb-3 mb-lg-0">
-              <div className="servicelimg">
-                <img src={addiction} alt="brain disease treatment" />
-              </div>
-              <div className="service-t mt-3">
-                <h2 className="p-heading-black mt-0 mb-2">De-addiction</h2>
-                <p className="p-black my-0 overflow-2">
-                  Comprehensive programs to help individuals overcome substance
-                  abuse.
-                </p>
-              </div>
-            </div>
-            <div className="services-contain col-lg-3 mb-3 mb-lg-0">
-              <div className="servicelimg">
-                <img src={laser} alt="brain disease treatment" />
-              </div>
-              <div className="service-t mt-3">
-                <h2 className="p-heading-black mt-0 mb-1">
-                  Skin, Cosmetology & LASERs
-                </h2>
-                <p className="p-black my-0 overflow-2">
-                  State-of-the-art skincare, cosmetic treatments, and LASER
-                  therapy.
-                </p>
-              </div>
-            </div>
-            <div className="services-contain col-lg-3 mb-3 mb-lg-0">
-              <div className="servicelimg">
-                <img src={chest} alt="brain disease treatment" />
-              </div>
-              <div className="service-t mt-3">
-                <h2 className="p-heading-black mt-0 mb-1">Chest Diseases:</h2>
-                <p className="p-black my-0 overflow-2">
-                  Specialized care for respiratory and internal medicine
-                  conditions.
-                </p>
-              </div>
-            </div>
+          {this.state.services.length > 0 ? (
+                this.state.services.map((service, index) => (
+                  <div key={index} className="services-contain col-lg-3 mb-3 mb-lg-0">
+                    <div className="servicelimg">
+                      <img src={service.image} alt={service.name} />
+                    </div>
+                    <div className="service-t mt-3">
+                      <h2 className="p-heading-black mt-0 mb-1">{service.name}</h2>
+                      <p className="p-black my-0 overflow-2">{service.description}</p>
+                    </div>
+                  </div>
+                ))
+              ) : (
+                <p>Loading services...</p>
+              )}
+         
           </div>
         </div>
       </section>
@@ -695,5 +692,6 @@ Thank you for your excellent service!"</p>
     </>
   );
 }
+}
 
-// src/components/Index.js
+export default Index;
