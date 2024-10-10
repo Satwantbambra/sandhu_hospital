@@ -3,8 +3,9 @@
     --white: #ffffff;
     --grey:#e7e7e7;
     --dark-grey:#d9d9d9;
-    --neon-light: #7bdfc7;
+    --neon-light: #acf9e7;
     --pink:#a7398d;
+    --pink-light:#ffd3f5;
     --neon: #41938c;
     --blue-light: #98b9e9;
     --blue: #232f61;
@@ -13,6 +14,7 @@
   body{
       font-family: var(--font-family) !important;
       position: relative;
+      word-break: break-all !important;
   }
   
 
@@ -362,15 +364,13 @@
   }
   
   
-  
-  .overflow-1{
-    display: -webkit-box !important;
-    overflow: hidden !important;
-    text-overflow: ellipsis !important;
-    white-space: nowrap !important;
-    -webkit-box-orient: vertical !important;
-    -webkit-line-clamp: 1 !important;
-  
+  .overflow-1 {
+    display: -webkit-box;
+    overflow: hidden; 
+    text-overflow: ellipsis; 
+    width: 100%; 
+    -webkit-box-orient:vertical; 
+    -webkit-line-clamp: 1; 
   }
   .overflow-2{
     display: -webkit-box !important;
@@ -530,4 +530,12 @@
   }
   .dropdown-item:hover{
     background: var(--pink) !important;
+  }
+
+  .active.dropdown-item.p-black{
+    background: var(--pink);
+
+  }
+  .active.dropdown-item.p-black svg{
+    color: var(--white) !important;
   }

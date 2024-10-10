@@ -1,45 +1,74 @@
-import React,{useEffect} from "react";
-import brain from "./images/brains.webp";
-import addiction from "./images/addiction.webp";
-import laser from "./images/laser.webp";
-import chest from "./images/chest.webp";
+import React from "react"
 import sandhu from "./images/sandhu.jpg";
 import bbrain from "./images/brain.png";
 import doc from "./images/doc.png";
-import hospital from "./images/sandhuhospital.jpg";
-import sandhuvideo from "./images/sandhu.mp4";
-import m1 from "./images/h1.jpg";
-import m2 from "./images/h2.jpg";
-import banner from "./images/banner2.webp"
 import { Fancybox } from "@fancyapps/ui";
 import "@fancyapps/ui/dist/fancybox/fancybox.css";
 import { FaCircleCheck } from "react-icons/fa6";
 import { MdWifiCalling3 } from "react-icons/md";
 import { BsFillChatQuoteFill } from "react-icons/bs";
+import { fetchAllServices } from "./commonApis/fetchServices";
 import Masonry, {ResponsiveMasonry} from "react-responsive-masonry";
 import axios from "axios";
 class Index extends React.Component {
     constructor(props) {
       super(props);
       this.state = {
+        bannerUrl:"",
         services: [],
+        subservices: [],
+        galleries:[],
+        testimonials:[],
+        banners: [],
+        facilities :[],
       };
+
     }
   
-    fetchServices() {
-        const apiUrl = `${process.env.REACT_APP_API_BASE_URL}/services`;
-      axios
-        .get(apiUrl)
-        .then((response) => {
-          this.setState({ services: response.data.data });
-        })
-        .catch((error) => {
-          console.error("There was an error fetching the services!", error);
-        });
-    }
+   
+    fetchBanner = async () => {
+      try {
+        const response = await axios.get(`${process.env.REACT_APP_API_BASE_URL}/banner`);
+        if (response.data.success && response.data.status === 200) {
+          // Set the banner image URL in state
+          this.setState({ bannerUrl: response.data.data });
+        } else {
+          console.error("Failed to fetch banner image");
+        }
+      } catch (error) {
+        console.error("Error fetching banner image:", error);
+      }
+    };
+    fetchPromotions() {
+      const apiUrl = `${process.env.REACT_APP_API_BASE_URL}/banners`;
+    axios
+      .get(apiUrl)
+      .then((response) => {
+        this.setState({ banners: response.data.data });
+      })
+      .catch((error) => {
+        console.error("There was an error fetching the promotional banner!", error);
+      });
+  }
+  async fetchServices() {
+    const services = await fetchAllServices();
+    console.log("hello world ===> ", services);
+    this.setState({ services: services });
+  }
+    fetchFacility() {
+      const apiUrl = `${process.env.REACT_APP_API_BASE_URL}/facilities`;
+    axios
+      .get(apiUrl)
+      .then((response) => {
+        this.setState({ facilities: response.data.data });
+      })
+      .catch((error) => {
+        console.error("There was an error fetching the facilities!", error);
+      });
+  }
 
     fetchSubServices() {
-        const apiUrl = `${process.env.REACT_APP_API_BASE_URL}/sub-services`;
+        const apiUrl = `${process.env.REACT_APP_API_BASE_URL}/sub-services?type=feature_servcies`;
       axios
         .get(apiUrl)
         .then((response) => {
@@ -49,10 +78,42 @@ class Index extends React.Component {
           console.error("There was an error fetching the sub services!", error);
         });
     }
+
+    fetchGallery() {
+      const apiUrl = `${process.env.REACT_APP_API_BASE_URL}/galleries`;
+    axios
+      .get(apiUrl)
+      .then((response) => {
+        this.setState({ galleries: response.data.data });
+      })
+      .catch((error) => {
+        console.error("There was an error fetching the gallery!", error);
+      });
+  }
+
+  
+  fetchTestimonial() {
+    const apiUrl = `${process.env.REACT_APP_API_BASE_URL}/testimonials`;
+  axios
+    .get(apiUrl)
+    .then((response) => {
+      this.setState({ testimonials: response.data.data });
+    })
+    .catch((error) => {
+      console.error("There was an error fetching the testimonial!", error);
+    });
+}
   
     componentDidMount() {
       this.fetchServices();
       this.fetchSubServices();
+      this.fetchGallery();
+      this.fetchTestimonial();
+      this.fetchBanner();
+      this.fetchPromotions();
+      this.fetchFacility();
+
+
       
       Fancybox.bind("[data-fancybox]", {
         loop: true,
@@ -73,91 +134,63 @@ class Index extends React.Component {
     }
   
     render() {
+      const { bannerUrl } = this.state;
       return (
     <>
 
-    <div
-      data-bs-spy="scroll"
-      data-bs-target="#navbar-sticky"
-      data-bs-offset="0"
-      tabIndex="0"
-      className="scrollspy-example"
-    >
+    <div>
       <div className="container-fluid p-0">
-        <div className="banner ">
-           <img src={banner} alt="sandhu hospital" />
+        <div className="banner " >
+  
+      {bannerUrl ? (
+        <img src={bannerUrl} alt="Sandhu Hospital Banner" />
+      ) : (
+        <p></p>
+      )}
+     
         </div>
       </div>
 
       <section className="space" style={{background:"aliceblue"}}>
         <div className="container">
           <div className="row">
-            <div className="col-xl my-2">
-              <div className="bluepromotion promotion">
-                <h2 className="p-white-bold"> WE CARE FOR YOUR HEALTH</h2>
-                <h3 className="section-heading-white"> FAMILY CARE</h3>
-                <h4 className="sub-heading-white">
-                  We Provide Healthcare Services
-                </h4>
-                <h5 className="p-white">
-                  At Sandhu Hospital, Nawanshahar, we are dedicated to providing
-                  exceptional healthcare across a wide range of specialties. As
-                  a MultiSpeciality Hospital,Our compassionate and highly
-                  skilled medical team ensures that every patient receives
-                  personalized.
-                </h5>
-                <div className="h-100 d-flex align-items-end">
 
-                <p className="sub-heading-white mb-1" style={{color:"var(--blue)"}}>
-                        from 8 oct to 10 oct
-                </p>
-                </div>
-              </div>
-            </div>
-            <div className="col-xl my-2">
-              <div className="pinkpromotion promotion">
-              <h2 className="p-white-bold"> WE CARE FOR YOUR HEALTH</h2>
-                <h3 className="section-heading-white"> FAMILY CARE</h3>
-                <h4 className="sub-heading-white">
-                  We Provide Healthcare Services
-                </h4>
-                <h5 className="p-white">
-                  At Sandhu Hospital, Nawanshahar, we are dedicated to providing
-                  exceptional healthcare across a wide range of specialties. As
-                  a MultiSpeciality Hospital,Our compassionate and highly
-                  skilled medical team ensures that every patient receives
-                  personalized.
-                </h5>
-                <div className="h-100 d-flex align-items-end">
 
-                <p className="sub-heading-white mb-1" style={{color:"var(--pink)"}}>
-    from 8 oct to 10 oct
-                </p>
-                </div> 
-              </div>
-            </div>
-            <div className="col-xl my-2">
-              <div className="neonpromotion promotion">
-              <h2 className="p-white-bold"> WE CARE FOR YOUR HEALTH</h2>
-                <h3 className="section-heading-white"> FAMILY CARE</h3>
-                <h4 className="sub-heading-white">
-                  We Provide Healthcare Services
-                </h4>
-                <h5 className="p-white">
-                  At Sandhu Hospital, Nawanshahar, we are dedicated to providing
-                  exceptional healthcare across a wide range of specialties. As
-                  a MultiSpeciality Hospital,Our compassionate and highly
-                  skilled medical team ensures that every patient receives
-                  personalized.
-                </h5>
-                <div className="h-100 d-flex align-items-end">
+          {
+  this.state.banners && this.state.banners.length > 0 ? (
+    this.state.banners.map((banner, index) => {
+      // Array of classes to be used for each banner
+      const bannerClasses = ["bluepromotion", "pinkpromotion", "neonpromotion"];
+      
 
-                <p className="sub-heading-white mb-1" style={{color:"var(--neon)"}}>
-    from 8 oct to 10 oct
-                </p>
-                </div>
-              </div>
+      const className = bannerClasses[index % bannerClasses.length];
+
+      return (
+        <div className="col-xl my-2" key={index}>
+          <div className={`${className} promotion`}>
+            <h2 className="p-white-bold">{banner.text1}</h2>
+            <h3 className="section-heading-white">{banner.text2}</h3>
+            <h4 className="sub-heading-white">{banner.text3}</h4>
+            <h5 className="p-white">{banner.text4}</h5>
+            <div className="h-100 d-flex align-items-end">
+              <p className="sub-heading-white mb-1" style={{ color: "var(--blue)" }}>
+                {banner.text5}
+              </p>
             </div>
+          </div>
+        </div>
+      );
+    })
+  ) : (
+    <p>No banners available</p>
+  )
+}
+
+         
+            
+
+           
+      
           </div>
         </div>
       </section>
@@ -196,7 +229,7 @@ class Index extends React.Component {
           <div className="row my-2 py-3">
           {this.state.services.length > 0 ? (
                 this.state.services.map((service, index) => (
-                  <div key={index} className="services-contain col-lg-3 mb-3 mb-lg-0">
+                  <div key={index} className="services-contain col-lg-3 mb-3 ">
                     <div className="servicelimg">
                       <img src={service.image} alt={service.name} />
                     </div>
@@ -334,42 +367,22 @@ class Index extends React.Component {
                 treatment for patients in a wide range of medical disciplines.
               </p>
               <div className="row">
-                <div className="col-lg-6 mb-2">
+              {this.state.facilities.length > 0 ? (
+                this.state.facilities.map((facility, index) => (
+                  <div className="col-lg-6 mb-2" key={index}>
                   <div className="d-flex">
                     <FaCircleCheck
                       className="me-2"
                       style={{ color: "var(--pink)" }}
                     />
-                    <p className="p-black mb-0">General Surgery</p>
+                    <p className="p-black mb-0">{facility.title}</p>
                   </div>
                 </div>
-                <div className="col-lg-6 mb-2">
-                  <div className="d-flex">
-                    <FaCircleCheck
-                      className="me-2"
-                      style={{ color: "var(--pink)" }}
-                    />
-                    <p className="p-black mb-0">Laparoscope Surgery Laboratory</p>
-                  </div>
-                </div>
-                <div className="col-lg-6 mb-2">
-                  <div className="d-flex">
-                    <FaCircleCheck
-                      className="me-2"
-                      style={{ color: "var(--pink)" }}
-                    />
-                    <p className="p-black mb-0">  24Hr Emergency</p>
-                  </div>
-                </div>
-                <div className="col-lg-6 mb-2">
-                  <div className="d-flex">
-                    <FaCircleCheck
-                      className="me-2"
-                      style={{ color: "var(--pink)" }}
-                    />
-                    <p className="p-black mb-0">Advanced Medical I.C.U.</p>
-                  </div>
-                </div>
+                ))
+              ) : (
+                <p></p>
+              )}
+             
               </div>
               <div className="mt-3">
                 <div
@@ -416,108 +429,69 @@ class Index extends React.Component {
         <div className="container">
           <h2 className="section-top ">Conditions We Treat</h2>
           <div className="row mt-3">
-            <div className="col-lg-3  mb-3 mb-0">
-              <div className="cwt1">
-                <h2 className="sub-heading-black mt-0 mb-2">Brain Disorders</h2>
-                <p
-                  className="p-blue-small my-0 overflow-2"
-                  style={{ textAlign: "justify" }}
-                >
-                  Including stroke, epilepsy, Parkinson’s disease, dementia, and
-                  neurological conditions.
-                </p>
 
-                <h3 className="p-black-bold mt-2 mb-1">How We Cure:</h3>
-                <p className="p-black overflow-3 mt-0 mb-2">
-                  We use Advanced diagnostics, medications, neurorehabilitation,
-                  and minimally invasive surgery.
-                </p>
-              </div>
-            </div>
-            <div className="col-lg-3  mb-3 mb-0">
-              <div className="cwt2">
-                <img src={brain} alt="sandhu hospital" />
-              </div>
-            </div>
-            <div className="col-lg-3  mb-3 mb-0">
-              <div className="cwt1">
-                <h2 className="sub-heading-black mt-0 mb-2">Substance Abuse</h2>
-                <p
-                  className="p-blue-small my-0 overflow-2"
-                  style={{ textAlign: "justify" }}
-                >
-                  Alcohol, drug, and behavioral addictions.
-                </p>
+          {this.state.subservices.length > 0 ? (
+    this.state.subservices.map((subservice, index) => {
+      // Conditional rendering for the first two vs the next two
+      if (index < 2) {
+        // Layout for first two elements (image first, then details)
+        return (
+          <div key={index} className="services-contain col-lg-6 mb-3">
+            <div className="row">
+              <div className="col-lg-6">
 
-                <h3 className="p-black-bold mt-2 mb-1">How We Cure:</h3>
-                <p className="p-black overflow-3 mt-0 mb-2">
-                  Medical detox, counseling, behavioral therapy, and long-term
-                  rehabilitation.
-                </p>
+            <div className="cwt2">
+              <img src={subservice.image} alt="service" />
+            </div>
+              </div>
+              <div className="col-lg-6">
+            <div className="cwt1">
+              <h2 className="sub-heading-black mt-0 mb-2">{subservice.name}</h2>
+              <p className="p-blue-small my-0 overflow-2" style={{ textAlign: "justify" }}>
+                {subservice.utility}
+              </p>
+              <h3 className="p-black-bold mt-2 mb-1">How We Cure:</h3>
+              <p className="p-black overflow-3 mt-0 mb-2">{subservice.description}</p>
               </div>
             </div>
-            <div className="col-lg-3  mb-3 mb-0 ">
-              <div className="cwt2">
-                <img src={addiction} alt="sandhu hospital" />
-              </div>
             </div>
           </div>
-          <div className="row mt-3">
-            <div className="col-lg-3   mb-3 mb-0 ">
-              <div className="cwt2">
-                <img src={laser} alt="sandhu hospital" />
-              </div>
+        );
+      } else {
+        // Layout for the next two elements (details first, then image)
+        return (
+          <div key={index} className="services-contain col-lg-6 mb-3">
+            <div className="row">
+              <div className="col-lg-6">
+            <div className="cwt1">
+              <h2 className="sub-heading-black mt-0 mb-2">{subservice.name}</h2>
+              <p className="p-blue-small my-0 overflow-2" style={{ textAlign: "justify" }}>
+                {subservice.utility}
+              </p>
+              <h3 className="p-black-bold mt-2 mb-1">How We Cure:</h3>
+              <p className="p-black overflow-3 mt-0 mb-2">{subservice.description}</p>
             </div>
-            <div className="col-lg-3  mb-3 mb-0 ">
-              <div className="cwt1">
-                <h2 className="sub-heading-black mt-0 mb-2">Skin Diseases</h2>
-                <p
-                  className="p-blue-small my-0 overflow-2"
-                  style={{ textAlign: "justify" }}
-                >
-                  Acne, eczema, psoriasis, fungal infections,Wrinkles, scars,
-                  pigmentation, hair loss.
-                </p>
+            </div>
+            <div className="col-lg-6">
+            <div className="cwt2">
+              <img src={subservice.image} alt="service" />
+            </div>
+            </div>
+            </div>
+          </div>
+        );
+      }
+    })
+  ) : (
+    <p>Loading services...</p>
+  )}
 
-                <h3 className="p-black-bold mt-2 mb-1">How We Cure:</h3>
-                <p className="p-black overflow-3 mt-0 mb-2">
-                  Topical treatments, medications, Cosmetic procedures and LASER
-                  treatments for rejuvenation and hair removal.
-                </p>
-              </div>
-            </div>
-            <div className="col-lg-3  mb-3 mb-0 ">
-              <div className="cwt2">
-                <img src={chest} alt="sandhu hospital" />
-              </div>
-            </div>
-            <div className="col-lg-3   mb-2 mb-0">
-              <div className="cwt1">
-                <h2 className="sub-heading-black mt-0 mb-2">
-                  Respiratory Diseases
-                </h2>
-                <p
-                  className="p-blue-small my-0 overflow-2"
-                  style={{ textAlign: "justify" }}
-                >
-                  Pneumonia,Pulmonary Fibrosi, Asthma, bronchitis, pneumonia,
-                  COPD.,Emphysema
-                </p>
-
-                <h3 className="p-black-bold mt-2 mb-1">How We Cure:</h3>
-                <p className="p-black overflow-3 mt-0 mb-2">
-                  We provide tailored treatments that include medications,
-                  inhalation therapy, pulmonary rehabilitation, oxygen therapy,
-                  and in severe cases, advanced interventions like mechanical
-                  ventilation and surgical procedures.
-                </p>
-              </div>
-            </div>
+       
           </div>
         </div>
       </section>
 
-      <section id="gallery" className="space" style={{background:"aliceblue"}}>
+      <section  className="space" style={{background:"aliceblue"}}>
         <div className="container">
 
           <div className="d-flex flex-lg-row justify-content-lg-between flex-column justify-content-start align-items-lg-center">
@@ -536,72 +510,52 @@ class Index extends React.Component {
                 columnsCountBreakPoints={{350: 1, 750: 2, 900: 3, 1400 :4}}
             >
                 <Masonry
-      className=" masonry"
+
       columnClassName="masonry-grid_column"
       gutter="20px"
     >
-      {/* Image Items */}
-      <a data-fancybox="gallery" href={brain}>
-        <img
-          src={brain}
-          style={{ width: "100%", display: "block" }}
-          alt="sandhu hospital Nawanshahar images"
-        />
-      </a>
-      <a data-fancybox="gallery" href={laser}>
-        <img
-          src={laser}
-          style={{ width: "100%", display: "block" }}
-          alt="sandhu hospital Nawanshahar images"
-        />
-      </a>
-      <a data-fancybox="gallery" href={chest}>
-        <img
-          src={chest}
-          style={{ width: "100%", display: "block" }}
-          alt="sandhu hospital Nawanshahar images"
-        />
-      </a>
+  {this.state.galleries.length > 0 ? (
+                this.state.galleries.map((Gallery, index) => (
+                  Gallery.media === "Image" ? (
+                    <div>
+                    <a key={index}
+                    data-fancybox="gallery"
+                    href={Gallery.image}
+                   
+                  >
+                    <div  className="gallery-cap">
 
-      {/* Video Item */}
-      <a
-        data-fancybox="gallery"
-        href={sandhuvideo}
-        data-caption="Sandhu Hospital Video"
-      >
-        <div style={{ position: "relative", width: "100%", height: "100%" }}>
+                    <div className="gallery-capi">
+                      <p className="p-white-bold mb-0">{Gallery.title}</p>
+                    </div>
+                    <img
+                      src={Gallery.image}
+                      style={{ width: "100%" }}
+                      alt={Gallery.title}
+                      />
+                      </div>
+                  </a>
+                  </div>
+                  ):   Gallery.media === "Video" ? (
+                    <a data-fancybox="gallery" href={Gallery.image} key={index}>
+                  <div style={{ position: "relative", width: "100%", height: "100%" }}>
           <div className="overlaygll m-0">
             <div className="play-btn m-0"></div>
           </div>
           <video loop autoPlay muted style={{ width: "100%" }}>
-            <source src={sandhuvideo} type="video/mp4" />
-            Your browser does not support the video tag.
+            <source src={Gallery.image} type="video/mp4" />
           </video>
         </div>
-      </a>
+              </a>
+                  ): null
+                ))
+              ) : (
+                <p>Loading GALLERY...</p>
+              )}
 
-      {/* More Image Items */}
-      <a data-fancybox="gallery" href={hospital}>
-        <img
-          src={hospital}
-          style={{ width: "100%", display: "block" }}
-          alt="sandhu hospital Nawanshahar images"
-        />
-      </a>
-      <a data-fancybox="gallery" href={m1}>
-        <img
-          src={m1}
-          style={{ width: "100%", display: "block" }}
-          alt="sandhu hospital Nawanshahar images"
-        />
-      </a>
-      <a data-fancybox="gallery" href={m2}>
-        <img
-          src={m2}
-          style={{ width: "100%", display: "block" }}
-          alt="sandhu hospital Nawanshahar images"
-        />
-      </a>
+   
+     
+
     </Masonry>
             </ResponsiveMasonry>
            </div>
@@ -629,62 +583,32 @@ class Index extends React.Component {
          </div>
           </div>
       <div className="row space">
-        <div className="col-lg-4">
-          <div className="testimonial">
-            <div className="outer-tag">
-              <div className="inner-tag">
-                <h3 className="section-heading-white"><BsFillChatQuoteFill /></h3>
-              </div>
-            </div>
-         <p className="p-black">
-            Lorem ipsum dolor sit amet
-             consectetur adipisicing elit.
-              Optio laborum aut esse illum
-               corporis vel deserunt a. Libero voluptatibus eaque facere possimus?
-                </p>
-                <p className="p-black-bold text-end">
-            ---sakshi sharma
-          </p>
+
+      {this.state.testimonials && this.state.testimonials.length > 0  ? (
+  this.state.testimonials.map((testimonial, index) => (
+    <div className="col-lg-4" key={index}>
+      <div className="testimonial">
+        <div className="outer-tag">
+          <div className="inner-tag">
+            <h3 className="section-heading-white"><BsFillChatQuoteFill /></h3>
           </div>
         </div>
-        <div className="col-lg-4">
-          <div className="testimonial">
-            <div className="outer-tag">
-              <div className="inner-tag">
-                <h3 className="section-heading-white"><BsFillChatQuoteFill /></h3>
-              </div>
-            </div>
-         <p className="p-black">
-         "I had an excellent experience at Sandhu Hospital.
-          The staff were professional and attentive, making
-           me feel comfortable throughout my treatment. The
-            facilities were clean, and the doctors took the 
-            time to explain everything. Highly recommend!"
-               </p>
-              <p className="p-black-bold text-end">
-            ---Rakesh sharma
-          </p>
-          </div>
-        </div>
-        <div className="col-lg-4">
-          <div className="testimonial">
-            <div className="outer-tag">
-              <div className="inner-tag">
-                <h3 className="section-heading-white"><BsFillChatQuoteFill /></h3>
-              </div>
-            </div>
-<p className="p-black">
-"The care I received at Sandhu Hospital
- was exceptional. From the nurses to the doctors,
-  everyone showed genuine 
-compassion and concern for my well-being
-. They made a stressful situation much easier to handle. 
-Thank you for your excellent service!"</p>
-<p className="p-black-bold text-end">
-            ---Himesh sharma
-          </p>
-          </div>
-        </div>
+        <p className="p-black">
+          {testimonial.message}
+        </p>
+        <p className="p-black-bold text-end mb-1">
+          --- {testimonial.name}
+        </p>
+        <p className="p-black-small text-end">
+          {testimonial.date}
+        </p>
+      </div>
+    </div>
+  ))
+) : (
+  <p>no testimonial</p> 
+)}
+     
       </div>
      </div>
       </section>

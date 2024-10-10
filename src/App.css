@@ -7,10 +7,13 @@ body{
   position: relative;
 
 }
-
+.banner{
+  min-height: 60vh;
+}
 .banner img{
   height: 100%;
   width: 100%;
+  transition:  all 0.7s;
   object-fit: cover; 
 }
 
@@ -319,8 +322,8 @@ animation: width 0.5s linear forwards;
 
 .masonry   img {
   border: 1px solid #ccc;
-  width: 100%;
-  height: auto;
+  width: 100% !important;
+  height: auto !important;
   object-fit: contain;
 }
 .masonry   video {
@@ -585,7 +588,7 @@ border-radius: 10px;
   padding: 10px;
   background: var(--pink);
   height: fit-content;
-  width: 60px;
+  width: 64px;
   margin-top: -12px;
 }
 
@@ -914,12 +917,13 @@ transform: rotate(55deg);
 }
 
 .gallery-cap{
-  position: relative;
+  position: relative !important;
+  height: 100%;
 }
 
 .gallery-capi{
   position: absolute;
-  background: #0000003b;
+  background: #0000005b;
   display: none;
   width: 100%;
   justify-content: center;
@@ -933,3 +937,84 @@ transform: rotate(55deg);
 display: flex;
 }
 
+.s-service{
+  height: 100%;
+  width: 100%;
+
+}
+.s-service img{
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+
+}
+.s-doc{
+  height: 180px;
+  width: 100%;
+  display: flex;
+  align-items: end;
+  justify-content: center;
+  position: relative;
+}
+.s-doc img{
+  height: 90%;
+  width: 100%;
+  object-fit: contain;
+  display: flex;
+  align-items: end;
+  justify-content: center;
+  z-index: 4;
+}
+.s-doc::after{
+  content: "";
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  z-index: 4;
+  bottom: 0;
+  left: 0;
+  background: linear-gradient(0deg, #ffffff, #ffffff0b, transparent);
+
+}
+.s-doc::before {
+  content: "";
+  z-index: 1;
+  position: absolute;
+  height: 80%;
+  background: url(./components/images/medical-symbol.png);
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: end;
+  width: 51%;
+  bottom: 0px;
+  left: 0;
+}
+
+
+.searchservice{
+  height: 220px;
+  width: 220px;
+  border: 6px solid var(--neon);
+  border-radius: 10px;
+  background: var(--neon-light);
+  padding: 2rem;
+
+}
+.searchservice img{
+  height: 100%;
+  width: 100%;
+
+}
+.searchdoctor{
+  height: 220px;
+  width: 220px;
+  border: 6px solid var(--pink);
+  border-radius: 10px;
+  padding: 2rem;
+  background: var(--pink-light);
+}
+.searchdoctor img{
+  height: 100%;
+  width: 100%;
+
+}

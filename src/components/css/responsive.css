@@ -195,6 +195,9 @@
 
 
    @media (min-width:0px) and (max-width:786px) {
+    .banner{
+      min-height: auto !important;
+    }
     .sfacility{
       position: relative !important;
       height: fit-content;
