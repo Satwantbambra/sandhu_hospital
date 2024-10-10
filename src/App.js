@@ -49,12 +49,12 @@ function App() {
       <Routes>
         <Route exact path="/" element={<Index />} />
         <Route exact path="/about" element={<About />} />
-        <Route exact path="/service" element={<Service />} />
+        <Route exact path="/service/:id" element={<Service />} />
         <Route exact path="/search" element={<Search />} />
         <Route exact path="/gallery" element={<Gallery />} />
         <Route exact path="/team" element={<Team />} />
-        <Route exact path="/skin" element={<Skin />} />
-        <Route exact path="/doctor" element={<Doctor />} />
+        <Route exact path="/skin/:id" element={<Skin />} />
+        <Route exact path="/doctor/:id" element={<Doctor />} />
         <Route exact path="/contact_us" element={<Contact />} />
         <Route exact path="/privacy-policy" element={<Privacy />} />
         <Route exact path="/terms&condition" element={<Terms />} />

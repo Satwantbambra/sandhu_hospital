@@ -1,73 +1,35 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
-import doc from "./images/doctor.webp";
-import doc2 from "./images/doctor2.webp";
-import doc3 from "./images/doctor3.webp";
+import axios from 'axios';
 
-const Team = () => {
-    // Team data
-    const teamMembers = [
-      {
-        id: 1,
-        name: 'Dr. Aarav Raj Sharma',
-        qualification: 'MBBS, MD, DM',
-        specialist: 'Cardiologist',
-        experience:
-          'With over 15 years of experience in cardiology, Dr. Aarav Raj Sharma has dedicated his career to diagnosing and treating various heart conditions.',
-        image: doc,
-      },
-      {
-        id: 2,
-        name: 'Dr. Jasleen Kaur',
-        qualification: 'MBBS, MD, DM',
-        specialist: 'Cardiologist',
-        experience:
-          'With over 15 years of experience in cardiology, Dr. Jasleen Kaur has dedicated her career to diagnosing and treating various heart conditions.',
-        image: doc2,
-      },
-      {
-        id: 3,
-        name: 'Dr. Harjinder Singh',
-        qualification: 'MBBS, MD, DM',
-        specialist: 'Neurologist',
-        experience:
-          'With over 15 years of experience in neurologist, Dr. Harjinder Singh has dedicated his career to diagnosing and treating various heart conditions.',
-        image: doc3,
-      },
-    ];
-  
-    // State to store the search input
-    const [searchInput, setSearchInput] = useState('');
-  
-    // Function to handle search input changes
-    const handleSearchChange = (e) => {
-      setSearchInput(e.target.value);
+class Team extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      doctors: [], // Changed team to doctors to match API response
     };
-  
-   // Filter team members based on search input
-  const filteredTeam = teamMembers.filter((member) =>
-    // Check if the search input matches any field (name, qualification, specialist, experience)
-    member.name.toLowerCase().includes(searchInput.toLowerCase()) ||
-    member.qualification.toLowerCase().includes(searchInput.toLowerCase()) ||
-    member.specialist.toLowerCase().includes(searchInput.toLowerCase()) ||
-    member.experience.toLowerCase().includes(searchInput.toLowerCase())
-  );
+  }
+
+  fetchTeam() {
+    const apiUrl = `${process.env.REACT_APP_API_BASE_URL}/doctors`;
+    axios
+      .get(apiUrl)
+      .then((response) => {
+        this.setState({ doctors: response.data.data });
+      })
+      .catch((error) => {
+        console.error("There was an error fetching the team!", error);
+      });
+  }
+
+  componentDidMount() {
+    this.fetchTeam();
+  }
+
+  render() { 
     return (
-        <div className="container">
-          <div className="space">
-          {/* Search Input */}
-          <div className="row mb-4">
-            <div className="col-lg-12">
-              <input style={{ color: 'var(--black) !important' }}
-                type="text"
-                className="form-control"
-                placeholder="Search..."
-                value={searchInput}
-                onChange={handleSearchChange}
-              />
-            </div>
-          </div>
-    
+      <div className="container">
+        <div className="space">
           {/* Section heading */}
           <div className="row">
             <div className="col-lg-5">
@@ -91,13 +53,13 @@ const Team = () => {
               </p>
             </div>
           </div>
-    
+
           {/* Team Cards */}
           <div className="mt-5">
             <div className="row">
-              {filteredTeam.length > 0 ?  (
-                filteredTeam.map((member) => (
-                  <div className="col-lg-4 mb-3 mb-lg-0" key={member.id}>
+              {this.state.doctors && this.state.doctors.length > 0 ? (
+                this.state.doctors.map((doctor, index) => (
+                  <div key={index} className="col-lg-4 mb-4 ">
                     <div className="team-card">
                       <div className="view animate__fadeIn animate__animated">
                         <Link to="/doctor" className="btn-pink">
@@ -108,30 +70,26 @@ const Team = () => {
                         <div className="col-6">
                           <div className="pt-5 pb-3 ps-4">
                             <h2 className="sub-heading-black doc-name">
-                              {member.name}
+                              {doctor.name}
                             </h2>
                             <h3 className="p-black-bold mt-2 mb-0">
                               Qualification
                             </h3>
-                            <p className="p-black mb-0 overflow-2">
-                              {member.qualification}
-                            </p>
-                            <h4 className="p-black-bold mt-2 mb-1">Specialist in</h4>
-                            <p className="p-black mb-0 overflow-2">
-                              {member.specialist}
-                            </p>
+                            <p className="p-black mb-0 overflow-2">{doctor.qualifications}</p>
+                            <h4 className="p-black-bold mt-2 mb-1">
+                              Specialist in
+                            </h4>
+                            <p className="p-black mb-0 overflow-2">{doctor.specialty}</p>
                             <h4 className="p-black-bold mt-2 mb-1">Experience</h4>
                             <p className="p-black mb-0 overflow-2">
-                              {member.experience}
+                              {doctor.total_experience}
                             </p>
                           </div>
                         </div>
                         <div className="col-6">
                           <div className="team-img">
-                            <img
-                              src={member.image}
-                              alt={`doctor ${member.name}`}
-                            />
+                            <img src={doctor.image} alt={doctor.name}
+                            onError={(e) => { e.target.onerror = null; e.target.src =  "./images/dummyd.png"; }} />
                           </div>
                         </div>
                       </div>
@@ -139,15 +97,14 @@ const Team = () => {
                   </div>
                 ))
               ) : (
-                <div className="col-12">
-                  <p>No team members found</p>
-                </div>
+                <p>Loading team...</p>
               )}
             </div>
           </div>
-          </div>
         </div>
-      );
-    };
+      </div>
+    );
+  }
+}
 
-export default Team
+export default Team; // Changed from Team to About to match the class name
