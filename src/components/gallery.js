@@ -126,8 +126,7 @@ class Gallery extends React.Component {
                             </div>
                             <video
                               loop
-                              autoPlay
-                              muted
+                              autoPlay={false}
                               style={{ width: "100%" }}
                             >
                               <source src={Gallery.image} type="video/mp4" />

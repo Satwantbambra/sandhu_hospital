@@ -279,6 +279,14 @@ animation: width 0.5s linear forwards;
   align-items: start;
   justify-content: start;
   width: 100%;
+  position: relative;
+}
+.promotion .btn-close{
+  position: absolute;
+  top: 10px; right: 10px;
+  width: 10px;
+  height: 10px;
+
 }
 
 
@@ -514,7 +522,7 @@ border-radius: 10px;
   min-height: 340px;
 }
 .team-img img{
-  height: 300px;
+  height: fit-content;
  object-fit: contain;
   width: 100%;
 
@@ -792,18 +800,19 @@ border-radius: 10px;
   height: 400px;
   width: 100%;
   position: relative;
+  background: #a7398d;
 }
 
 .skin-facility-img img {
   height: 100%;
   object-fit: contain;
   width: 100%;
-  border: 1px solid #ccc;
+  border: 1px solid #a7398d;
   border-radius: 10px;
   display: block;
   margin: 0 auto;
 }
-
+;
 .skname{
   position: absolute;
   bottom: 0;
@@ -920,7 +929,7 @@ transform: rotate(55deg);
 
 .gallery-cap{
   position: relative !important;
-  height: 100%;
+
 }
 
 .gallery-capi{

@@ -1,13 +1,15 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState, useCallback } from "react";
 import { FaRegCalendarDays } from "react-icons/fa6";
 import { useParams } from "react-router-dom";
 import { fetchSingleDoctor } from "./commonApis/fetchServices";
 
 function Doctor() {
-  const [doctorDetails, setDoctorDetails] = React.useState({});
-  const [qualification, setQualification] = React.useState([]);
+  const { id } = useParams(); // Get the doctor ID from URL params
+  const [doctorDetails, setDoctorDetails] = useState({});
+  const [qualification, setQualification] = useState([]);
   const experience = doctorDetails?.experience;
 
+  // Function to change the last word of elements with class 'sdoc-name'
   const changeLastWord = () => {
     const elements = document.querySelectorAll(".sdoc-name");
 
@@ -15,26 +17,30 @@ function Doctor() {
       const words = element.innerText.split(" ");
       if (words.length >= 1) {
         // Ensure there's at least one word
-        words[words.length - 1] = `<span style="color:var(--pink)">${
-          words[words.length - 1]
-        }</span>`;
+        words[words.length - 1] = `<span style="color:var(--pink)">${words[words.length - 1]}</span>`;
         element.innerHTML = words.join(" ");
       }
     });
   };
 
-  const { id } = useParams();
-
-  const fetchDetails = async () => {
+  // Fetch doctor details based on ID
+  const fetchDetails = useCallback(async () => {
     const response = await fetchSingleDoctor(id);
     setDoctorDetails(response);
-  };
-  // Execute the word change effect once the component is mounted
+  }, [id]); // Add id as a dependency
+
+  // Effect to change the last word and fetch doctor details
   useEffect(() => {
     changeLastWord();
     fetchDetails();
-    setQualification(doctorDetails?.qualifications?.split(", "));
-  }, [doctorDetails]);
+  }, [fetchDetails]); // Depend on fetchDetails to ensure it runs correctly
+
+  // Update qualifications based on doctor details
+  useEffect(() => {
+    if (doctorDetails) {
+      setQualification(doctorDetails?.qualifications?.split(", "));
+    }
+  }, [doctorDetails]); // Run this effect when doctorDetails change
 
   return (
     <div>

@@ -427,8 +427,7 @@ class About extends React.Component {
                                 </div>
                                 <video
                                   loop
-                                  autoPlay
-                                  muted
+                                  autoPlay={false}
                                   style={{ width: "100%" }}
                                 >
                                   <source
