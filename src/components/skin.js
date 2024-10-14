@@ -1,7 +1,6 @@
 // Skin.js
 import React, { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
-import doc from "./images/doctor.webp";
 import ScrollAnimation from "react-animate-on-scroll";
 import { Fancybox } from "@fancyapps/ui";
 import "@fancyapps/ui/dist/fancybox/fancybox.css";
@@ -87,7 +86,7 @@ function Skin() {
   }, []);
 
   return (
-    <>
+    <div className="container">
       <div className="container">
         <div className="row space decob">
           <ScrollAnimation
@@ -131,12 +130,12 @@ function Skin() {
       </div>
       <div className="container space">
         <div className="row mt-lg-5 " style={{ height: "100%" }}>
-          <div className="col-lg-4 col-md-5 col-12">
+          <div className="col-lg-3 col-md-5 col-12">
             <div className="doc-s">
               <img src={doctor_details?.image} alt=" doctor name" />
             </div>
           </div>
-          <div className="col-lg-4 col-md-7 col-12">
+          <div className="col-lg-5 col-md-7 col-12">
             <h1 className="banner-black  mb-3">
               {doctor_details?.designation}
             </h1>
@@ -328,7 +327,7 @@ function Skin() {
           )}
         </div>
       </div>
-    </>
+    </div>
   );
 }
 

@@ -154,7 +154,36 @@ class Index extends React.Component {
       <section className="space" style={{background:"aliceblue"}}>
         <div className="container">
           <div className="row">
+     
+<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+  Launch demo modal
+</button>
 
+
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      
+     
+      <div class="modal-body">
+      <div className="col-xl my-2" >
+          <div className={`bluepromotion promotion`}>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            <h2 className="p-white-bold">Lorem, ipsum.</h2>
+            <h3 className="section-heading-white">Lorem, ipsum.</h3>
+            <h4 className="sub-heading-white">Lorem, ipsum.</h4>
+            <h5 className="p-white">Lorem, ipsum.</h5>
+            <div className="h-100 d-flex align-items-end">
+              <p className="sub-heading-white mb-1">
+               03-may-2025
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
 
           {
   this.state.banners && this.state.banners.length > 0 ? (
@@ -173,7 +202,7 @@ class Index extends React.Component {
             <h4 className="sub-heading-white">{banner.text3}</h4>
             <h5 className="p-white">{banner.text4}</h5>
             <div className="h-100 d-flex align-items-end">
-              <p className="sub-heading-white mb-1" style={{ color: "var(--blue)" }}>
+              <p className="sub-heading-white mb-1" >
                 {banner.time_period}
               </p>
             </div>

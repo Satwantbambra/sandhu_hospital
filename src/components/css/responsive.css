@@ -195,6 +195,22 @@
 
 
    @media (min-width:0px) and (max-width:786px) {
+
+    .sub-dropdown-menu {
+      background-color: #fff;
+      border: 1px solid #ccc;
+      border-radius: 10px;
+      height: fit-content;
+      left: 0;
+      padding-left: 1.5rem !important;
+      list-style-type: none;
+      padding: 0;
+      position: relative;
+      top: 0;
+      width: 100% !important;
+      
+      z-index: 999;
+  }
     .banner{
       min-height: auto !important;
     }
@@ -240,7 +256,7 @@
       
     }
     .team-img img {
-      height: auto !important;
+      height: 324px !important;
       object-fit: contain;
       width: 100%;
   }

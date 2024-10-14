@@ -64,8 +64,8 @@ export default function Service() {
   }, []);
 
   return (
-    <div>
-      <div className="container space pb-0">
+    <div className="container">
+      <div className=" space pb-0">
         <div
           className="row mt-lg-5 mt-3 px-lg-5 px-3"
           style={{ height: "100%" }}

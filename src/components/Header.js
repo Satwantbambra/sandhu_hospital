@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
 import { MdWifiCalling3, MdDoubleArrow } from "react-icons/md";
-import { Link, NavLink } from "react-router-dom";
+import {  NavLink } from "react-router-dom";
 import {
   fetchAllServices,
   fetchSingleService,
@@ -66,7 +66,7 @@ export default function Header(props) {
           <img
             src={props.logo}
             alt="sandhu_logo"
-            style={{ height: 50, width: "100%" }}
+            style={{ height: 50, width: "120px",objectFit:"contain" }}
           />
         </NavLink>
 
@@ -83,7 +83,7 @@ export default function Header(props) {
         </button>
 
         <div
-          className="collapse navbar-collapse"
+          className="collapse navbar-collapse mt-3 mt-lg-0"
           id="navbarSupportedContent"
           style={{ position: "relative", zIndex: 3 }}
         >
