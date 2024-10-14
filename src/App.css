@@ -283,7 +283,9 @@ animation: width 0.5s linear forwards;
 
 
 .bluepromotion{
-  background: linear-gradient(180deg, #3f6999, #669cda, #92c0ec, #a7d0ee);
+  /* background: linear-gradient(180deg, #3f6999, #669cda, #92c0ec, #a7d0ee); */
+  background: linear-gradient(180deg, #3f6999, #398eef, #48a0f4, #48a0f4)
+  
 }
 .neonpromotion{
   background: linear-gradient(180deg, #409089, #57bfb6, #91e1da, #b3e8e4);
@@ -729,6 +731,7 @@ border-radius: 10px;
   padding: 36px 10px 0px;
   margin: 10px 0px;
   display: inline-block;
+  width: 100%;
 }
 .d-wrap::before{
   content: "";
@@ -785,21 +788,20 @@ border-radius: 10px;
 
 /* skin sections */
 
-.skin-facility-img{
+.skin-facility-img {
   height: 400px;
   width: 100%;
   position: relative;
-
 }
 
-
-.skin-facility-img img{
+.skin-facility-img img {
   height: 100%;
-  object-fit: cover;
+  object-fit: contain;
   width: 100%;
   border: 1px solid #ccc;
   border-radius: 10px;
-  
+  display: block;
+  margin: 0 auto;
 }
 
 .skname{
@@ -844,13 +846,13 @@ border-radius: 10px;
   backdrop-filter: blur(3px);
   padding: 1rem;
 }
-.sktreat{
-  left: -80px;
+.sktreat {
+  left:-30%;
   top: 20%;
   width: 40%;
 }
-.skcure{
-  right: -80px;
+.skcure {
+  right: -30%;
   bottom: 20%;
   width: 40%;
 }
@@ -1017,4 +1019,18 @@ display: flex;
   height: 100%;
   width: 100%;
 
+}
+
+.sub-dropdown-menu {
+  background-color: white;
+  position: absolute;
+  top: 0;
+  left: 100%;
+  width: 20rem;
+  list-style-type: none;
+  border-radius: 10px;
+  border: 1px solid #ccc;
+  z-index: 999;
+  height: 100%;
+  padding: 0;
 }

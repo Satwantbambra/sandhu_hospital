@@ -174,7 +174,7 @@ class Index extends React.Component {
             <h5 className="p-white">{banner.text4}</h5>
             <div className="h-100 d-flex align-items-end">
               <p className="sub-heading-white mb-1" style={{ color: "var(--blue)" }}>
-                {banner.text5}
+                {banner.time_period}
               </p>
             </div>
           </div>
@@ -433,7 +433,7 @@ class Index extends React.Component {
           {this.state.subservices.length > 0 ? (
     this.state.subservices.map((subservice, index) => {
       // Conditional rendering for the first two vs the next two
-      if (index < 2) {
+      if (index % 4 < 2) {
         // Layout for first two elements (image first, then details)
         return (
           <div key={index} className="services-contain col-lg-6 mb-3">
@@ -451,7 +451,7 @@ class Index extends React.Component {
                 {subservice.utility}
               </p>
               <h3 className="p-black-bold mt-2 mb-1">How We Cure:</h3>
-              <p className="p-black overflow-3 mt-0 mb-2">{subservice.description}</p>
+              <p className="p-black overflow-3 mt-0 mb-2"> {subservice.description.replace(/<\/?[^>]+(>|$)/g, "")}</p>
               </div>
             </div>
             </div>
@@ -469,7 +469,7 @@ class Index extends React.Component {
                 {subservice.utility}
               </p>
               <h3 className="p-black-bold mt-2 mb-1">How We Cure:</h3>
-              <p className="p-black overflow-3 mt-0 mb-2">{subservice.description}</p>
+              <p className="p-black overflow-3 mt-0 mb-2"> {subservice.description.replace(/<\/?[^>]+(>|$)/g, "")}</p>
             </div>
             </div>
             <div className="col-lg-6">

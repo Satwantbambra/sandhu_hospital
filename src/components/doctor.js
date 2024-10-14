@@ -6,7 +6,7 @@ import { fetchSingleDoctor } from "./commonApis/fetchServices";
 function Doctor() {
   const [doctorDetails, setDoctorDetails] = React.useState({});
   const [qualification, setQualification] = React.useState([]);
-  const experience =  doctorDetails?.experience;
+  const experience = doctorDetails?.experience;
 
   const changeLastWord = () => {
     const elements = document.querySelectorAll(".sdoc-name");
@@ -34,7 +34,7 @@ function Doctor() {
     changeLastWord();
     fetchDetails();
     setQualification(doctorDetails?.qualifications?.split(", "));
-  }, []);
+  }, [doctorDetails]);
 
   return (
     <div>
@@ -52,7 +52,7 @@ function Doctor() {
               </span>
               <h1 className="banner-black  sdoc-name">{doctorDetails?.name}</h1>
               <p className="sub-heading-black">
-                {doctorDetails?.total_experience}
+                {doctorDetails?.total_experience} years of experience
               </p>
               <div className="d-contain">
                 <div className="d-wrap">
@@ -113,24 +113,23 @@ function Doctor() {
             <div className="col-12">
               <h1 className="section-heading-black  ">Exepiernces</h1>
 
-              {experience && experience.map((item, index) => {
-                return (
-                  <div key={index} className="d-contain">
-                    <div className="d-wrap">
-                      <div className="dd-title p-heading-white">
-                        {item.title}
+              {experience &&
+                experience.map((item, index) => {
+                  return (
+                    <div key={index} className="d-contain">
+                      <div className="d-wrap">
+                        <div className="dd-title p-heading-white">
+                          {item.title}
+                        </div>
+                        <div className="d-flex my-1">
+                          <FaRegCalendarDays className="me-2" />
+                          <p className="p-black-bold mb-0">{item.tenure}</p>
+                        </div>
+                        <p className="p-black mb-0">{item.description}</p>
                       </div>
-                      <div className="d-flex my-1">
-                        <FaRegCalendarDays className="me-2" />
-                        <p className="p-black-bold mb-0">{item.tenure}</p>
-                      </div>
-                      <p className="p-black mb-0">
-                       {item.description}
-                      </p>
                     </div>
-                  </div>
-                );
-              })}
+                  );
+                })}
             </div>
           </div>
         </div>

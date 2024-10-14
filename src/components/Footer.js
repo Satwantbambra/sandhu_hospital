@@ -38,7 +38,7 @@ export default function Footer() {
               <h3 className="sub-heading-white mt-0 mb-2">
                 Your Wellness, Our Priority
               </h3>
-              <p className="p-white my-0" style={{ textAlign: "justify" }}>
+              <p className="p-white my-0" style={{ textAlign: "left" }}>
                 Sandhu Hospital, Nawanshahar, is a leading MultiSpeciality
                 Hospital specializing in Brain Diseases, De-addiction, Skin,
                 Medicine, and Surgery.

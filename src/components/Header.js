@@ -1,16 +1,31 @@
 import React, { useEffect, useRef, useState } from "react";
 import { MdWifiCalling3, MdDoubleArrow } from "react-icons/md";
-import { NavLink, useLocation } from "react-router-dom";
-import { fetchAllServices } from "./commonApis/fetchServices";
-
+import { Link, NavLink } from "react-router-dom";
+import {
+  fetchAllServices,
+  fetchSingleService,
+} from "./commonApis/fetchServices";
 
 export default function Header(props) {
   const navbarRef = useRef(null);
   const [services, setServices] = useState([]);
-
+  const [hoveredService, setHoveredService] = useState(null); // To track hovered service
+  const [subServicesMap, setSubServicesMap] = useState({}); // Object to store sub-services for each service
+  console.log("subServices ", subServicesMap);
   const fetchServices = async () => {
     const services = await fetchAllServices();
     setServices(services);
+  };
+
+  // Fetch sub-services for a specific service
+  const fetchSubServicesForService = async (serviceId) => {
+    if (!subServicesMap[serviceId]) {
+      const subServices = await fetchSingleService(serviceId);
+      setSubServicesMap((prevState) => ({
+        ...prevState,
+        [serviceId]: subServices?.sub_services || [],
+      }));
+    }
   };
 
   useEffect(() => {
@@ -74,7 +89,12 @@ export default function Header(props) {
         >
           <ul className="navbar-nav ms-auto mb-2 mb-lg-0 nav-pills align-items-lg-center">
             {/* Dropdown for Services */}
-            <li className="nav-item dropdown">
+            <li
+              className="nav-item dropdown"
+              onMouseLeave={() => {
+                setHoveredService(null);
+              }}
+            >
               <NavLink
                 to="/service"
                 className={({ isActive }) =>
@@ -87,21 +107,55 @@ export default function Header(props) {
               >
                 Services
               </NavLink>
+
               <ul className="dropdown-menu animate__animated animate__fadeInUp">
                 {services.map((service) => {
                   return (
-                    <li key={service.id}>
+                    <li
+                      onMouseEnter={() => {
+                        setHoveredService(service.id);
+                        fetchSubServicesForService(service.id);
+                      }}
+                      key={service.id}
+                    >
                       <NavLink
                         className={({ isActive }) =>
                           isActive
                             ? "active dropdown-item p-black"
                             : "dropdown-item p-black"
                         }
-                        to={service?.beautify === "1" ? `/skin/${service.id}` :`/service/${service.id}`}
-
+                        to={
+                          service?.beautify === "1"
+                            ? `/skin/${service.id}`
+                            : `/service/${service.id}`
+                        }
                       >
                         <MdDoubleArrow className="me-2" /> {service.name}
                       </NavLink>
+
+                      {/* Sub-services only display when hovered */}
+                      {hoveredService === service.id &&
+                        subServicesMap[service.id] && (
+                          <ul className="sub-dropdown-menu">
+                            {subServicesMap[service.id]?.map((subService) => (
+                              <li
+                                key={subService.id}
+                                className="dropdown-item p-black"
+                              >
+                                <NavLink
+                                  to={
+                                    service?.beautify === "1"
+                                      ? `/skin/${subService.id}`
+                                      : `/service/${subService.id}`
+                                  }
+                                >
+                                  <MdDoubleArrow className="me-2" />
+                                  {subService.name}
+                                </NavLink>
+                              </li>
+                            ))}
+                          </ul>
+                        )}
                     </li>
                   );
                 })}
