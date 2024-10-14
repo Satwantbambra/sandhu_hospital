@@ -1,98 +1,251 @@
-// src/components/Header.js
-import React, { useEffect, useRef } from 'react';
-import { MdWifiCalling3 } from "react-icons/md";
+import React, { useEffect, useRef, useState } from "react";
+import { MdWifiCalling3, MdDoubleArrow } from "react-icons/md";
+import { Link, NavLink } from "react-router-dom";
+import {
+  fetchAllServices,
+  fetchSingleService,
+} from "./commonApis/fetchServices";
 
+export default function Header(props) {
+  const navbarRef = useRef(null);
+  const [services, setServices] = useState([]);
+  const [hoveredService, setHoveredService] = useState(null); // To track hovered service
+  const [subServicesMap, setSubServicesMap] = useState({}); // Object to store sub-services for each service
+  console.log("subServices ", subServicesMap);
+  const fetchServices = async () => {
+    const services = await fetchAllServices();
+    setServices(services);
+  };
 
-export default function Header() {
-    const navbarRef = useRef(null);
-    const offset = 130; // Set your desired offset value (adjust this value as needed)
+  // Fetch sub-services for a specific service
+  const fetchSubServicesForService = async (serviceId) => {
+    if (!subServicesMap[serviceId]) {
+      const subServices = await fetchSingleService(serviceId);
+      setSubServicesMap((prevState) => ({
+        ...prevState,
+        [serviceId]: subServices?.sub_services || [],
+      }));
+    }
+  };
 
-    useEffect(() => {
-        const handleScroll = () => {
-            if (!navbarRef.current) return;
+  useEffect(() => {
+    fetchServices();
+    const handleScroll = () => {
+      if (!navbarRef.current) return;
+      const scrollPosition = window.scrollY;
+      // Sticky Navbar
+      if (scrollPosition > 100) {
+        navbarRef.current.classList.add("fixed-top", "trans-bg");
+      } else {
+        navbarRef.current.classList.remove("fixed-top", "trans-bg");
+      }
+    };
 
-            const sections = document.querySelectorAll('section'); // Select all sections
-            const scrollPosition = window.scrollY;
+    window.addEventListener("scroll", handleScroll);
 
-            // Check each section to see if it's in the viewport
-            sections.forEach(section => {
-                const sectionId = section.getAttribute('id');
-                const navLink = navbarRef.current.querySelector(`a[href="#${sectionId}"]`);
+    // Cleanup the event listener on component unmount
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
 
-                if (navLink) {
-                    const sectionTop = section.offsetTop - offset; // Adjust the section top by the offset
-                    const sectionHeight = section.offsetHeight;
+  return (
+    <nav
+      className="navbar navbar-expand-lg navbar-not navbar-dark bg-dark py-0"
+      ref={navbarRef}
+    >
+      <div
+        className="container py-3"
+        style={{ position: "relative", zIndex: 3 }}
+      >
+        <NavLink
+          className="navbar-brand d-flex align-items-center py-0"
+          to="/"
+          style={{ position: "relative", zIndex: 3 }}
+        >
+          <img
+            src={props.logo}
+            alt="sandhu_logo"
+            style={{ height: 50, width: "100%" }}
+          />
+        </NavLink>
 
-                    // Check if section is in viewport with offset
-                    if (scrollPosition >= sectionTop && scrollPosition < sectionTop + sectionHeight) {
-                        navLink.classList.add('active'); // Add active class
-                    } else {
-                        navLink.classList.remove('active'); // Remove active class
-                    }
+        <button
+          className="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarSupportedContent"
+          aria-controls="navbarSupportedContent"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span className="navbar-toggler-icon"></span>
+        </button>
+
+        <div
+          className="collapse navbar-collapse"
+          id="navbarSupportedContent"
+          style={{ position: "relative", zIndex: 3 }}
+        >
+          <ul className="navbar-nav ms-auto mb-2 mb-lg-0 nav-pills align-items-lg-center">
+            {/* Dropdown for Services */}
+            <li
+              className="nav-item dropdown"
+              onMouseLeave={() => {
+                setHoveredService(null);
+              }}
+            >
+              <NavLink
+                to="/service"
+                className={({ isActive }) =>
+                  isActive
+                    ? "active nav-link p-white-bold dropdown-toggle"
+                    : " nav-link p-white-bold dropdown-toggle"
                 }
-            });
+                data-mdb-toggle="dropdown"
+                aria-expanded="false"
+              >
+                Services
+              </NavLink>
 
-            // Sticky Navbar
-            if (scrollPosition > 100) {
-                navbarRef.current.classList.add('fixed-top', 'trans-bg');
-               
-            } else {
-                navbarRef.current.classList.remove('fixed-top', 'trans-bg');
-              
-            }
-        };
+              <ul className="dropdown-menu animate__animated animate__fadeInUp">
+                {services.map((service) => {
+                  return (
+                    <li
+                      onMouseEnter={() => {
+                        setHoveredService(service.id);
+                        fetchSubServicesForService(service.id);
+                      }}
+                      key={service.id}
+                    >
+                      <NavLink
+                        className={({ isActive }) =>
+                          isActive
+                            ? "active dropdown-item p-black"
+                            : "dropdown-item p-black"
+                        }
+                        to={
+                          service?.beautify === "1"
+                            ? `/skin/${service.id}`
+                            : `/service/${service.id}`
+                        }
+                      >
+                        <MdDoubleArrow className="me-2" /> {service.name}
+                      </NavLink>
 
-        window.addEventListener('scroll', handleScroll);
-
-        // Cleanup the event listener on component unmount
-        return () => {
-            window.removeEventListener('scroll', handleScroll);
-        };
-    }, []);
-    return (
-       
-            <nav className="navbar navbar-expand-lg navbar-not  navbar-dark bg-dark py-0" id="navbar-sticky"
-             ref={navbarRef}
-             >
-                <div className="container-fluid py-3  " style={{position:"relative", zIndex:3}}>
-                    <a className="navbar-brand d-flex align-items-center" href="/" style={{position:"relative",zIndex:3}}>
-                        <i className="fa-solid fa-house-medical section-heading-white me-2" style={{color: 'var(--pink)'}}></i>
-                        <h2 className="section-heading-white my-0">
-                            Sandhu <span style={{color: 'var(--pink)'}}> hospital</span> 
-                        </h2>
-                    </a>
-                    <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-           <span className="navbar-toggler-icon"></span>
-                 </button>
-                    <div className="collapse navbar-collapse" id="navbarSupportedContent" style={{position:"relative",zIndex:3}}>
-                        <ul className="navbar-nav ms-auto mb-2 mb-lg-0 nav-pills align-items-lg-center">
-                            <li className="nav-item">
-                                <a className="nav-link p-white-bold" href="#services">Services</a>
-                            </li>
-                            <li className="nav-item">
-                                <a className="nav-link p-white-bold" href="#about">About us</a>
-                            </li>
-                            <li className="nav-item">
-                                <a className="nav-link p-white-bold" href="#who">Who we cure</a>
-                            </li>
-                            <li className="nav-item">
-                                <a className="nav-link p-white-bold" href="#gallery">Gallery</a>
-                            </li>
-                            <li className="nav-item">
-                                <a className="nav-link p-white-bold" href="#testimonial"> Testimonials</a>
-                            </li>
-
-                            <li className="nav-item" style={{background: 'linear-gradient(45deg, #313f70, #953986)', borderRadius: 6, padding: 10 }}> 
-                                <a className="nav-link p-white-bold" href="tel:+01823222674" style={{color: 'var(--white)' }}> 
-                                    <MdWifiCalling3 className='sub-heading-white' style={{marginRight: 6}}/>Call Us : 01823222674
-
-
-                                </a>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-            </nav>
-        
-    );
+                      {/* Sub-services only display when hovered */}
+                      {hoveredService === service.id &&
+                        subServicesMap[service.id] && (
+                          <ul className="sub-dropdown-menu">
+                            {subServicesMap[service.id]?.map((subService) => (
+                              <li
+                                key={subService.id}
+                                className="dropdown-item p-black"
+                              >
+                                <NavLink
+                                  to={
+                                    service?.beautify === "1"
+                                      ? `/skin/${subService.id}`
+                                      : `/service/${subService.id}`
+                                  }
+                                >
+                                  <MdDoubleArrow className="me-2" />
+                                  {subService.name}
+                                </NavLink>
+                              </li>
+                            ))}
+                          </ul>
+                        )}
+                    </li>
+                  );
+                })}
+              </ul>
+            </li>
+            {/* Other Nav Links */}
+            <li className="nav-item">
+              <NavLink
+                className={({ isActive }) =>
+                  isActive
+                    ? "nav-link p-white-bold active"
+                    : "nav-link p-white-bold"
+                }
+                to="/about"
+              >
+                About Us
+              </NavLink>
+            </li>
+            <li className="nav-item">
+              <NavLink
+                className={({ isActive }) =>
+                  isActive
+                    ? "nav-link p-white-bold active"
+                    : "nav-link p-white-bold"
+                }
+                to="/team"
+              >
+                Team
+              </NavLink>
+            </li>
+            <li className="nav-item">
+              <NavLink
+                className={({ isActive }) =>
+                  isActive
+                    ? "nav-link p-white-bold active"
+                    : "nav-link p-white-bold"
+                }
+                to="/gallery"
+              >
+                Gallery
+              </NavLink>
+            </li>
+            <li className="nav-item">
+              <NavLink
+                className={({ isActive }) =>
+                  isActive
+                    ? "nav-link p-white-bold active"
+                    : "nav-link p-white-bold"
+                }
+                to="/search"
+              >
+                Search
+              </NavLink>
+            </li>{" "}
+            <li className="nav-item">
+              <NavLink
+                className={({ isActive }) =>
+                  isActive
+                    ? "nav-link p-white-bold active"
+                    : "nav-link p-white-bold"
+                }
+                to="/contact_us"
+              >
+                Contact us
+              </NavLink>
+            </li>
+            {/* Call Us Button */}
+            <li
+              className="nav-item"
+              style={{
+                background: "linear-gradient(45deg, #313f70, #953986)",
+                borderRadius: 6,
+                padding: 10,
+              }}
+            >
+              <NavLink
+                className="nav-link p-white-bold"
+                to="tel:+01823222674"
+                style={{ color: "var(--white)" }}
+              >
+                <MdWifiCalling3
+                  className="sub-heading-white"
+                  style={{ marginRight: 6 }}
+                />{" "}
+                Call Us: 01823222674
+              </NavLink>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+  );
 }
