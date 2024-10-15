@@ -13,17 +13,10 @@ export default function Header(props) {
   const handleNavLinkClick = (event) => {
     if (navbarMobileRef.current) {
       navbarMobileRef.current.classList.remove("show"); // Remove the show class
-        // Use window.location.href for hash-based navigation
-        const link = event.currentTarget.getAttribute("href");
-
-        // Ensure the link is valid before proceeding
-        if (typeof link === 'string' && link.startsWith("#")) {
-          window.location.href = link; // Navigate to the anchor link
-        } else {
-          navigate(link); // Use React Router's navigate for other links
-        }
     }
+
   };
+  
   const [services, setServices] = useState([]);
   const [hoveredService, setHoveredService] = useState(null); // To track hovered service
   const [subServicesMap, setSubServicesMap] = useState({}); // Object to store sub-services for each service
@@ -47,23 +40,23 @@ export default function Header(props) {
     // Fetch services initially
     fetchServices();
 
-    // Check for the hash to scroll to the corresponding element
-    const hash = window.location.hash;
-    if (hash) {
+  const hash = window.location.hash;
+  if (hash) {
+    setTimeout(() => {
       const element = document.getElementById(hash.substring(1)); // Remove '#' from the hash
       if (element) {
         // Calculate the top position of the element
         const elementPosition = element.getBoundingClientRect().top + window.scrollY;
-        // Calculate the scroll position with the desired offset (200 pixels)
-        const offsetPosition = elementPosition - 120;
-
-        // Scroll to the adjusted position
+        const offsetPosition = elementPosition - 100;
         window.scrollTo({
           top: offsetPosition,
           behavior: 'smooth' // Smooth scrolling
         });
+      } else {
       }
-    }
+    }, 300); // Adjust the delay if necessary
+  } else {
+  }
 
     const handleScroll = () => {
       if (!navbarRef.current) return;
@@ -80,10 +73,6 @@ export default function Header(props) {
     // Attach scroll event listener
     window.addEventListener("scroll", handleScroll);
 
-    // Cleanup function to remove the event listener
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
-    };
   }, [window.location.hash]); // Dependency on hash changes
 
   return (
