@@ -172,8 +172,6 @@ export default function Header(props) {
                         }
                       >
                         <MdDoubleArrow className="me-2" /> <span   onClick={handleNavLinkClick}>{service.name}</span>
-                      </NavLink>
-
                       {/* Sub-services only display when hovered */}
                       {hoveredService === service.id &&
                         subServicesMap[service.id] && (
@@ -184,6 +182,7 @@ export default function Header(props) {
                                 className="dropdown-item p-black"
                               >
                                 <NavLink
+                                
                                   onClick={handleNavLinkClick}
                                   to={
                                     service?.beautify === "1"
@@ -198,6 +197,8 @@ export default function Header(props) {
                             ))}
                           </ul>
                         )}
+                      </NavLink>
+
                     </li>
                   );
                 })}
