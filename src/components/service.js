@@ -392,9 +392,7 @@ export default function Service() {
                               <div className="play-btn m-0"></div>
                             </div>
                             <video
-                              loop
-                              autoPlay
-                              muted
+                             loop muted playsInline  
                               style={{ width: "100%" }}
                               onError={(e) => {
                                 e.target.onerror = null;

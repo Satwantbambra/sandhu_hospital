@@ -300,9 +300,7 @@ function Skin() {
                               <div className="play-btn m-0"></div>
                             </div>
                             <video
-                              loop
-                              autoPlay
-                              muted
+                           loop muted playsInline  
                               style={{ width: "100%" }}
                             >
                               <source src={item.image} type="video/mp4" />
