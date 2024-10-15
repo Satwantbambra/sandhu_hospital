@@ -1053,7 +1053,7 @@ display: flex;
   width: 20rem;
   list-style-type: none;
   border-radius: 10px;
-
+  box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
   z-index: 999;
   height: fit-content;
   padding: 0;
