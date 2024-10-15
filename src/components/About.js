@@ -297,7 +297,7 @@ class About extends React.Component {
                 <div className="row my-2 py-3">
                   {this.state.doctors && this.state.doctors.length > 0 ? (
                     this.state.doctors.map((doctor, index) => (
-                      <div key={index} className="col-lg-4 mb-3 mb-lg-0">
+                      <div key={index} className="col-lg-4 mb-3 ">
                         <div className="team-card">
                           <div className="view animate__fadeIn animate__animated">
                           <Link to={`/doctor/${doctor.id}`} className="btn-pink">
@@ -332,8 +332,13 @@ class About extends React.Component {
                             </div>
                             <div className="col-6">
                               <div className="team-img">
-                                <img src={doctor.image} alt={doctor.name} 
-                                onError={(e) => { e.target.onerror = null; e.target.src =  "./images/dummyd.png"; }} />
+                              <img
+                              src={doctor.image}
+                              alt={"sdsa"}
+                              onError={(e) => {
+                                e.target.onerror = null;
+                                e.target.src = "/dummyd.png";
+                              }}></img>
                               </div>
                             </div>
                           </div>
