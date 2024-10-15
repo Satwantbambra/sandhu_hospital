@@ -117,7 +117,7 @@ class Index extends React.Component {
     }
 
     fetchGallery() {
-      const apiUrl = `${process.env.REACT_APP_API_BASE_URL}/galleries`;
+      const apiUrl = `${process.env.REACT_APP_API_BASE_URL}/galleries?type=featured`;
     axios
       .get(apiUrl)
       .then((response) => {
@@ -197,7 +197,7 @@ class Index extends React.Component {
             const bannerClasses = ["bluepromotion", "pinkpromotion", "neonpromotion"];
             const className = bannerClasses[index % bannerClasses.length];
             return (
-              <div className="col-xl my-2" key={index}>
+              <div className="col-xl my-2" key={`banner-${index}`}>
                 <div className={`${className} promotion`}>
                   <h2 className="p-white-bold">{banner.text1}</h2>
                   <h3 className="section-heading-white">{banner.text2}</h3>
@@ -280,7 +280,7 @@ class Index extends React.Component {
           <div className="row my-2 py-3">
           {this.state.services.length > 0 ? (
                 this.state.services.map((service, index) => (
-                  <div key={index} className="services-contain col-lg-3 mb-3 ">
+                  <div key={`services-${index}`} className="services-contain col-lg-3 mb-3 ">
                     <Link to={`/service/${service.id}`}>
                     <div className="servicelimg">
                       <img src={service.image} alt={service.name} />
@@ -422,7 +422,7 @@ class Index extends React.Component {
               <div className="row">
               {this.state.facilities.length > 0 ? (
                 this.state.facilities.map((facility, index) => (
-                  <div className="col-lg-6 mb-2" key={index}>
+                  <div className="col-lg-6 mb-2" key={`facilities-${index}`}>
                   <div className="d-flex">
                     <FaCircleCheck
                       className="me-2"
@@ -489,7 +489,7 @@ class Index extends React.Component {
       if (index % 4 < 2) {
         // Layout for first two elements (image first, then details)
         return (
-          <div key={index} className="services-contain col-lg-6 mb-3">
+          <div key={`subservices-${index}`} className="services-contain col-lg-6 mb-3">
             <div className="row">
               <div className="col-lg-6">
 
@@ -513,7 +513,7 @@ class Index extends React.Component {
       } else {
         // Layout for the next two elements (details first, then image)
         return (
-          <div key={index} className="services-contain col-lg-6 mb-3">
+          <div key={`subservices-${index}`} className="services-contain col-lg-6 mb-3">
             <div className="row">
               <div className="col-lg-6">
             <div className="cwt1">
@@ -571,7 +571,7 @@ class Index extends React.Component {
                 this.state.galleries.map((Gallery, index) => (
                   Gallery.media === "Image" ? (
                     <div>
-                    <a key={index}
+                    <a key={`gallery-${index}`}
                     data-fancybox="gallery"
                     href={Gallery.image}
                    
@@ -590,12 +590,12 @@ class Index extends React.Component {
                   </a>
                   </div>
                   ):   Gallery.media === "Video" ? (
-                    <a data-fancybox="gallery" href={Gallery.image} key={index}>
+                    <a data-fancybox="gallery" href={Gallery.image} key={`gallery-${index}`}>
                   <div style={{ position: "relative", width: "100%", height: "100%" }}>
           <div className="overlaygll m-0">
             <div className="play-btn m-0"></div>
           </div>
-          <video loop autoPlay={false}  style={{ width: "100%" }}>
+          <video loop muted playsInline   style={{ width: "100%" }}>
             <source src={Gallery.image} type="video/mp4" />
           </video>
         </div>
@@ -639,7 +639,7 @@ class Index extends React.Component {
 
       {this.state.testimonials && this.state.testimonials.length > 0  ? (
   this.state.testimonials.map((testimonial, index) => (
-    <div className="col-lg-4 mb-3" key={index}>
+    <div className="col-lg-4 mb-5" key={`testimonials-${index}`}>
       <div className="testimonial">
         <div className="outer-tag">
           <div className="inner-tag">

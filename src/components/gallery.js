@@ -125,8 +125,7 @@ class Gallery extends React.Component {
                               <div className="play-btn m-0"></div>
                             </div>
                             <video
-                              loop
-                              autoPlay={false}
+                             loop muted playsInline 
                               style={{ width: "100%" }}
                             >
                               <source src={Gallery.image} type="video/mp4" />

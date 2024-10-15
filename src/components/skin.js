@@ -88,7 +88,7 @@ function Skin() {
   return (
     <div className="container">
       <div className="container">
-        <div className="row space decob">
+        <div className="row py-4 decob">
           <ScrollAnimation
             initiallyVisible={true}
             className="col-lg-8"

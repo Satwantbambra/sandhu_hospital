@@ -418,8 +418,7 @@ class About extends React.Component {
                                   <div className="play-btn m-0"></div>
                                 </div>
                                 <video
-                                  loop
-                                  autoPlay={false}
+                                 loop muted playsInline                  
                                   style={{ width: "100%" }}
                                 >
                                   <source

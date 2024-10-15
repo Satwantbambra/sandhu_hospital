@@ -147,7 +147,7 @@ export default function Service() {
                   {doctor_details?.total_experience
                     ? doctor_details?.total_experience
                     : 0}{" "}
-                  years of experience
+                
                 </p>
               </>
             )}
