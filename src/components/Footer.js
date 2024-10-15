@@ -84,7 +84,7 @@ export default function Footer() {
                     </h3>
                     <ul className="footer-ul">
                       <li>
-                        <Link to="#" className="p-white-bold">
+                        <Link to="/" className="p-white-bold">
                           <i>
                             <FaArrowCircleRight />
                           </i>
@@ -92,7 +92,7 @@ export default function Footer() {
                         </Link>
                       </li>
                       <li>
-                        <Link to="#" className="p-white-bold">
+                        <Link to="/about" className="p-white-bold">
                           <i>
                             <FaArrowCircleRight />
                           </i>
@@ -100,7 +100,7 @@ export default function Footer() {
                         </Link>
                       </li>
                       <li>
-                        <Link to="#" className="p-white-bold">
+                        <Link to="/team" className="p-white-bold">
                           <i>
                             <FaArrowCircleRight />
                           </i>
@@ -108,7 +108,7 @@ export default function Footer() {
                         </Link>
                       </li>
                       <li>
-                        <Link to="#" className="p-white-bold">
+                        <Link to="/search" className="p-white-bold">
                           <i>
                             <FaArrowCircleRight />
                           </i>
@@ -116,7 +116,7 @@ export default function Footer() {
                         </Link>
                       </li>
                       <li>
-                        <Link to="#" className="p-white-bold">
+                        <Link to="/gallery" className="p-white-bold">
                           <i>
                             <FaArrowCircleRight />
                           </i>

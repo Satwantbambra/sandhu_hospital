@@ -2,6 +2,7 @@ import React from "react"
 import sandhu from "./images/sandhu.jpg";
 import bbrain from "./images/brain.png";
 import doc from "./images/doc.png";
+import { Link } from "react-router-dom";
 import { Fancybox } from "@fancyapps/ui";
 import "@fancyapps/ui/dist/fancybox/fancybox.css";
 import { FaCircleCheck } from "react-icons/fa6";
@@ -104,7 +105,7 @@ class Index extends React.Component {
   }
 
     fetchSubServices() {
-        const apiUrl = `${process.env.REACT_APP_API_BASE_URL}/sub-services?type=feature_servcies`;
+        const apiUrl = `${process.env.REACT_APP_API_BASE_URL}/sub-services?type=feature_services`;
       axios
         .get(apiUrl)
         .then((response) => {
@@ -280,6 +281,7 @@ class Index extends React.Component {
           {this.state.services.length > 0 ? (
                 this.state.services.map((service, index) => (
                   <div key={index} className="services-contain col-lg-3 mb-3 ">
+                    <Link to={`/service/${service.id}`}>
                     <div className="servicelimg">
                       <img src={service.image} alt={service.name} />
                     </div>
@@ -287,6 +289,7 @@ class Index extends React.Component {
                       <h2 className="p-heading-black mt-0 mb-1">{service.name}</h2>
                       <p className="p-black my-0 overflow-2">{service.description}</p>
                     </div>
+                    </Link>
                   </div>
                 ))
               ) : (
@@ -636,7 +639,7 @@ class Index extends React.Component {
 
       {this.state.testimonials && this.state.testimonials.length > 0  ? (
   this.state.testimonials.map((testimonial, index) => (
-    <div className="col-lg-4" key={index}>
+    <div className="col-lg-4 mb-3" key={index}>
       <div className="testimonial">
         <div className="outer-tag">
           <div className="inner-tag">
