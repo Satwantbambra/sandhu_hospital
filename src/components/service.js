@@ -13,7 +13,7 @@ export default function Service() {
 
   const doctor_details = service_details?.doctor;
   const doctor_timings = doctor_details?.timings;
-  const doctor_experience = doctor_details?.experience;
+
   const sub_services = service_details?.sub_services;
   const gallery = service_details?.gallery;
 
@@ -36,7 +36,7 @@ export default function Service() {
   useEffect(() => {
     const getDetails = async () => {
       const details = await fetchSingleService(id);
-      console.log("details => ", details);
+      //console.log("details => ", details);
       setServiceDetails(details);
     };
 
@@ -65,7 +65,7 @@ export default function Service() {
 
   return (
     <div className="container">
-      <div className=" space pb-0">
+      <div className="space pb-0">
         <div
           className="row mt-lg-5 mt-3 px-lg-5 px-3"
           style={{ height: "100%" }}
@@ -179,9 +179,9 @@ export default function Service() {
 
             {sub_services?.map((sub_service, index) => {
               return (
-                <div key={index}>
+                <div key={index} id={sub_service?.name.replace(/\s+/g, '-')}>
                   {index % 2 === 0 ? (
-                    <div className="row mt-3">
+                    <div className="row mt-3" >
                       <div
                         className={`mb-3 mb-0 ${
                           sub_service?.image ? "col-lg-8" : "col-lg-12"

@@ -1,5 +1,4 @@
 import React from "react";
-import axios from "axios";
 import ss from "./images/ss.png"; // Ensure the path is correct
 import sd from "./images/sdoc.png"; // Ensure the path is correct
 import { fetchAllServices } from "./commonApis/fetchServices";

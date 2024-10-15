@@ -57,7 +57,7 @@ function Skin() {
   useEffect(() => {
     const getDetails = async () => {
       const details = await fetchSingleService(id);
-      console.log("details => ", details);
+     // console.log("details => ", details);
       setServiceDetails(details);
     };
 
@@ -217,9 +217,9 @@ function Skin() {
               key={index}
               initiallyVisible={true}
               animateIn="animate__fadeInUp"
-              className="row space d-flex justify-content-center deco"
+              className="row space d-flex justify-content-center deco"  
             >
-              <div className="col-lg-7 col-9">
+              <div className="col-lg-7 col-9" id={item.name.replace(/\s+/g, '-')} >
                 <div className="skin-facility-img">
                   <div className="sfacility sktreat ">
                     <p

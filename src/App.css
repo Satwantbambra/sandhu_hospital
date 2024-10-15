@@ -800,18 +800,19 @@ border-radius: 10px;
   height: 400px;
   width: 100%;
   position: relative;
+  background: #a7398d;
 }
 
 .skin-facility-img img {
   height: 100%;
   object-fit: contain;
   width: 100%;
-  border: 1px solid #ccc;
+  border: 1px solid #a7398d;
   border-radius: 10px;
   display: block;
   margin: 0 auto;
 }
-
+;
 .skname{
   position: absolute;
   bottom: 0;
@@ -874,7 +875,7 @@ border-radius: 10px;
   position: absolute;
   content: "";
   width:20px;
-top: 98%;  height: 20px;
+top: 90%;  height: 20px;
 left: 3%;
 background: var(--pink);
 transform: rotate(45deg);
@@ -928,6 +929,7 @@ transform: rotate(55deg);
 
 .gallery-cap{
   position: relative !important;
+
 }
 
 .gallery-capi{

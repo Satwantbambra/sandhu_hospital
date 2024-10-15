@@ -44,15 +44,51 @@ class Index extends React.Component {
     axios
       .get(apiUrl)
       .then((response) => {
-        this.setState({ banners: response.data.data });
+        this.setState({ banners: response.data.data }, () => {
+          // Check if there is exactly one banner and show the modal
+          if (this.state.banners.length === 1) {
+            this.openModalWithDelay();
+          }
+          
+        });
       })
       .catch((error) => {
         console.error("There was an error fetching the promotional banner!", error);
       });
   }
+
+  openModalWithDelay = () => {
+    // Check if the modal was closed for the current day
+    const modalClosedToday = localStorage.getItem('modalClosedToday');
+    
+    if (!modalClosedToday) {
+      // Delay opening the modal by 2 seconds
+      setTimeout(() => {
+        const modalElement = document.getElementById('exampleModal');
+        const modal = new window.bootstrap.Modal(modalElement);
+        modal.show(); // Show the modal
+  
+        // Add event listener for modal close button
+        modalElement.addEventListener('hidden.bs.modal', () => {
+          // Set flag in localStorage to not show the modal again for today
+          const today = new Date().toISOString().split('T')[0]; // Get today's date (YYYY-MM-DD)
+          localStorage.setItem('modalClosedToday', today);
+  
+          // Cleanup modal backdrop and scrolling
+          document.body.classList.remove('modal-open');
+          const modalBackdrop = document.querySelector('.modal-backdrop');
+          if (modalBackdrop) {
+            modalBackdrop.remove();
+          }
+          document.body.style.overflow = 'auto';
+        });
+      }, 4000); // 2 second delay
+    }
+  };
+
   async fetchServices() {
     const services = await fetchAllServices();
-    console.log("hello world ===> ", services);
+
     this.setState({ services: services });
   }
     fetchFacility() {
@@ -151,78 +187,63 @@ class Index extends React.Component {
         </div>
       </div>
 
-      <section className="space" style={{background:"aliceblue"}}>
-        <div className="container">
-          <div className="row">
-     
-<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
-  Launch demo modal
-</button>
+      {this.state.banners.length > 1 ? (
+  <section className="space" style={{ background: "aliceblue" }}>
+    <div className="container">
+      <div className="row">
+        {this.state.banners && this.state.banners.length > 0 ? (
+          this.state.banners.map((banner, index) => {
+            const bannerClasses = ["bluepromotion", "pinkpromotion", "neonpromotion"];
+            const className = bannerClasses[index % bannerClasses.length];
+            return (
+              <div className="col-xl my-2" key={index}>
+                <div className={`${className} promotion`}>
+                  <h2 className="p-white-bold">{banner.text1}</h2>
+                  <h3 className="section-heading-white">{banner.text2}</h3>
+                  <h4 className="sub-heading-white">{banner.text3}</h4>
+                  <h5 className="p-white">{banner.text4}</h5>
+                  <div className="h-100 d-flex align-items-end">
+                    <p className="sub-heading-white mb-1" style={{ color: "var(--blue)" }}>
+                      {banner.time_period}
+                    </p>
+                  </div>
+                </div>
+              </div>
+            );
+          })
+        ) : (
+          <p>No banners available</p>
+        )}
+      </div>
+    </div>
+  </section>
+) : (
+  this.state.banners.length === 1 && (
 
+    <div className="modal modal-lg" id="exampleModal" data-bs-backdrop="true" tabIndex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
 
-<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      
-     
-      <div class="modal-body">
-      <div className="col-xl my-2" >
-          <div className={`bluepromotion promotion`}>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            <h2 className="p-white-bold">Lorem, ipsum.</h2>
-            <h3 className="section-heading-white">Lorem, ipsum.</h3>
-            <h4 className="sub-heading-white">Lorem, ipsum.</h4>
-            <h5 className="p-white">Lorem, ipsum.</h5>
-            <div className="h-100 d-flex align-items-end">
-              <p className="sub-heading-white mb-1">
-               03-may-2025
-              </p>
+      <div className="modal-dialog">
+        <div className="modal-content">
+          <div className="modal-body">
+            <div className="col-xl my-2">
+              <div className="bluepromotion promotion">
+                <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                <h2 className="p-white-bold">{this.state.banners[0].text1}</h2>
+                <h3 className="section-heading-white">{this.state.banners[0].text2}</h3>
+                <h4 className="sub-heading-white">{this.state.banners[0].text3}</h4>
+                <h5 className="p-white">{this.state.banners[0].text4}</h5>
+                <div className="h-100 d-flex align-items-end">
+                  <p className="sub-heading-white mb-1">{this.state.banners[0].time_period}</p>
+                </div>
+              </div>
             </div>
           </div>
         </div>
       </div>
     </div>
-  </div>
-</div>
-
-          {
-  this.state.banners && this.state.banners.length > 0 ? (
-    this.state.banners.map((banner, index) => {
-      // Array of classes to be used for each banner
-      const bannerClasses = ["bluepromotion", "pinkpromotion", "neonpromotion"];
-      
-
-      const className = bannerClasses[index % bannerClasses.length];
-
-      return (
-        <div className="col-xl my-2" key={index}>
-          <div className={`${className} promotion`}>
-            <h2 className="p-white-bold">{banner.text1}</h2>
-            <h3 className="section-heading-white">{banner.text2}</h3>
-            <h4 className="sub-heading-white">{banner.text3}</h4>
-            <h5 className="p-white">{banner.text4}</h5>
-            <div className="h-100 d-flex align-items-end">
-              <p className="sub-heading-white mb-1" >
-                {banner.time_period}
-              </p>
-            </div>
-          </div>
-        </div>
-      );
-    })
-  ) : (
-    <p>No banners available</p>
   )
-}
+)}
 
-         
-            
-
-           
-      
-          </div>
-        </div>
-      </section>
 
       <section  className="space" id="services">
         <div className="container">
@@ -571,7 +592,7 @@ class Index extends React.Component {
           <div className="overlaygll m-0">
             <div className="play-btn m-0"></div>
           </div>
-          <video loop autoPlay muted style={{ width: "100%" }}>
+          <video loop autoPlay={false}  style={{ width: "100%" }}>
             <source src={Gallery.image} type="video/mp4" />
           </video>
         </div>
