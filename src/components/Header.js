@@ -5,7 +5,7 @@ import {
   fetchAllServices,
   fetchSingleService,
 } from "./commonApis/fetchServices";
-
+import { ImSearch } from "react-icons/im";
 export default function Header(props) {
   const navbarRef = useRef(null);
   const navbarMobileRef = useRef(null);
@@ -165,7 +165,7 @@ export default function Header(props) {
 
                       {/* Sub-services only display when hovered */}
                       {hoveredService === service.id &&
-                        subServicesMap[service.id] && (
+                        subServicesMap[service.id] && subServicesMap[service.id].length > 0 && (
                           <ul className="sub-dropdown-menu">
                             {subServicesMap[service.id]?.map((subService) => (
                               <li
@@ -232,19 +232,7 @@ export default function Header(props) {
                 Gallery
               </NavLink>
             </li>
-            <li className="nav-item">
-              <NavLink
-                onClick={handleNavLinkClick}
-                className={({ isActive }) =>
-                  isActive
-                    ? "nav-link p-white-bold active"
-                    : "nav-link p-white-bold"
-                }
-                to="/search"
-              >
-                Search
-              </NavLink>
-            </li>{" "}
+          
             <li className="nav-item">
               <NavLink
                 onClick={handleNavLinkClick}
@@ -259,6 +247,19 @@ export default function Header(props) {
               </NavLink>
             </li>
             {/* Call Us Button */}
+            <li className="nav-item">
+              <NavLink
+                onClick={handleNavLinkClick}
+                className={({ isActive }) =>
+                  isActive
+                    ? "nav-link p-white-bold active"
+                    : "nav-link p-white-bold"
+                }
+                to="/search"
+              >
+             <ImSearch className="mx-3"/>
+              </NavLink>
+            </li>{" "}
             <li
               className="nav-item"
               style={{

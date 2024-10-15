@@ -38,6 +38,7 @@ function Doctor() {
   // Update qualifications based on doctor details
   useEffect(() => {
     if (doctorDetails) {
+
       setQualification(doctorDetails?.qualifications?.split(", "));
     }
   }, [doctorDetails]); // Run this effect when doctorDetails change
@@ -91,7 +92,7 @@ function Doctor() {
                   <div className="dd-title p-heading-white">Service</div>
                   <div className="d-flex flex-wrap">
                     <div className="d-d">
-                      <p className="p-white mb-0">{doctorDetails?.service}</p>
+                      <p className="p-white mb-0">{doctorDetails.service?.name}</p>
                     </div>
                   </div>
                 </div>
