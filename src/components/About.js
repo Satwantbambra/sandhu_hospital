@@ -297,7 +297,7 @@ class About extends React.Component {
                 <div className="row my-2 py-3">
                   {this.state.doctors && this.state.doctors.length > 0 ? (
                     this.state.doctors.map((doctor, index) => (
-                      <div key={index} className="col-lg-4 mb-3 mb-lg-0">
+                      <div key={index} className="col-lg-4 mb-3 ">
                         <div className="team-card">
                           <div className="view animate__fadeIn animate__animated">
                           <Link to={`/doctor/${doctor.id}`} className="btn-pink">
@@ -332,8 +332,13 @@ class About extends React.Component {
                             </div>
                             <div className="col-6">
                               <div className="team-img">
-                                <img src={doctor.image} alt={doctor.name} 
-                                onError={(e) => { e.target.onerror = null; e.target.src =  "./images/dummyd.png"; }} />
+                              <img
+                              src={doctor.image}
+                              alt={"sdsa"}
+                              onError={(e) => {
+                                e.target.onerror = null;
+                                e.target.src = "/dummyd.png";
+                              }}></img>
                               </div>
                             </div>
                           </div>
@@ -402,32 +407,19 @@ class About extends React.Component {
                               </a>
                             </div>
                           ) : Gallery.media === "Video" ? (
-                            <a
-                              data-fancybox="gallery"
-                              href={Gallery.image}
-                              key={index}
-                            >
-                              <div
-                                style={{
-                                  position: "relative",
-                                  width: "100%",
-                                  height: "100%",
-                                }}
-                              >
-                                <div className="overlaygll m-0">
-                                  <div className="play-btn m-0"></div>
-                                </div>
-                                <video
-                                 loop muted playsInline                  
-                                  style={{ width: "100%" }}
-                                >
-                                  <source
-                                    src={Gallery.image}
-                                    type="video/mp4"
-                                  />
-                                </video>
+                            <a data-fancybox="gallery" href={Gallery.image} key={index}>
+                            <div className="gallery-cap" style={{ width: "100%", height: "100%" }}>
+                    <div className="overlaygll m-0">
+                      <div className="play-btn m-0"></div>
+                    </div>
+                    <div className="gallery-capi">
+                                <p className="p-white-bold mb-0">{Gallery.title}</p>
                               </div>
-                            </a>
+                    <video  loop muted playsInline   style={{ width: "100%" }}>
+                      <source src={Gallery.image} type="video/mp4" />
+                    </video>
+                  </div>
+                        </a>
                           ) : null
                         )
                       ) : (

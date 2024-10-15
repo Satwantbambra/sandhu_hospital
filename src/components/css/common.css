@@ -520,6 +520,6 @@ textarea {
 .active.dropdown-item.p-black {
   background: var(--pink);
 }
-.active.dropdown-item.p-black svg {
+.active.dropdown-item svg {
   color: var(--white) !important;
 }
