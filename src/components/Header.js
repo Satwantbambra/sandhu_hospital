@@ -164,27 +164,30 @@ export default function Header(props) {
                       {/* Sub-services only display when hovered */}
                       {hoveredService === service.id &&
                         subServicesMap[service.id] && subServicesMap[service.id].length > 0 && (
-                          <ul className="sub-dropdown-menu">
+                          <div className="sub-dropdown-menu">
+
+                          <ul className="ps-0 mb-0 " style={{border: '1px solid #ccc'}} >
                             {subServicesMap[service.id]?.map((subService) => (
                               <li
-                                key={subService.id}
-                                className="dropdown-item p-black"
+                              key={subService.id}
+                              className="dropdown-item p-black"
                               >
                                 <NavLink
                                 
-                                  onClick={handleNavLinkClick}
-                                  to={
-                                    service?.beautify === "1"
+                                onClick={handleNavLinkClick}
+                                to={
+                                  service?.beautify === "1"
                                       ? `/skin/${service.id}#${subService.name.replace(/\s+/g, '-')}`
                                       : `/service/${service.id}#${subService.name.replace(/\s+/g, '-')}`
-                                  }
-                                >
+                                    }
+                                    >
                                   <MdDoubleArrow className="me-2" />
                                   {subService.name}
                                 </NavLink>
                               </li>
                             ))}
                           </ul>
+                            </div>
                         )}
                       </NavLink>
 
