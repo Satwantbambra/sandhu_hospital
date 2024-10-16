@@ -272,7 +272,7 @@ function Skin() {
                 columnClassName="masonry-grid_column"
                 gutter="20px"
               >
-                {gallery?.map((item, index) => {
+                {gallery?.filter(item => item.image).map((item, index) => {
                   return (
                     <a
                       key={index}
@@ -300,9 +300,7 @@ function Skin() {
                               <div className="play-btn m-0"></div>
                             </div>
                             <video
-                              loop
-                              autoPlay
-                              muted
+                           loop muted playsInline  
                               style={{ width: "100%" }}
                             >
                               <source src={item.image} type="video/mp4" />

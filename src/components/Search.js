@@ -192,15 +192,7 @@ class Search extends React.Component {
                                           <div className="h-100 d-flex align-items-end justify-content-end mt-3">
                                             <a
                                               href={`/service/${Service.id}`}
-                                              className="btn-pink"
-                                              style={{
-                                                textDecoration: "none",
-                                                padding: "8px 16px",
-                                                backgroundColor: "var(--pink)",
-                                                color: "#fff",
-                                                borderRadius: "4px",
-                                              }}
-                                            >
+                                              className="btn-pink">
                                               View More
                                             </a>
                                           </div>
