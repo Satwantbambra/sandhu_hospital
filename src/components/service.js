@@ -233,8 +233,8 @@ export default function Service() {
                 >
                   {index % 2 === 0 ? (
                     <div className="row mt-3">
-                      {sub_service?.image && (
-                        <div className="mb-3 mb-0 col-lg-8">
+                      {sub_service?.name && (
+                        <div className={`mb-3 mb-0 ${sub_service?.image ? 'col-lg-8' : 'col-lg-12'}`}>
                           <div className="cwt p-3">
                             <h2 className="sub-heading-black mt-0 mb-2">
                               {sub_service?.name}
@@ -266,18 +266,8 @@ export default function Service() {
                               alt={sub_service?.name || "Service Image"}
                               onError={(e) => {
                                 e.target.onerror = null;
-                                e.target.src = `${process.env.PUBLIC_URL}/images/dummyd.png`; // Ensure correct path
+                                e.target.src = "/medical-symbol.png"; // Ensure correct path
                               }}
-                            />
-                          </div>
-                        </div>
-                      )}
-                      {!sub_service?.image && (
-                        <div className="mb-3 mb-0 col-lg-12">
-                          <div className="cwt">
-                            <img
-                              src={`${process.env.PUBLIC_URL}/images/dummyd.png`}
-                              alt="Fallback"
                             />
                           </div>
                         </div>
@@ -299,8 +289,8 @@ export default function Service() {
                           </div>
                         </div>
                       )}
-                      {sub_service?.image && (
-                        <div className="mb-3 mb-0 col-lg-8">
+                      {sub_service?.name && (
+                        <div className={`mb-3 mb-0 ${sub_service?.image ? 'col-lg-8' : 'col-lg-12'}`}>
                           <div className="cwt p-3">
                             <h2 className="sub-heading-black mt-0 mb-2">
                               {sub_service?.name}
@@ -324,16 +314,7 @@ export default function Service() {
                           </div>
                         </div>
                       )}
-                      {!sub_service?.image && (
-                        <div className="mb-3 mb-0 col-lg-12">
-                          <div className="cwt">
-                            <img
-                              src="/medical-symbol.png"
-                              alt="Fallback"
-                            />
-                          </div>
-                        </div>
-                      )}
+                    
                     </div>
                   )}
                 </div>
@@ -370,7 +351,8 @@ export default function Service() {
                     columnClassName="masonry-grid_column"
                     gutter="20px"
                   >
-                    {gallery.map((item) => (
+                    {gallery.filter(item => item.image).map((item) => (
+        
                       <a
                         key={item.id || item.image}
                         data-fancybox="gallery"

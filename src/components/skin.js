@@ -272,7 +272,7 @@ function Skin() {
                 columnClassName="masonry-grid_column"
                 gutter="20px"
               >
-                {gallery?.map((item, index) => {
+                {gallery?.filter(item => item.image).map((item, index) => {
                   return (
                     <a
                       key={index}
