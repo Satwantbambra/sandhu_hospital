@@ -281,7 +281,10 @@ class Index extends React.Component {
           {this.state.services.length > 0 ? (
                 this.state.services.map((service, index) => (
                   <div key={`services-${index}`} className="services-contain col-lg-3 mb-3 ">
-                    <Link to={`/service/${service.id}`}>
+                    <Link  to={ service?.beautify === "1"
+                                      ? `/skin/${service.id}#${service.name.replace(/\s+/g, '-')}`
+                                      : `/service/${service.id}#${service.name.replace(/\s+/g, '-')}`
+                                    }>
                     <div className="servicelimg">
                       <img src={service.image} alt={service.name} />
                     </div>
@@ -558,63 +561,73 @@ class Index extends React.Component {
           </p>
 
           </div>
-           <div className="space">
-           <ResponsiveMasonry
-                columnsCountBreakPoints={{350: 1, 750: 2, 900: 3, 1400 :4}}
-            >
-                <Masonry
-
-      columnClassName="masonry-grid_column"
+          <div className="space">
+  <ResponsiveMasonry
+    columnsCountBreakPoints={{ 350: 1, 750: 2, 900: 3, 1400: 4 }}
+  >
+    <Masonry
+sequential={false}
+i//temStyle={{flexDirection:'row !important', display: 'flex !important'}}
       gutter="20px"
     >
-  {this.state.galleries.length > 0 ? (
-                this.state.galleries.map((Gallery, index) => (
-                  Gallery.media === "Image" ? (
-                    <div>
-                    <a key={`gallery-${index}`}
-                    data-fancybox="gallery"
-                    href={Gallery.image}
-                   
-                  >
-                    <div  className="gallery-cap">
-
-                    <div className="gallery-capi">
-                      <p className="p-white-bold mb-0">{Gallery.title}</p>
-                    </div>
-                    <img
-                      src={Gallery.image}
-                      style={{ width: "100%" }}
-                      alt={Gallery.title}
-                      />
-                      </div>
-                  </a>
+      {this.state.galleries.length > 0 ? (
+        this.state.galleries.map((Gallery, index) => (
+          Gallery.media === "Image" ? (
+            <div key={`gallery-${index}`} className="gallery-item">
+              <a
+                data-fancybox="gallery"
+                href={Gallery.image}
+              >
+                <div className="gallery-cap">
+                  <div className="gallery-capi">
+                    <p className="p-white-bold mb-0">{Gallery.title}</p>
                   </div>
-                  ):   Gallery.media === "Video" ? (
-                    <a data-fancybox="gallery" href={Gallery.image} key={index}>
-                  <div className="gallery-cap" style={{ width: "100%", height: "100%" }}>
-          <div className="overlaygll m-0">
-            <div className="play-btn m-0"></div>
-          </div>
-          <div className="gallery-capi">
-                      <p className="p-white-bold mb-0">{Gallery.title}</p>
-                    </div>
-          <video  loop muted playsInline   style={{ width: "100%" }}>
-            <source src={Gallery.image} type="video/mp4" />
-          </video>
-        </div>
+                  <img
+                    src={Gallery.image}
+                    style={{
+                      width: "100%",
+                      maxHeight: "400px",  // Set max height for consistency
+                      objectFit: "cover",   // Ensure images fill the area neatly
+                    }}
+                    alt={Gallery.title}
+                    onError={(e) => {
+                      e.target.onerror = null;
+                      e.target.src = `${process.env.PUBLIC_URL}/images/dummyd.png`; // Fallback image
+                    }}
+                  />
+                </div>
               </a>
-                  ): null
-                ))
-              ) : (
-                <p>Loading GALLERY...</p>
-              )}
-
-   
-     
-
+            </div>
+          ) : Gallery.media === "Video" ? (
+            <div key={`gallery-video-${index}`} className="gallery-item">
+              <a data-fancybox="gallery" href={Gallery.image}>
+                <div className="gallery-cap" style={{ width: "100%", height: "100%" }}>
+                  <div className="overlaygll m-0">
+                    <div className="play-btn m-0"></div>
+                  </div>
+                  <div className="gallery-capi">
+                    <p className="p-white-bold mb-0">{Gallery.title}</p>
+                  </div>
+                  <video
+                    loop
+                    muted
+                    playsInline
+                    style={{ width: "100%", maxHeight: "400px", objectFit: "cover" }}  // Consistent video height
+                  >
+                    <source src={Gallery.image} type="video/mp4" />
+                  </video>
+                </div>
+              </a>
+            </div>
+          ) : null
+        ))
+      ) : (
+        <p>Loading GALLERY...</p>
+      )}
     </Masonry>
-            </ResponsiveMasonry>
-           </div>
+  </ResponsiveMasonry>
+</div>
+
         </div>
       </section>
 

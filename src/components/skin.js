@@ -88,7 +88,7 @@ function Skin() {
   return (
     <div className="container">
       <div className="container">
-        <div className="row py-4 decob">
+        <div className="row py-5 decob">
           <ScrollAnimation
             initiallyVisible={true}
             className="col-lg-8"
@@ -219,7 +219,7 @@ function Skin() {
               animateIn="animate__fadeInUp"
               className="row space d-flex justify-content-center deco"  
             >
-              <div className="col-lg-7 col-9" id={item.name.replace(/\s+/g, '-')} >
+              <div className="col-lg-8 col-11" id={item.name.replace(/\s+/g, '-')} >
                 <div className="skin-facility-img">
                   <div className="sfacility sktreat ">
                     <p
@@ -281,7 +281,7 @@ function Skin() {
                       className="gallery-cap"
                       onError={(e) => {
                         e.target.onerror = null;
-                        e.target.src = "/medical-symbol";
+                        e.target.src = `${process.env.PUBLIC_URL}/medical-symbol.png`;
                       }}
                     >
                       <div className="gallery-capi">
@@ -302,6 +302,10 @@ function Skin() {
                             <video
                            loop muted playsInline  
                               style={{ width: "100%" }}
+                              onError={(e) => {
+                                e.target.onerror = null;
+                                e.target.src = `${process.env.PUBLIC_URL}/fallback.mp4`; // Optional: Fallback video
+                              }}
                             >
                               <source src={item.image} type="video/mp4" />
                               Your browser does not support the video tag.

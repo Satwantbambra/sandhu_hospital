@@ -121,13 +121,14 @@ height: fit-content;
   display: flex;
   align-items: center;
   justify-content: center;
+  background: var(--pink-light);
 
 }
 
 .cwt2 img{
   height: 100%;
   width: 100%;
-  object-fit: cover;
+  object-fit: contain;
   border-radius: 20px;
 
 }
@@ -1030,24 +1031,49 @@ display: flex;
   width: 100%;
 
 }
-
 .dropdown-item{
   position: relative;
 }
-.sub-dropdown-menu .dropdown-item  a svg{
-  color: var(--pink) ;
+
+.dropdown-it{
+
+    display: block;
+    width: 100%;
+    padding: var(--bs-dropdown-item-padding-y) var(--bs-dropdown-item-padding-x);
+    clear: both;
+    font-weight: 400;
+    position: relative;
+    color: var(--bs-dropdown-link-color);
+    text-align: inherit;
+    text-decoration: none;
+    white-space: nowrap;
+    background-color: transparent;
+    border: 0 !important;
+    border-radius: var(--bs-dropdown-item-border-radius, 0);
+
 }
-.sub-dropdown-menu .dropdown-item  a:hover{
+
+.sub-dropdown-menu .dropdown-it a  svg{
+  color: var(--pink)  !important;
+}
+.sub-dropdown-menu .dropdown-it:hover {
   color: var(--white) ;
+  background: var(--pink);
 }
-.sub-dropdown-menu .dropdown-item a:hover svg{
+.sub-dropdown-menu .dropdown-it:hover a svg{
+  color: var(--white) !important;
+
+}
+.sub-dropdown-menu .dropdown-it:hover a{
   color: var(--white) !important;
 
 }
 
+
 .sub-dropdown-menu {
   background-color: white;
   position: absolute;
+  border: none !important;
   top: 0;
   left: 100%;
   width: 20rem;

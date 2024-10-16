@@ -111,7 +111,7 @@ export default function Header(props) {
 
         <div
           ref={navbarMobileRef}
-          className="collapse navbar-collapse mt-3 mt-lg-0"
+          className="collapse navbar-collapse mt-3 mt-lg-0 pt-2 pt-lg-0"
           id="navbarSupportedContent"
           style={{ position: "relative", zIndex: 3 }}
         >
@@ -166,11 +166,11 @@ export default function Header(props) {
                         subServicesMap[service.id] && subServicesMap[service.id].length > 0 && (
                           <div className="sub-dropdown-menu">
 
-                          <ul className="ps-0 mb-0 " style={{border: '1px solid #ccc'}} >
+                          <ul className="ps-0 mb-0 "  >
                             {subServicesMap[service.id]?.map((subService) => (
                               <li
                               key={subService.id}
-                              className="dropdown-item p-black"
+                              className="dropdown-it p-black"
                               >
                                 <NavLink
                                 

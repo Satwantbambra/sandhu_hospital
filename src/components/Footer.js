@@ -136,7 +136,11 @@ export default function Footer() {
                       {services?.map((service, index) => {
                         return (
                           <li key={index}>
-                            <Link to={`/service/${service.id}`} className="p-white-bold">
+                            <Link   to={
+                                  service?.beautify === "1"
+                                      ? `/skin/${service.id}#${service.name.replace(/\s+/g, '-')}`
+                                      : `/service/${service.id}#${service.name.replace(/\s+/g, '-')}`
+                                    } className="p-white-bold">
                               <i>
                                 <FaArrowCircleRight />
                               </i>{" "}

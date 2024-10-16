@@ -177,7 +177,7 @@ export default function Service() {
                 <div className="col-lg-8 col-md-12 col-12">
                   <h2 className="section-heading-black mb-5">
                     About{" "}
-                    <span style={{ color: "var(--pink)" }}>De-addiction</span>
+                    <span style={{ color: "var(--pink)" }}> {service_details?.name}</span>
                   </h2>
                   <p className="p-black">{service_details?.description}</p>
                 </div>
@@ -266,7 +266,7 @@ export default function Service() {
                               alt={sub_service?.name || "Service Image"}
                               onError={(e) => {
                                 e.target.onerror = null;
-                                e.target.src = "/medical-symbol.png"; // Ensure correct path
+                                e.target.src = `${process.env.PUBLIC_URL}/medical-symbol.png`; // Ensure correct path
                               }}
                             />
                           </div>
@@ -283,7 +283,7 @@ export default function Service() {
                               alt={sub_service?.name || "Service Image"}
                               onError={(e) => {
                                 e.target.onerror = null;
-                                e.target.src = "/medical-symbol.png"; // Ensure correct path
+                                e.target.src = `${process.env.PUBLIC_URL}/medical-symbol.png`; // Ensure correct path
                               }}
                             />
                           </div>
@@ -378,7 +378,7 @@ export default function Service() {
                               style={{ width: "100%" }}
                               onError={(e) => {
                                 e.target.onerror = null;
-                                e.target.src = `${process.env.PUBLIC_URL}/videos/fallback.mp4`; // Optional: Fallback video
+                                e.target.src = `${process.env.PUBLIC_URL}/fallback.mp4`; // Optional: Fallback video
                               }}
                             >
                               <source src={item.image} type="video/mp4" />
@@ -392,7 +392,7 @@ export default function Service() {
                             alt={`${service_details?.name} Gallery`}
                             onError={(e) => {
                               e.target.onerror = null;
-                              e.target.src = `${process.env.PUBLIC_URL}/images/dummyd.png`; // Ensure correct path
+                              e.target.src = `${process.env.PUBLIC_URL}/medical-symbol.png`; // Ensure correct path
                             }}
                           />
                         )}

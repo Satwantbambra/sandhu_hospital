@@ -510,11 +510,14 @@ textarea {
 .dropdown-item:hover svg {
   color: var(--white);
 }
-.dropdown-item:hover {
+.dropdown-item:hover span {
   color: var(--white) !important;
 }
 .dropdown-item:hover {
   background: var(--pink) !important;
+}
+.dropdown-item:hover svg {
+  background: var(--wite)  !important;
 }
 
 .active.dropdown-item.p-black {
