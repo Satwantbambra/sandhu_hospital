@@ -1037,10 +1037,14 @@ display: flex;
 .sub-dropdown-menu .dropdown-item  a svg{
   color: var(--pink) ;
 }
-.sub-dropdown-menu .dropdown-item  a:hover{
+.sub-dropdown-menu .dropdown-item:hover {
   color: var(--white) ;
 }
-.sub-dropdown-menu .dropdown-item a:hover svg{
+.sub-dropdown-menu .dropdown-item:hover a svg{
+  color: var(--white) !important;
+
+}
+.sub-dropdown-menu .dropdown-item:hover a{
   color: var(--white) !important;
 
 }

@@ -177,7 +177,7 @@ export default function Service() {
                 <div className="col-lg-8 col-md-12 col-12">
                   <h2 className="section-heading-black mb-5">
                     About{" "}
-                    <span style={{ color: "var(--pink)" }}>De-addiction</span>
+                    <span style={{ color: "var(--pink)" }}>{service_details?.name}</span>
                   </h2>
                   <p className="p-black">{service_details?.description}</p>
                 </div>
