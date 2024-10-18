@@ -20,6 +20,7 @@ import Skin from "./components/skin";
 import Contact from "./components/contact";
 import Privacy from "./components/privacy";
 import Terms from "./components/terms";
+import NotFound from './components/NotFound';
 
 function ScrollToTop() {
 
@@ -58,6 +59,7 @@ function App() {
         <Route exact path="/contact_us" element={<Contact />} />
         <Route exact path="/privacy-policy" element={<Privacy />} />
         <Route exact path="/terms&condition" element={<Terms />} />
+        <Route path="*" element={<NotFound />} />
       </Routes>
       <Footer />
     </Router>
