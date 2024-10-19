@@ -109,31 +109,19 @@ class Gallery extends React.Component {
                           </a>
                         </div>
                       ) : Gallery.media === "Video" ? (
-                        <a
-                          data-fancybox="gallery"
-                          href={Gallery.image}
-                          key={index}
-                        >
-                          <div
-                            style={{
-                              position: "relative",
-                              width: "100%",
-                              height: "100%",
-                            }}
-                          >
-                            <div className="overlaygll m-0">
-                              <div className="play-btn m-0"></div>
-                            </div>
-                            <video
-                              loop
-                              autoPlay
-                              muted
-                              style={{ width: "100%" }}
-                            >
-                              <source src={Gallery.image} type="video/mp4" />
-                            </video>
-                          </div>
-                        </a>
+                        <a data-fancybox="gallery" href={Gallery.image} key={index}>
+                  <div className="gallery-cap" style={{ width: "100%", height: "100%" }}>
+          <div className="overlaygll m-0">
+            <div className="play-btn m-0"></div>
+          </div>
+          <div className="gallery-capi">
+                      <p className="p-white-bold mb-0">{Gallery.title}</p>
+                    </div>
+          <video  loop muted playsInline   style={{ width: "100%" }}>
+            <source src={Gallery.image} type="video/mp4" />
+          </video>
+        </div>
+              </a>
                       ) : null
                     )
                   ) : (

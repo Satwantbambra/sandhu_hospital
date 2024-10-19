@@ -14,7 +14,6 @@
 body {
   font-family: var(--font-family) !important;
   position: relative;
-  /* word-break: break-all !important; */
 }
 
 a {
@@ -28,7 +27,7 @@ a {
   font-weight: 400;
   letter-spacing: 1px;
 
-  /* word-wrap: break-word !important; */
+  word-wrap: break-word !important; 
 }
 .p-blue-small {
   font-size: 11px;
@@ -37,7 +36,7 @@ a {
   font-weight: 700;
   color: var(--blue);
 
-  /* word-wrap: break-word !important; */
+  word-wrap: break-word !important; 
 }
 .p-white-small {
   font-size: 11px;
@@ -46,7 +45,7 @@ a {
   /* letter-spacing: 1px; */
   color: var(--white);
 
-  /* word-wrap: break-word !important; */
+  word-wrap: break-word !important; 
 }
 .p-grey {
   font-size: 13px;
@@ -55,7 +54,7 @@ a {
   font-weight: 400;
   letter-spacing: 1px;
 
-  /* word-wrap: break-word !important; */
+  word-wrap: break-word !important; 
 }
 .p-black {
   font-size: 13px !important;
@@ -64,7 +63,7 @@ a {
   font-weight: 400;
   letter-spacing: 1px;
 
-  /* word-wrap: break-word !important; */
+  word-wrap: break-word !important; 
 }
 .p-white {
   font-size: 13px !important;
@@ -72,7 +71,7 @@ a {
   letter-spacing: 1px;
 
   color: var(--white);
-  /* word-wrap: break-word !important; */
+  word-wrap: break-word !important; 
 }
 .p-black-bold {
   font-size: 15px;
@@ -82,7 +81,7 @@ a {
   font-weight: 700;
   letter-spacing: 1px;
 
-  /* word-wrap: break-word !important; */
+  word-wrap: break-word !important; 
 }
 .p-white-bold {
   font-size: 15px;
@@ -92,7 +91,7 @@ a {
   color: var(--white);
   letter-spacing: 1px;
 
-  /* word-wrap: break-word !important; */
+  word-wrap: break-word !important; 
 }
 
 .p-heading-black {
@@ -103,7 +102,7 @@ a {
   letter-spacing: 1px;
   font-weight: 700;
 
-  /* word-wrap: break-word !important; */
+  word-wrap: break-word !important; 
 }
 .p-heading-white {
   font-size: 16px !important;
@@ -113,7 +112,7 @@ a {
   letter-spacing: 1px;
   font-weight: 700;
 
-  /* word-wrap: break-word !important; */
+  word-wrap: break-word !important; 
 }
 
 section {
@@ -137,7 +136,7 @@ section {
   letter-spacing: 1px;
   font-weight: 800;
 
-  /* word-wrap: break-word !important; */
+  word-wrap: break-word !important; 
 }
 .section-heading-white {
   font-size: 30px !important;
@@ -147,7 +146,7 @@ section {
   letter-spacing: 1px;
   font-weight: 800;
 
-  /* word-wrap: break-word !important; */
+  word-wrap: break-word !important; 
 }
 .sub-heading-black {
   font-size: 20px !important;
@@ -157,7 +156,7 @@ section {
   letter-spacing: 1px;
   font-weight: 800;
 
-  /* word-wrap: break-word !important; */
+  word-wrap: break-word !important; 
 }
 .sub-heading-white {
   font-size: 20px !important;
@@ -166,7 +165,7 @@ section {
   text-transform: capitalize;
   letter-spacing: 1px;
   font-weight: 800;
-  /* word-wrap: break-word !important; */
+  word-wrap: break-word !important; 
 }
 
 .banner-black {
@@ -177,7 +176,7 @@ section {
   letter-spacing: 1px;
   font-weight: 800;
 
-  /* word-wrap: break-word !important; */
+  word-wrap: break-word !important; 
 }
 .banner-white {
   font-size: 40px !important;
@@ -186,7 +185,7 @@ section {
   text-transform: capitalize;
   letter-spacing: 1px;
   font-weight: 800;
-  /* word-wrap: break-word !important; */
+  word-wrap: break-word !important; 
 }
 
 .btn-white {
@@ -366,20 +365,26 @@ section {
   -webkit-line-clamp: 1;
 }
 .overflow-2 {
-  display: -webkit-box !important;
-  overflow: hidden !important;
+  display: -webkit-box ;
+  overflow: hidden;
+  text-overflow: ellipsis !important;
+  width: 100% !important;
   -webkit-box-orient: vertical !important;
-  -webkit-line-clamp: 2 !important;
+  -webkit-line-clamp: 2  !important;
 }
 .overflow-3 {
   display: -webkit-box !important;
-  overflow: hidden !important;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  width: 100%;
   -webkit-box-orient: vertical !important;
   -webkit-line-clamp: 3 !important;
 }
 .overflow-4 {
   display: -webkit-box !important;
-  overflow: hidden !important;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  width: 100%;
   -webkit-box-orient: vertical !important;
   -webkit-line-clamp: 4 !important;
 }
@@ -505,16 +510,19 @@ textarea {
 .dropdown-item:hover svg {
   color: var(--white);
 }
-.dropdown-item:hover {
+.dropdown-item:hover span {
   color: var(--white) !important;
 }
 .dropdown-item:hover {
   background: var(--pink) !important;
 }
+.dropdown-item:hover svg {
+  background: var(--wite)  !important;
+}
 
 .active.dropdown-item.p-black {
   background: var(--pink);
 }
-.active.dropdown-item.p-black svg {
+.active.dropdown-item svg {
   color: var(--white) !important;
 }

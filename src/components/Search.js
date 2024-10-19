@@ -1,5 +1,4 @@
 import React from "react";
-import axios from "axios";
 import ss from "./images/ss.png"; // Ensure the path is correct
 import sd from "./images/sdoc.png"; // Ensure the path is correct
 import { fetchAllServices } from "./commonApis/fetchServices";
@@ -168,7 +167,7 @@ class Search extends React.Component {
                                 <div className="col-6">
                                   <div className="row h-100">
                                     {/* Service Image */}
-                                    <div className="col-5">
+                                    <div className="col-lg-5">
                                       <div className="s-service">
                                         <img
                                           src={Service.image}
@@ -178,8 +177,8 @@ class Search extends React.Component {
                                       </div>
                                     </div>
                                     {/* Service Name and Description */}
-                                    <div className="col-7">
-                                      <div className="py-3">
+                                    <div className="col-lg-7">
+                                      <div className="py-3 px-2 px-lg-0">
                                         <h3 className="sub-heading-black mb-1 overflow-1">
                                           {Service.name}
                                         </h3>
@@ -193,15 +192,7 @@ class Search extends React.Component {
                                           <div className="h-100 d-flex align-items-end justify-content-end mt-3">
                                             <a
                                               href={`/service/${Service.id}`}
-                                              className="btn-pink"
-                                              style={{
-                                                textDecoration: "none",
-                                                padding: "8px 16px",
-                                                backgroundColor: "var(--pink)",
-                                                color: "#fff",
-                                                borderRadius: "4px",
-                                              }}
-                                            >
+                                              className="btn-pink">
                                               View More
                                             </a>
                                           </div>
@@ -214,7 +205,7 @@ class Search extends React.Component {
                                 <div className="col-6">
                                   <div className="row h-100">
                                     {/* Doctor Image and Name */}
-                                    <div className="col-5 d-flex align-items-center flex-column">
+                                    <div className="col-lg-5 d-flex align-items-center flex-column">
                                       <div className="s-doc">
                                         <img
                                           src={Service.doctor.image}
@@ -228,7 +219,7 @@ class Search extends React.Component {
                                       </h2>
                                     </div>
                                     {/* Doctor Qualifications and Details */}
-                                    <div className="col-7 py-3 d-flex flex-column justify-content-center">
+                                    <div className="col-lg-7 py-3 px-2 px-lg-0 d-flex flex-column justify-content-center">
                                     <h3 className="p-black-bold mt-2 mb-1">
                                         Specialist in
                                       </h3>

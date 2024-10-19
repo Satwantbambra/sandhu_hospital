@@ -1,7 +1,6 @@
 // Skin.js
 import React, { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
-import doc from "./images/doctor.webp";
 import ScrollAnimation from "react-animate-on-scroll";
 import { Fancybox } from "@fancyapps/ui";
 import "@fancyapps/ui/dist/fancybox/fancybox.css";
@@ -58,7 +57,7 @@ function Skin() {
   useEffect(() => {
     const getDetails = async () => {
       const details = await fetchSingleService(id);
-      console.log("details => ", details);
+     // console.log("details => ", details);
       setServiceDetails(details);
     };
 
@@ -87,9 +86,9 @@ function Skin() {
   }, []);
 
   return (
-    <>
+    <div className="container">
       <div className="container">
-        <div className="row space decob">
+        <div className="row py-5 decob">
           <ScrollAnimation
             initiallyVisible={true}
             className="col-lg-8"
@@ -131,12 +130,12 @@ function Skin() {
       </div>
       <div className="container space">
         <div className="row mt-lg-5 " style={{ height: "100%" }}>
-          <div className="col-lg-4 col-md-5 col-12">
+          <div className="col-lg-3 col-md-5 col-12">
             <div className="doc-s">
               <img src={doctor_details?.image} alt=" doctor name" />
             </div>
           </div>
-          <div className="col-lg-4 col-md-7 col-12">
+          <div className="col-lg-5 col-md-7 col-12">
             <h1 className="banner-black  mb-3">
               {doctor_details?.designation}
             </h1>
@@ -218,9 +217,9 @@ function Skin() {
               key={index}
               initiallyVisible={true}
               animateIn="animate__fadeInUp"
-              className="row space d-flex justify-content-center deco"
+              className="row space d-flex justify-content-center deco"  
             >
-              <div className="col-lg-7 col-9">
+              <div className="col-lg-8 col-11" id={item.name.replace(/\s+/g, '-')} >
                 <div className="skin-facility-img">
                   <div className="sfacility sktreat ">
                     <p
@@ -273,7 +272,7 @@ function Skin() {
                 columnClassName="masonry-grid_column"
                 gutter="20px"
               >
-                {gallery?.map((item, index) => {
+                {gallery?.filter(item => item.image).map((item, index) => {
                   return (
                     <a
                       key={index}
@@ -282,7 +281,7 @@ function Skin() {
                       className="gallery-cap"
                       onError={(e) => {
                         e.target.onerror = null;
-                        e.target.src = "/medical-symbol";
+                        e.target.src = `${process.env.PUBLIC_URL}/medical-symbol.png`;
                       }}
                     >
                       <div className="gallery-capi">
@@ -301,10 +300,12 @@ function Skin() {
                               <div className="play-btn m-0"></div>
                             </div>
                             <video
-                              loop
-                              autoPlay
-                              muted
+                           loop muted playsInline  
                               style={{ width: "100%" }}
+                              onError={(e) => {
+                                e.target.onerror = null;
+                                e.target.src = `${process.env.PUBLIC_URL}/fallback.mp4`; // Optional: Fallback video
+                              }}
                             >
                               <source src={item.image} type="video/mp4" />
                               Your browser does not support the video tag.
@@ -328,7 +329,7 @@ function Skin() {
           )}
         </div>
       </div>
-    </>
+    </div>
   );
 }
 

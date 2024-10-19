@@ -1,17 +1,25 @@
 import React, { useEffect, useRef, useState } from "react";
 import { MdWifiCalling3, MdDoubleArrow } from "react-icons/md";
-import { Link, NavLink } from "react-router-dom";
+import { NavLink, useNavigate  } from "react-router-dom";
 import {
   fetchAllServices,
   fetchSingleService,
 } from "./commonApis/fetchServices";
-
+import { ImSearch } from "react-icons/im";
 export default function Header(props) {
   const navbarRef = useRef(null);
+  const navbarMobileRef = useRef(null);
+  const navigate = useNavigate();
+  const handleNavLinkClick = (event) => {
+    if (navbarMobileRef.current) {
+      navbarMobileRef.current.classList.remove("show"); // Remove the show class
+    }
+
+  };
+  
   const [services, setServices] = useState([]);
   const [hoveredService, setHoveredService] = useState(null); // To track hovered service
   const [subServicesMap, setSubServicesMap] = useState({}); // Object to store sub-services for each service
-  console.log("subServices ", subServicesMap);
   const fetchServices = async () => {
     const services = await fetchAllServices();
     setServices(services);
@@ -29,11 +37,32 @@ export default function Header(props) {
   };
 
   useEffect(() => {
+    // Fetch services initially
     fetchServices();
+
+  const hash = window.location.hash;
+  if (hash) {
+    setTimeout(() => {
+      const element = document.getElementById(hash.substring(1)); // Remove '#' from the hash
+      if (element) {
+        // Calculate the top position of the element
+        const elementPosition = element.getBoundingClientRect().top + window.scrollY;
+        const offsetPosition = elementPosition - 100;
+        window.scrollTo({
+          top: offsetPosition,
+          behavior: 'smooth' // Smooth scrolling
+        });
+      } else {
+      }
+    }, 300); // Adjust the delay if necessary
+  } else {
+  }
+
     const handleScroll = () => {
       if (!navbarRef.current) return;
       const scrollPosition = window.scrollY;
-      // Sticky Navbar
+      
+      // Sticky Navbar Logic
       if (scrollPosition > 100) {
         navbarRef.current.classList.add("fixed-top", "trans-bg");
       } else {
@@ -41,13 +70,10 @@ export default function Header(props) {
       }
     };
 
+    // Attach scroll event listener
     window.addEventListener("scroll", handleScroll);
 
-    // Cleanup the event listener on component unmount
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
-    };
-  }, []);
+  }, [window.location.hash]); // Dependency on hash changes
 
   return (
     <nav
@@ -59,6 +85,7 @@ export default function Header(props) {
         style={{ position: "relative", zIndex: 3 }}
       >
         <NavLink
+          onClick={handleNavLinkClick}
           className="navbar-brand d-flex align-items-center py-0"
           to="/"
           style={{ position: "relative", zIndex: 3 }}
@@ -66,12 +93,12 @@ export default function Header(props) {
           <img
             src={props.logo}
             alt="sandhu_logo"
-            style={{ height: 50, width: "100%" }}
+            style={{ height: 50, width: "120px",objectFit:"contain" }}
           />
         </NavLink>
 
         <button
-          className="navbar-toggler"
+          className="navbar-toggler collapsed"
           type="button"
           data-bs-toggle="collapse"
           data-bs-target="#navbarSupportedContent"
@@ -83,7 +110,8 @@ export default function Header(props) {
         </button>
 
         <div
-          className="collapse navbar-collapse"
+          ref={navbarMobileRef}
+          className="collapse navbar-collapse mt-3 mt-lg-0 pt-2 pt-lg-0"
           id="navbarSupportedContent"
           style={{ position: "relative", zIndex: 3 }}
         >
@@ -96,6 +124,7 @@ export default function Header(props) {
               }}
             >
               <NavLink
+                onClick={handleNavLinkClick}
                 to="/service"
                 className={({ isActive }) =>
                   isActive
@@ -119,6 +148,7 @@ export default function Header(props) {
                       key={service.id}
                     >
                       <NavLink
+                      
                         className={({ isActive }) =>
                           isActive
                             ? "active dropdown-item p-black"
@@ -130,32 +160,38 @@ export default function Header(props) {
                             : `/service/${service.id}`
                         }
                       >
-                        <MdDoubleArrow className="me-2" /> {service.name}
-                      </NavLink>
-
+                        <MdDoubleArrow className="me-2" /> <span   onClick={handleNavLinkClick}>{service.name}</span>
                       {/* Sub-services only display when hovered */}
                       {hoveredService === service.id &&
-                        subServicesMap[service.id] && (
-                          <ul className="sub-dropdown-menu">
+                        subServicesMap[service.id] && subServicesMap[service.id].length > 0 && (
+                          <div className="sub-dropdown-menu">
+
+                          <ul className="ps-0 mb-0 "  >
                             {subServicesMap[service.id]?.map((subService) => (
                               <li
-                                key={subService.id}
-                                className="dropdown-item p-black"
+                              key={subService.id}
+                              className="dropdown-it p-black"
                               >
                                 <NavLink
-                                  to={
-                                    service?.beautify === "1"
-                                      ? `/skin/${subService.id}`
-                                      : `/service/${subService.id}`
-                                  }
-                                >
+                                
+                                onClick={handleNavLinkClick}
+                                to={
+                                  service?.beautify === "1"
+                                      ? `/skin/${service.id}#${subService.name.replace(/\s+/g, '-')}`
+                                      : `/service/${service.id}#${subService.name.replace(/\s+/g, '-')}`
+                                    }
+                                    >
                                   <MdDoubleArrow className="me-2" />
                                   {subService.name}
                                 </NavLink>
                               </li>
                             ))}
                           </ul>
+                            </div>
                         )}
+                      </NavLink>
+                    
+
                     </li>
                   );
                 })}
@@ -164,6 +200,7 @@ export default function Header(props) {
             {/* Other Nav Links */}
             <li className="nav-item">
               <NavLink
+                onClick={handleNavLinkClick}
                 className={({ isActive }) =>
                   isActive
                     ? "nav-link p-white-bold active"
@@ -176,6 +213,7 @@ export default function Header(props) {
             </li>
             <li className="nav-item">
               <NavLink
+                onClick={handleNavLinkClick}
                 className={({ isActive }) =>
                   isActive
                     ? "nav-link p-white-bold active"
@@ -188,6 +226,7 @@ export default function Header(props) {
             </li>
             <li className="nav-item">
               <NavLink
+                onClick={handleNavLinkClick}
                 className={({ isActive }) =>
                   isActive
                     ? "nav-link p-white-bold active"
@@ -198,20 +237,10 @@ export default function Header(props) {
                 Gallery
               </NavLink>
             </li>
+          
             <li className="nav-item">
               <NavLink
-                className={({ isActive }) =>
-                  isActive
-                    ? "nav-link p-white-bold active"
-                    : "nav-link p-white-bold"
-                }
-                to="/search"
-              >
-                Search
-              </NavLink>
-            </li>{" "}
-            <li className="nav-item">
-              <NavLink
+                onClick={handleNavLinkClick}
                 className={({ isActive }) =>
                   isActive
                     ? "nav-link p-white-bold active"
@@ -223,6 +252,19 @@ export default function Header(props) {
               </NavLink>
             </li>
             {/* Call Us Button */}
+            <li className="nav-item">
+              <NavLink
+                onClick={handleNavLinkClick}
+                className={({ isActive }) =>
+                  isActive
+                    ? "nav-link p-white-bold active"
+                    : "nav-link p-white-bold"
+                }
+                to="/search"
+              >
+             <ImSearch className="mx-3"/>
+              </NavLink>
+            </li>{" "}
             <li
               className="nav-item"
               style={{
@@ -232,6 +274,7 @@ export default function Header(props) {
               }}
             >
               <NavLink
+                onClick={handleNavLinkClick}
                 className="nav-link p-white-bold"
                 to="tel:+01823222674"
                 style={{ color: "var(--white)" }}

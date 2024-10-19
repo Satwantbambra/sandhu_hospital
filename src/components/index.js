@@ -2,6 +2,7 @@ import React from "react"
 import sandhu from "./images/sandhu.jpg";
 import bbrain from "./images/brain.png";
 import doc from "./images/doc.png";
+import { Link } from "react-router-dom";
 import { Fancybox } from "@fancyapps/ui";
 import "@fancyapps/ui/dist/fancybox/fancybox.css";
 import { FaCircleCheck } from "react-icons/fa6";
@@ -44,15 +45,51 @@ class Index extends React.Component {
     axios
       .get(apiUrl)
       .then((response) => {
-        this.setState({ banners: response.data.data });
+        this.setState({ banners: response.data.data }, () => {
+          // Check if there is exactly one banner and show the modal
+          if (this.state.banners.length === 1) {
+            this.openModalWithDelay();
+          }
+          
+        });
       })
       .catch((error) => {
         console.error("There was an error fetching the promotional banner!", error);
       });
   }
+
+  openModalWithDelay = () => {
+    // Check if the modal was closed for the current day
+    const modalClosedToday = localStorage.getItem('modalClosedToday');
+    
+    if (!modalClosedToday) {
+      // Delay opening the modal by 2 seconds
+      setTimeout(() => {
+        const modalElement = document.getElementById('exampleModal');
+        const modal = new window.bootstrap.Modal(modalElement);
+        modal.show(); // Show the modal
+  
+        // Add event listener for modal close button
+        modalElement.addEventListener('hidden.bs.modal', () => {
+          // Set flag in localStorage to not show the modal again for today
+          const today = new Date().toISOString().split('T')[0]; // Get today's date (YYYY-MM-DD)
+          localStorage.setItem('modalClosedToday', today);
+  
+          // Cleanup modal backdrop and scrolling
+          document.body.classList.remove('modal-open');
+          const modalBackdrop = document.querySelector('.modal-backdrop');
+          if (modalBackdrop) {
+            modalBackdrop.remove();
+          }
+          document.body.style.overflow = 'auto';
+        });
+      }, 4000); // 2 second delay
+    }
+  };
+
   async fetchServices() {
     const services = await fetchAllServices();
-    console.log("hello world ===> ", services);
+
     this.setState({ services: services });
   }
     fetchFacility() {
@@ -68,7 +105,7 @@ class Index extends React.Component {
   }
 
     fetchSubServices() {
-        const apiUrl = `${process.env.REACT_APP_API_BASE_URL}/sub-services?type=feature_servcies`;
+        const apiUrl = `${process.env.REACT_APP_API_BASE_URL}/sub-services?type=feature_services`;
       axios
         .get(apiUrl)
         .then((response) => {
@@ -80,7 +117,7 @@ class Index extends React.Component {
     }
 
     fetchGallery() {
-      const apiUrl = `${process.env.REACT_APP_API_BASE_URL}/galleries`;
+      const apiUrl = `${process.env.REACT_APP_API_BASE_URL}/galleries?type=featured`;
     axios
       .get(apiUrl)
       .then((response) => {
@@ -151,49 +188,63 @@ class Index extends React.Component {
         </div>
       </div>
 
-      <section className="space" style={{background:"aliceblue"}}>
-        <div className="container">
-          <div className="row">
+      {this.state.banners.length > 1 ? (
+  <section className="space" style={{ background: "aliceblue" }}>
+    <div className="container">
+      <div className="row">
+        {this.state.banners && this.state.banners.length > 0 ? (
+          this.state.banners.map((banner, index) => {
+            const bannerClasses = ["bluepromotion", "pinkpromotion", "neonpromotion"];
+            const className = bannerClasses[index % bannerClasses.length];
+            return (
+              <div className="col-xl my-2" key={`banner-${index}`}>
+                <div className={`${className} promotion`}>
+                  <h2 className="p-white-bold">{banner.text1}</h2>
+                  <h3 className="section-heading-white">{banner.text2}</h3>
+                  <h4 className="sub-heading-white">{banner.text3}</h4>
+                  <h5 className="p-white">{banner.text4}</h5>
+                  <div className="h-100 d-flex align-items-end">
+                    <p className="sub-heading-white mb-1" style={{ color: "var(--blue)" }}>
+                      {banner.time_period}
+                    </p>
+                  </div>
+                </div>
+              </div>
+            );
+          })
+        ) : (
+          <p>No banners available</p>
+        )}
+      </div>
+    </div>
+  </section>
+) : (
+  this.state.banners.length === 1 && (
 
+    <div className="modal modal-lg" id="exampleModal" data-bs-backdrop="true" tabIndex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
 
-          {
-  this.state.banners && this.state.banners.length > 0 ? (
-    this.state.banners.map((banner, index) => {
-      // Array of classes to be used for each banner
-      const bannerClasses = ["bluepromotion", "pinkpromotion", "neonpromotion"];
-      
-
-      const className = bannerClasses[index % bannerClasses.length];
-
-      return (
-        <div className="col-xl my-2" key={index}>
-          <div className={`${className} promotion`}>
-            <h2 className="p-white-bold">{banner.text1}</h2>
-            <h3 className="section-heading-white">{banner.text2}</h3>
-            <h4 className="sub-heading-white">{banner.text3}</h4>
-            <h5 className="p-white">{banner.text4}</h5>
-            <div className="h-100 d-flex align-items-end">
-              <p className="sub-heading-white mb-1" style={{ color: "var(--blue)" }}>
-                {banner.time_period}
-              </p>
+      <div className="modal-dialog">
+        <div className="modal-content">
+          <div className="modal-body">
+            <div className="col-xl my-2">
+              <div className="bluepromotion promotion">
+                <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                <h2 className="p-white-bold">{this.state.banners[0].text1}</h2>
+                <h3 className="section-heading-white">{this.state.banners[0].text2}</h3>
+                <h4 className="sub-heading-white">{this.state.banners[0].text3}</h4>
+                <h5 className="p-white">{this.state.banners[0].text4}</h5>
+                <div className="h-100 d-flex align-items-end">
+                  <p className="sub-heading-white mb-1">{this.state.banners[0].time_period}</p>
+                </div>
+              </div>
             </div>
           </div>
         </div>
-      );
-    })
-  ) : (
-    <p>No banners available</p>
+      </div>
+    </div>
   )
-}
+)}
 
-         
-            
-
-           
-      
-          </div>
-        </div>
-      </section>
 
       <section  className="space" id="services">
         <div className="container">
@@ -229,7 +280,11 @@ class Index extends React.Component {
           <div className="row my-2 py-3">
           {this.state.services.length > 0 ? (
                 this.state.services.map((service, index) => (
-                  <div key={index} className="services-contain col-lg-3 mb-3 ">
+                  <div key={`services-${index}`} className="services-contain col-lg-3 mb-3 ">
+                    <Link  to={ service?.beautify === "1"
+                                      ? `/skin/${service.id}#${service.name.replace(/\s+/g, '-')}`
+                                      : `/service/${service.id}#${service.name.replace(/\s+/g, '-')}`
+                                    }>
                     <div className="servicelimg">
                       <img src={service.image} alt={service.name} />
                     </div>
@@ -237,6 +292,7 @@ class Index extends React.Component {
                       <h2 className="p-heading-black mt-0 mb-1">{service.name}</h2>
                       <p className="p-black my-0 overflow-2">{service.description}</p>
                     </div>
+                    </Link>
                   </div>
                 ))
               ) : (
@@ -369,7 +425,7 @@ class Index extends React.Component {
               <div className="row">
               {this.state.facilities.length > 0 ? (
                 this.state.facilities.map((facility, index) => (
-                  <div className="col-lg-6 mb-2" key={index}>
+                  <div className="col-lg-6 mb-2" key={`facilities-${index}`}>
                   <div className="d-flex">
                     <FaCircleCheck
                       className="me-2"
@@ -436,7 +492,7 @@ class Index extends React.Component {
       if (index % 4 < 2) {
         // Layout for first two elements (image first, then details)
         return (
-          <div key={index} className="services-contain col-lg-6 mb-3">
+          <div key={`subservices-${index}`} className="services-contain col-lg-6 mb-3">
             <div className="row">
               <div className="col-lg-6">
 
@@ -460,7 +516,7 @@ class Index extends React.Component {
       } else {
         // Layout for the next two elements (details first, then image)
         return (
-          <div key={index} className="services-contain col-lg-6 mb-3">
+          <div key={`subservices-${index}`} className="services-contain col-lg-6 mb-3">
             <div className="row">
               <div className="col-lg-6">
             <div className="cwt1">
@@ -505,60 +561,73 @@ class Index extends React.Component {
           </p>
 
           </div>
-           <div className="space">
-           <ResponsiveMasonry
-                columnsCountBreakPoints={{350: 1, 750: 2, 900: 3, 1400 :4}}
-            >
-                <Masonry
-
-      columnClassName="masonry-grid_column"
+          <div className="space">
+  <ResponsiveMasonry
+    columnsCountBreakPoints={{ 350: 1, 750: 2, 900: 3, 1400: 4 }}
+  >
+    <Masonry
+sequential={false}
+i//temStyle={{flexDirection:'row !important', display: 'flex !important'}}
       gutter="20px"
     >
-  {this.state.galleries.length > 0 ? (
-                this.state.galleries.map((Gallery, index) => (
-                  Gallery.media === "Image" ? (
-                    <div>
-                    <a key={index}
-                    data-fancybox="gallery"
-                    href={Gallery.image}
-                   
-                  >
-                    <div  className="gallery-cap">
-
-                    <div className="gallery-capi">
-                      <p className="p-white-bold mb-0">{Gallery.title}</p>
-                    </div>
-                    <img
-                      src={Gallery.image}
-                      style={{ width: "100%" }}
-                      alt={Gallery.title}
-                      />
-                      </div>
-                  </a>
+      {this.state.galleries.length > 0 ? (
+        this.state.galleries.map((Gallery, index) => (
+          Gallery.media === "Image" ? (
+            <div key={`gallery-${index}`} className="gallery-item">
+              <a
+                data-fancybox="gallery"
+                href={Gallery.image}
+              >
+                <div className="gallery-cap">
+                  <div className="gallery-capi">
+                    <p className="p-white-bold mb-0">{Gallery.title}</p>
                   </div>
-                  ):   Gallery.media === "Video" ? (
-                    <a data-fancybox="gallery" href={Gallery.image} key={index}>
-                  <div style={{ position: "relative", width: "100%", height: "100%" }}>
-          <div className="overlaygll m-0">
-            <div className="play-btn m-0"></div>
-          </div>
-          <video loop autoPlay muted style={{ width: "100%" }}>
-            <source src={Gallery.image} type="video/mp4" />
-          </video>
-        </div>
+                  <img
+                    src={Gallery.image}
+                    style={{
+                      width: "100%",
+                      maxHeight: "400px",  // Set max height for consistency
+                      objectFit: "cover",   // Ensure images fill the area neatly
+                    }}
+                    alt={Gallery.title}
+                    onError={(e) => {
+                      e.target.onerror = null;
+                      e.target.src = `${process.env.PUBLIC_URL}/images/dummyd.png`; // Fallback image
+                    }}
+                  />
+                </div>
               </a>
-                  ): null
-                ))
-              ) : (
-                <p>Loading GALLERY...</p>
-              )}
-
-   
-     
-
+            </div>
+          ) : Gallery.media === "Video" ? (
+            <div key={`gallery-video-${index}`} className="gallery-item">
+              <a data-fancybox="gallery" href={Gallery.image}>
+                <div className="gallery-cap" style={{ width: "100%", height: "100%" }}>
+                  <div className="overlaygll m-0">
+                    <div className="play-btn m-0"></div>
+                  </div>
+                  <div className="gallery-capi">
+                    <p className="p-white-bold mb-0">{Gallery.title}</p>
+                  </div>
+                  <video
+                    loop
+                    muted
+                    playsInline
+                    style={{ width: "100%", maxHeight: "400px", objectFit: "cover" }}  // Consistent video height
+                  >
+                    <source src={Gallery.image} type="video/mp4" />
+                  </video>
+                </div>
+              </a>
+            </div>
+          ) : null
+        ))
+      ) : (
+        <p>Loading GALLERY...</p>
+      )}
     </Masonry>
-            </ResponsiveMasonry>
-           </div>
+  </ResponsiveMasonry>
+</div>
+
         </div>
       </section>
 
@@ -586,7 +655,7 @@ class Index extends React.Component {
 
       {this.state.testimonials && this.state.testimonials.length > 0  ? (
   this.state.testimonials.map((testimonial, index) => (
-    <div className="col-lg-4" key={index}>
+    <div className="col-lg-4 mb-5" key={`testimonials-${index}`}>
       <div className="testimonial">
         <div className="outer-tag">
           <div className="inner-tag">

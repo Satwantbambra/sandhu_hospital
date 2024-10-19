@@ -16,6 +16,7 @@ class About extends React.Component {
     this.state = {
       team: [],
       galleries: [],
+      facilities :[],
     };
   }
   fetchfeatured_team() {
@@ -40,6 +41,18 @@ class About extends React.Component {
         console.error("There was an error fetching the gallery!", error);
       });
   }
+
+    fetchFacility() {
+      const apiUrl = `${process.env.REACT_APP_API_BASE_URL}/facilities`;
+    axios
+      .get(apiUrl)
+      .then((response) => {
+        this.setState({ facilities: response.data.data });
+      })
+      .catch((error) => {
+        console.error("There was an error fetching the facilities!", error);
+      });
+  }
   changeLastWord = () => {
     const elements = document.querySelectorAll(".doc-name");
 
@@ -60,6 +73,7 @@ class About extends React.Component {
     this.changeLastWord();
     this.fetchfeatured_team();
     this.fetchGallery();
+    this.fetchFacility();
 
     Fancybox.bind("[data-fancybox]", {
       // Custom options
@@ -133,44 +147,22 @@ class About extends React.Component {
 
                 {/* Services Offered */}
                 <div className="row">
-                  <div className="col-lg-6 mb-2">
-                    <div className="d-flex">
-                      <FaCircleCheck
-                        className="me-2"
-                        style={{ color: "var(--pink)" }}
-                      />
-                      <p className="p-black mb-0">General Surgery</p>
-                    </div>
+                {this.state.facilities.length > 0 ? (
+                this.state.facilities.map((facility, index) => (
+                  <div className="col-lg-6 mb-2" key={index}>
+                  <div className="d-flex">
+                    <FaCircleCheck
+                      className="me-2"
+                      style={{ color: "var(--pink)" }}
+                    />
+                    <p className="p-black mb-0">{facility.title}</p>
                   </div>
-                  <div className="col-lg-6 mb-2">
-                    <div className="d-flex">
-                      <FaCircleCheck
-                        className="me-2"
-                        style={{ color: "var(--pink)" }}
-                      />
-                      <p className="p-black mb-0">
-                        Laparoscope Surgery Laboratory
-                      </p>
-                    </div>
-                  </div>
-                  <div className="col-lg-6 mb-2">
-                    <div className="d-flex">
-                      <FaCircleCheck
-                        className="me-2"
-                        style={{ color: "var(--pink)" }}
-                      />
-                      <p className="p-black mb-0">24Hr Emergency</p>
-                    </div>
-                  </div>
-                  <div className="col-lg-6 mb-2">
-                    <div className="d-flex">
-                      <FaCircleCheck
-                        className="me-2"
-                        style={{ color: "var(--pink)" }}
-                      />
-                      <p className="p-black mb-0">Advanced Medical I.C.U.</p>
-                    </div>
-                  </div>
+                </div>
+                ))
+              ) : (
+                <p></p>
+              )}
+             
                 </div>
 
                 {/* Call Us Section */}
@@ -305,23 +297,23 @@ class About extends React.Component {
                 <div className="row my-2 py-3">
                   {this.state.doctors && this.state.doctors.length > 0 ? (
                     this.state.doctors.map((doctor, index) => (
-                      <div key={index} className="col-lg-4 mb-3 mb-lg-0">
+                      <div key={index} className="col-lg-4 mb-3 ">
                         <div className="team-card">
                           <div className="view animate__fadeIn animate__animated">
-                            <Link to="/doctor" className="btn-pink">
-                              View More
-                            </Link>
+                          <Link to={`/doctor/${doctor.id}`} className="btn-pink">
+                          View More
+                        </Link>
                           </div>
                           <div className="row">
                             <div className="col-6">
                               <div className="pt-5 pb-3 ps-4">
-                                <h2 className="sub-heading-black doc-name">
-                                  {doctor.name}
+                                <h2 className="sub-heading-black doc-name overflow-2">
+                                  {doctor.name}dnsdnwkndkwddwed
                                 </h2>
                                 <h3 className="p-black-bold mt-2 mb-0">
                                   Qualification
                                 </h3>
-                                <p className="p-black mb-0 overflow-2">
+                                <p className="p-black mb-0 overflow-2 ">
                                   {doctor.qualifications}
                                 </p>
                                 <h4 className="p-black-bold mt-2 mb-1">
@@ -340,8 +332,13 @@ class About extends React.Component {
                             </div>
                             <div className="col-6">
                               <div className="team-img">
-                                <img src={doctor.image} alt={doctor.name} 
-                                onError={(e) => { e.target.onerror = null; e.target.src =  "./images/dummyd.png"; }} />
+                              <img
+                              src={doctor.image}
+                              alt={"sdsa"}
+                              onError={(e) => {
+                                e.target.onerror = null;
+                                e.target.src = "/dummyd.png";
+                              }}></img>
                               </div>
                             </div>
                           </div>
@@ -410,34 +407,19 @@ class About extends React.Component {
                               </a>
                             </div>
                           ) : Gallery.media === "Video" ? (
-                            <a
-                              data-fancybox="gallery"
-                              href={Gallery.image}
-                              key={index}
-                            >
-                              <div
-                                style={{
-                                  position: "relative",
-                                  width: "100%",
-                                  height: "100%",
-                                }}
-                              >
-                                <div className="overlaygll m-0">
-                                  <div className="play-btn m-0"></div>
-                                </div>
-                                <video
-                                  loop
-                                  autoPlay
-                                  muted
-                                  style={{ width: "100%" }}
-                                >
-                                  <source
-                                    src={Gallery.image}
-                                    type="video/mp4"
-                                  />
-                                </video>
+                            <a data-fancybox="gallery" href={Gallery.image} key={index}>
+                            <div className="gallery-cap" style={{ width: "100%", height: "100%" }}>
+                    <div className="overlaygll m-0">
+                      <div className="play-btn m-0"></div>
+                    </div>
+                    <div className="gallery-capi">
+                                <p className="p-white-bold mb-0">{Gallery.title}</p>
                               </div>
-                            </a>
+                    <video  loop muted playsInline   style={{ width: "100%" }}>
+                      <source src={Gallery.image} type="video/mp4" />
+                    </video>
+                  </div>
+                        </a>
                           ) : null
                         )
                       ) : (
