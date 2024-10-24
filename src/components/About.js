@@ -170,7 +170,7 @@ class About extends React.Component {
                   <div
                     className="d-inline-block"
                     style={{
-                      background: "linear-gradient(45deg, #313f70, #953986)",
+                      background: "linear-gradient(45deg, #000, #555)",
                       borderRadius: 6,
                       padding: 10,
                     }}

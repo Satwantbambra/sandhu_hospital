@@ -84,7 +84,7 @@ export default function Footer() {
                     </h3>
                     <ul className="footer-ul">
                       <li>
-                        <Link to="/" className="p-white-bold">
+                        <Link to="/" className="p-white">
                           <i>
                             <FaArrowCircleRight />
                           </i>
@@ -92,7 +92,7 @@ export default function Footer() {
                         </Link>
                       </li>
                       <li>
-                        <Link to="/about" className="p-white-bold">
+                        <Link to="/about" className="p-white">
                           <i>
                             <FaArrowCircleRight />
                           </i>
@@ -100,7 +100,7 @@ export default function Footer() {
                         </Link>
                       </li>
                       <li>
-                        <Link to="/team" className="p-white-bold">
+                        <Link to="/team" className="p-white">
                           <i>
                             <FaArrowCircleRight />
                           </i>
@@ -108,7 +108,7 @@ export default function Footer() {
                         </Link>
                       </li>
                       <li>
-                        <Link to="/search" className="p-white-bold">
+                        <Link to="/search" className="p-white">
                           <i>
                             <FaArrowCircleRight />
                           </i>
@@ -116,7 +116,7 @@ export default function Footer() {
                         </Link>
                       </li>
                       <li>
-                        <Link to="/gallery" className="p-white-bold">
+                        <Link to="/gallery" className="p-white">
                           <i>
                             <FaArrowCircleRight />
                           </i>
@@ -140,7 +140,7 @@ export default function Footer() {
                                   service?.beautify === "1"
                                       ? `/skin/${service.id}#${service.name.replace(/\s+/g, '-')}`
                                       : `/service/${service.id}#${service.name.replace(/\s+/g, '-')}`
-                                    } className="p-white-bold">
+                                    } className="p-white">
                               <i>
                                 <FaArrowCircleRight />
                               </i>{" "}
@@ -162,7 +162,7 @@ export default function Footer() {
                       <li className="d-flex mb-1">
                         <Link
                           to="https://www.facebook.com/profile.php?id=100063722508860"
-                          className="p-white-bold"
+                          className="p-white"
                           target="_blank"
                         >
                           <i>
@@ -174,7 +174,7 @@ export default function Footer() {
                       <li className="d-flex mb-1">
                         <Link
                           to="https://api.whatsapp.com/send?phone=%2B919872620674&context=ARB6o1Ic__xCNYvIJiWLOIx2K9cFkuVCLcvYUiK89e-0vVD5cdUSUPrMzRCuxWiPCanb42fuoMWc5-qkntQHx5iO_895LRdYsTxfR158BIjwXjf7-T9UNJ6Xv_Kxk9Nh67k21an873kRxrnX5kNFW3Tdnw&source=FB_Page&app=facebook&entry_point=page_cta&fbclid=IwY2xjawFWAelleHRuA2FlbQIxMAABHVNQfjquyj1K2dZkp8ZA8-2U9tygqUn5-2Xy1uR74jJpa1nt6l_o4YKwfw_aem_T_4k8jbdHxKsRzpXQ8cjcg"
-                          className="p-white-bold"
+                          className="p-white"
                           target="_blank"
                         >
                           <i>
@@ -192,13 +192,13 @@ export default function Footer() {
                         className="d-inline-block"
                         style={{
                           background:
-                            "linear-gradient(45deg, #313f70, #953986)",
+                            "linear-gradient(45deg, rgb(240 127 26), #FF5722)",
                           borderRadius: 6,
                           padding: 10,
                         }}
                       >
                         <Link
-                          className=" p-white-bold "
+                          className=" p-white "
                           to="tel:+01823222674"
                           style={{
                             textDecoration: "none",
@@ -223,13 +223,13 @@ export default function Footer() {
             <div className="col-lg-5 mb-3 mb-lg-0">
               <div className="d-flex justify-content-start">
                 <div className="d-flex footer-ul justify-content-between ">
-                  <Link to="/privacy-policy" className="p-white-bold">
+                  <Link to="/privacy-policy" className="p-white">
                     Privacy Policy
                   </Link>
-                  <Link to="/terms&condition" className="p-white-bold mx-lg-3">
+                  <Link to="/terms&condition" className="p-white mx-lg-3">
                     Terms and Conditions
                   </Link>
-                  <Link to="tel:+01823222674" className="p-white-bold">
+                  <Link to="tel:+01823222674" className="p-white">
                     24/7 Services
                   </Link>
                 </div>
@@ -239,7 +239,7 @@ export default function Footer() {
           <hr style={{ border: "1px solid #fff" }} />
 
           <div className="">
-            <h4 className="text-center p-white-bold my-0">
+            <h4 className="text-center p-white my-0">
               COPYRIGHT © 2024,All rights Reserved
             </h4>
           </div>

@@ -1,5 +1,7 @@
 @media (min-width:0px) and (max-width:580px) {
-    
+    .top_small_header{
+      display: none;
+    }
     .banner{
        background-size: auto !important;
        background-position: -608px 13px !important;

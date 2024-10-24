@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title></title>
+    <meta name="description" content="" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="" />
+  </head>
+  <body>
+    <script>
+      function createCounter() {
+        let count = 0; // This variable is private to the outer function
+
+        return function () {
+          // This is the closure
+          count++; // The inner function can access `count`
+          return count;
+        };
+      }
+
+      const counter = createCounter(); // counter is now a function
+
+      console.log(counter()); // 1
+      console.log(counter()); // 2
+      console.log(counter()); // 3
+    </script>
+  </body>
+</html>

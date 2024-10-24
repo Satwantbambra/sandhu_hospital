@@ -77,7 +77,8 @@ export default function Service() {
 
   // Handler for image load error
   const handleImageError = (e) => {
-    if (!imageError) { // Prevent infinite loop
+    if (!imageError) {
+      // Prevent infinite loop
       setImageError(true);
       e.target.src = dummy; // Ensure this path is correct
     }
@@ -86,7 +87,10 @@ export default function Service() {
   return (
     <div className="container">
       <div className="space pb-0">
-        <div className="row mt-lg-5 mt-3 px-lg-5 px-3" style={{ height: "100%" }}>
+        <div
+          className="row mt-lg-5 mt-3 px-lg-5 px-3"
+          style={{ height: "100%" }}
+        >
           <div className="col-lg-4 col-md-5 col-12">
             <div className="doc-s">
               <img
@@ -99,11 +103,22 @@ export default function Service() {
           <div className="col-lg-8 col-md-7 col-12">
             {service_details?.name && (
               <h1 className="banner-black mb-3">
-                <span style={{ color: "var(--pink)" }}>
+                <span>
                   {service_details?.name}
                 </span>
               </h1>
             )}
+            {doctor_details?.qualifications && (
+              <>
+                <p  className="p-black dr_q mb-0 overflow-2">
+                  ({doctor_details?.qualifications})
+                </p>
+              </>
+            )}
+
+
+
+{/*             
 
             {doctor_details?.name && (
               <h2 className="sub-heading-black sdoc-name">
@@ -120,14 +135,7 @@ export default function Service() {
               </>
             )}
 
-            {doctor_details?.qualifications && (
-              <>
-                <h3 className="p-heading-black mt-2 mb-0">Qualification</h3>
-                <p className="p-black mb-0 overflow-2">
-                  {doctor_details?.qualifications}
-                </p>
-              </>
-            )}
+            
 
             {doctor_details?.phone && (
               <>
@@ -147,7 +155,6 @@ export default function Service() {
                   {doctor_details?.total_experience
                     ? doctor_details?.total_experience
                     : 0}{" "}
-                
                 </p>
               </>
             )}
@@ -167,7 +174,7 @@ export default function Service() {
                   Know more
                 </Link>
               </div>
-            )}
+            )} */}
           </div>
 
           {/* About De-addiction Section */}
@@ -177,7 +184,10 @@ export default function Service() {
                 <div className="col-lg-8 col-md-12 col-12">
                   <h2 className="section-heading-black mb-5">
                     About{" "}
-                    <span style={{ color: "var(--pink)" }}> {service_details?.name}</span>
+                    <span style={{ color: "var(--pink)" }}>
+                      {" "}
+                      {service_details?.name}
+                    </span>
                   </h2>
                   <p className="p-black">{service_details?.description}</p>
                 </div>
@@ -232,9 +242,13 @@ export default function Service() {
                   id={sub_service?.name.replace(/\s+/g, "-")}
                 >
                   {index % 2 === 0 ? (
-                    <div className="row mt-3">
+                    <div className="row mt-3 align-items-center">
                       {sub_service?.name && (
-                        <div className={`mb-3 mb-0 ${sub_service?.image ? 'col-lg-8' : 'col-lg-12'}`}>
+                        <div
+                          className={`mb-3 mb-0 ${
+                            sub_service?.image ? "col-lg-8" : "col-lg-12"
+                          }`}
+                        >
                           <div className="cwt p-3">
                             <h2 className="sub-heading-black mt-0 mb-2">
                               {sub_service?.name}
@@ -274,7 +288,7 @@ export default function Service() {
                       )}
                     </div>
                   ) : (
-                    <div className="row mt-3">
+                    <div className="row mt-3 align-items-center">
                       {sub_service?.image && (
                         <div className="mb-3 mb-0 col-lg-4">
                           <div className="cwt">
@@ -290,7 +304,11 @@ export default function Service() {
                         </div>
                       )}
                       {sub_service?.name && (
-                        <div className={`mb-3 mb-0 ${sub_service?.image ? 'col-lg-8' : 'col-lg-12'}`}>
+                        <div
+                          className={`mb-3 mb-0 ${
+                            sub_service?.image ? "col-lg-8" : "col-lg-12"
+                          }`}
+                        >
                           <div className="cwt p-3">
                             <h2 className="sub-heading-black mt-0 mb-2">
                               {sub_service?.name}
@@ -314,7 +332,6 @@ export default function Service() {
                           </div>
                         </div>
                       )}
-                    
                     </div>
                   )}
                 </div>
@@ -351,53 +368,56 @@ export default function Service() {
                     columnClassName="masonry-grid_column"
                     gutter="20px"
                   >
-                    {gallery.filter(item => item.image).map((item) => (
-        
-                      <a
-                        key={item.id || item.image}
-                        data-fancybox="gallery"
-                        href={item.image}
-                        className="gallery-cap"
-                      >
-                        <div className="gallery-capi">
-                          <p className="p-white-bold mb-0">{item.title}</p>
-                        </div>
-                        {item.media === "Video" ? (
-                          <div
-                            style={{
-                              position: "relative",
-                              width: "100%",
-                              height: "100%",
-                            }}
-                          >
-                            <div className="overlaygll m-0">
-                              <div className="play-btn m-0"></div>
-                            </div>
-                            <video
-                             loop muted playsInline  
-                              style={{ width: "100%" }}
-                              onError={(e) => {
-                                e.target.onerror = null;
-                                e.target.src = `${process.env.PUBLIC_URL}/fallback.mp4`; // Optional: Fallback video
+                    {gallery
+                      .filter((item) => item.image)
+                      .map((item) => (
+                        <a
+                          key={item.id || item.image}
+                          data-fancybox="gallery"
+                          href={item.image}
+                          className="gallery-cap"
+                        >
+                          <div className="gallery-capi">
+                            <p className="p-white-bold mb-0">{item.title}</p>
+                          </div>
+                          {item.media === "Video" ? (
+                            <div
+                              style={{
+                                position: "relative",
+                                width: "100%",
+                                height: "100%",
                               }}
                             >
-                              <source src={item.image} type="video/mp4" />
-                              Your browser does not support the video tag.
-                            </video>
-                          </div>
-                        ) : (
-                          <img
-                            src={item.image}
-                            style={{ width: "100%", display: "block" }}
-                            alt={`${service_details?.name} Gallery`}
-                            onError={(e) => {
-                              e.target.onerror = null;
-                              e.target.src = `${process.env.PUBLIC_URL}/medical-symbol.png`; // Ensure correct path
-                            }}
-                          />
-                        )}
-                      </a>
-                    ))}
+                              <div className="overlaygll m-0">
+                                <div className="play-btn m-0"></div>
+                              </div>
+                              <video
+                                loop
+                                muted
+                                playsInline
+                                style={{ width: "100%" }}
+                                onError={(e) => {
+                                  e.target.onerror = null;
+                                  e.target.src = `${process.env.PUBLIC_URL}/fallback.mp4`; // Optional: Fallback video
+                                }}
+                              >
+                                <source src={item.image} type="video/mp4" />
+                                Your browser does not support the video tag.
+                              </video>
+                            </div>
+                          ) : (
+                            <img
+                              src={item.image}
+                              style={{ width: "100%", display: "block" }}
+                              alt={`${service_details?.name} Gallery`}
+                              onError={(e) => {
+                                e.target.onerror = null;
+                                e.target.src = `${process.env.PUBLIC_URL}/medical-symbol.png`; // Ensure correct path
+                              }}
+                            />
+                          )}
+                        </a>
+                      ))}
                   </Masonry>
                 </ResponsiveMasonry>
               </div>
