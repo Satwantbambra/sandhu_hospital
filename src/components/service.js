@@ -4,9 +4,9 @@ import { Fancybox } from "@fancyapps/ui";
 import dummy from "./images/dummyd.png";
 import "@fancyapps/ui/dist/fancybox/fancybox.css";
 import Masonry, { ResponsiveMasonry } from "react-responsive-masonry";
-
+import { FaCircleCheck } from "react-icons/fa6";
 import { fetchSingleService } from "./commonApis/fetchServices";
-
+import GalleryComponent from './GalleryComponent';
 export default function Service() {
   const { id } = useParams();
   const [service_details, setServiceDetails] = useState(null); // Changed to null for better handling
@@ -17,6 +17,7 @@ export default function Service() {
 
   const sub_services = service_details?.sub_services;
   const gallery = service_details?.gallery;
+  const facilities = service_details?.facilities;
 
   // Function to change the last word's color
   const changeLastWord = () => {
@@ -117,9 +118,6 @@ export default function Service() {
             )}
 
 
-
-{/*             
-
             {doctor_details?.name && (
               <h2 className="sub-heading-black sdoc-name">
                 {doctor_details?.name}
@@ -162,8 +160,10 @@ export default function Service() {
             {doctor_details?.detailed_bio && (
               <>
                 <h5 className="p-heading-black mt-2 mb-1">About Doctor</h5>
-                <p className="p-black mb-3 overflow-3">
-                  {doctor_details?.detailed_bio}
+                <p className="p-black mb-3 overflow-3"  dangerouslySetInnerHTML={{
+                                __html: doctor_details?.detailed_bio,
+                              }}>
+                
                 </p>
               </>
             )}
@@ -174,7 +174,7 @@ export default function Service() {
                   Know more
                 </Link>
               </div>
-            )} */}
+            )} 
           </div>
 
           {/* About De-addiction Section */}
@@ -182,14 +182,39 @@ export default function Service() {
             <div className="mt-4 col-lg-12">
               <div className="mt-3 row">
                 <div className="col-lg-8 col-md-12 col-12">
-                  <h2 className="section-heading-black mb-5">
+                  <h2 className="section-heading-black mb-3">
                     About{" "}
                     <span style={{ color: "var(--pink)" }}>
                       {" "}
                       {service_details?.name}
                     </span>
                   </h2>
-                  <p className="p-black">{service_details?.description}</p>
+                  <p className="p-black"  dangerouslySetInnerHTML={{
+                                __html: service_details?.description,
+                              }}></p>
+
+       {/* Services Offered */}
+
+       <div className="row">
+  {facilities.length > 0 ? (
+    <>
+      <h3 className="section-heading-black mb-3 mt-3">Facilities</h3> {/* Header added here */}
+      {facilities.map((facility, index) => (
+        <div className="col-lg-6 mb-2" key={index}>
+          <div className="d-flex">
+            <FaCircleCheck
+              className="me-2"
+              style={{ color: "var(--pink)" }}
+            />
+            <p className="p-black mb-0">{facility.title}</p>
+          </div>
+        </div>
+      ))}
+    </>
+  ) : (
+    <p>No facilities available.</p> // Optional: message when no facilities are present
+  )}
+</div>
                 </div>
                 {doctor_timings?.length > 0 && (
                   <div className="col-lg-4 col-md-7 col-12">
@@ -225,6 +250,12 @@ export default function Service() {
                     </ul>
                   </div>
                 )}
+
+ 
+    
+
+
+
               </div>
             </div>
           )}
@@ -264,7 +295,7 @@ export default function Service() {
                               How We Cure:
                             </h3>
                             <div
-                              className="p-black overflow-3 mt-0 mb-2"
+                              className="p-black mt-0 mb-2"
                               dangerouslySetInnerHTML={{
                                 __html: sub_service?.description,
                               }}
@@ -324,7 +355,7 @@ export default function Service() {
                               How We Cure:
                             </h3>
                             <div
-                              className="p-black overflow-3 mt-0 mb-2"
+                              className="p-black mt-0 mb-2"
                               dangerouslySetInnerHTML={{
                                 __html: sub_service?.description,
                               }}
@@ -359,68 +390,7 @@ export default function Service() {
                   excellence in healthcare
                 </p>
               </div>
-              <div className="space">
-                <ResponsiveMasonry
-                  columnsCountBreakPoints={{ 350: 1, 750: 2, 900: 3, 1400: 4 }}
-                >
-                  <Masonry
-                    className="masonry"
-                    columnClassName="masonry-grid_column"
-                    gutter="20px"
-                  >
-                    {gallery
-                      .filter((item) => item.image)
-                      .map((item) => (
-                        <a
-                          key={item.id || item.image}
-                          data-fancybox="gallery"
-                          href={item.image}
-                          className="gallery-cap"
-                        >
-                          <div className="gallery-capi">
-                            <p className="p-white-bold mb-0">{item.title}</p>
-                          </div>
-                          {item.media === "Video" ? (
-                            <div
-                              style={{
-                                position: "relative",
-                                width: "100%",
-                                height: "100%",
-                              }}
-                            >
-                              <div className="overlaygll m-0">
-                                <div className="play-btn m-0"></div>
-                              </div>
-                              <video
-                                loop
-                                muted
-                                playsInline
-                                style={{ width: "100%" }}
-                                onError={(e) => {
-                                  e.target.onerror = null;
-                                  e.target.src = `${process.env.PUBLIC_URL}/fallback.mp4`; // Optional: Fallback video
-                                }}
-                              >
-                                <source src={item.image} type="video/mp4" />
-                                Your browser does not support the video tag.
-                              </video>
-                            </div>
-                          ) : (
-                            <img
-                              src={item.image}
-                              style={{ width: "100%", display: "block" }}
-                              alt={`${service_details?.name} Gallery`}
-                              onError={(e) => {
-                                e.target.onerror = null;
-                                e.target.src = `${process.env.PUBLIC_URL}/medical-symbol.png`; // Ensure correct path
-                              }}
-                            />
-                          )}
-                        </a>
-                      ))}
-                  </Masonry>
-                </ResponsiveMasonry>
-              </div>
+              <GalleryComponent galleries={gallery} />
             </div>
           </div>
         )}

@@ -9,7 +9,7 @@ import { Fancybox } from "@fancyapps/ui";
 import "@fancyapps/ui/dist/fancybox/fancybox.css";
 import Masonry, { ResponsiveMasonry } from "react-responsive-masonry";
 import axios from "axios";
-
+import GalleryComponent from './GalleryComponent';
 class About extends React.Component {
   constructor(props) {
     super(props);
@@ -370,64 +370,7 @@ class About extends React.Component {
                     to excellence in healthcare.
                   </p>
                 </div>
-                <div className="space">
-                  <ResponsiveMasonry
-                    columnsCountBreakPoints={{
-                      350: 1,
-                      750: 2,
-                      900: 3,
-                      1400: 4,
-                    }}
-                  >
-                    <Masonry
-                      columnClassName="masonry-grid_column"
-                      gutter="20px"
-                    >
-                      {this.state.galleries.length > 0 ? (
-                        this.state.galleries.map((Gallery, index) =>
-                          Gallery.media === "Image" ? (
-                            <div>
-                              <a
-                                key={index}
-                                data-fancybox="gallery"
-                                href={Gallery.image}
-                              >
-                                <div className="gallery-cap">
-                                  <div className="gallery-capi">
-                                    <p className="p-white-bold mb-0">
-                                      {Gallery.title}
-                                    </p>
-                                  </div>
-                                  <img
-                                    src={Gallery.image}
-                                    style={{ width: "100%" }}
-                                    alt={Gallery.title}
-                                  />
-                                </div>
-                              </a>
-                            </div>
-                          ) : Gallery.media === "Video" ? (
-                            <a data-fancybox="gallery" href={Gallery.image} key={index}>
-                            <div className="gallery-cap" style={{ width: "100%", height: "100%" }}>
-                    <div className="overlaygll m-0">
-                      <div className="play-btn m-0"></div>
-                    </div>
-                    <div className="gallery-capi">
-                                <p className="p-white-bold mb-0">{Gallery.title}</p>
-                              </div>
-                    <video  loop muted playsInline   style={{ width: "100%" }}>
-                      <source src={Gallery.image} type="video/mp4" />
-                    </video>
-                  </div>
-                        </a>
-                          ) : null
-                        )
-                      ) : (
-                        <p>Loading GALLERY...</p>
-                      )}
-                    </Masonry>
-                  </ResponsiveMasonry>
-                </div>
+                <GalleryComponent galleries={this.state.galleries} />
               </div>
             </div>
           </div>
