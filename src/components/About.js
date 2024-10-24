@@ -305,11 +305,15 @@ class About extends React.Component {
                         </Link>
                           </div>
                           <div className="row">
-                            <div className="col-6">
-                              <div className="pt-5 pb-3 ps-4">
+                          <div className="col-12">
+                          <div className="pt-5 pb-3 ps-4">
                                 <h2 className="sub-heading-black doc-name overflow-2">
-                                  {doctor.name}dnsdnwkndkwddwed
+                                  {doctor.name}
                                 </h2>
+                            </div>
+                          </div>
+                            <div className="col-6">
+                              <div className="ps-4">
                                 <h3 className="p-black-bold mt-2 mb-0">
                                   Qualification
                                 </h3>
@@ -334,7 +338,7 @@ class About extends React.Component {
                               <div className="team-img">
                               <img
                               src={doctor.image}
-                              alt={"sdsa"}
+                              alt={doctor.name}
                               onError={(e) => {
                                 e.target.onerror = null;
                                 e.target.src = "/dummyd.png";

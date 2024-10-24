@@ -3,7 +3,6 @@ import { Link, useParams } from "react-router-dom";
 import { Fancybox } from "@fancyapps/ui";
 import dummy from "./images/dummyd.png";
 import "@fancyapps/ui/dist/fancybox/fancybox.css";
-import Masonry, { ResponsiveMasonry } from "react-responsive-masonry";
 import { FaCircleCheck } from "react-icons/fa6";
 import { fetchSingleService } from "./commonApis/fetchServices";
 import GalleryComponent from './GalleryComponent';
@@ -126,7 +125,7 @@ export default function Service() {
 
             {doctor_details?.specialty && (
               <>
-                <h3 className="p-heading-black mt-2 mb-1">Specialist in</h3>
+                <h3 className="p-heading-black mt-2 mb-1">Specialist In</h3>
                 <p className="p-black mb-0 overflow-2">
                   {doctor_details?.specialty}
                 </p>
@@ -157,13 +156,11 @@ export default function Service() {
               </>
             )}
 
-            {doctor_details?.detailed_bio && (
+            {doctor_details?.short_bio && (
               <>
                 <h5 className="p-heading-black mt-2 mb-1">About Doctor</h5>
-                <p className="p-black mb-3 overflow-3"  dangerouslySetInnerHTML={{
-                                __html: doctor_details?.detailed_bio,
-                              }}>
-                
+                <p className="p-black mb-3 overflow-3">
+                {doctor_details?.short_bio}
                 </p>
               </>
             )}
@@ -212,7 +209,7 @@ export default function Service() {
       ))}
     </>
   ) : (
-    <p>No facilities available.</p> // Optional: message when no facilities are present
+    <p></p> // Optional: message when no facilities are present
   )}
 </div>
                 </div>
@@ -232,14 +229,14 @@ export default function Service() {
                           key={timing.id}
                         >
                           <div className="row">
-                            <div className="col-4">
+                            <div className="col-3">
                               <div className="outerday-tag">
                                 <p className="p-heading-white mb-0 innerday-tag">
                                   {timing?.day?.substring(0, 3)}
                                 </p>
                               </div>
                             </div>
-                            <div className="col-8 d-flex align-items-center">
+                            <div className="col-9 d-flex align-items-center">
                               <p className="p-heading-white color mb-0 px-2 py-1">
                                 {timing?.timings || "Off Day"}
                               </p>
@@ -390,7 +387,12 @@ export default function Service() {
                   excellence in healthcare
                 </p>
               </div>
-              <GalleryComponent galleries={gallery} />
+            
+       {gallery && gallery.length > 0 ? (
+        <GalleryComponent galleries={gallery} />
+      ) : (
+        <p></p> // You can display a message or leave it blank if you prefer.
+      )}
             </div>
           </div>
         )}

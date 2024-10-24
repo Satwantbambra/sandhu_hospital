@@ -242,7 +242,7 @@
       
     }
     .team-img img {
-      height: 324px !important;
+      /* height: 324px !important; */
       object-fit: contain;
       width: 100%;
   }

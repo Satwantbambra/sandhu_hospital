@@ -2,7 +2,7 @@
 import React from 'react';
 import Masonry, { ResponsiveMasonry } from "react-responsive-masonry";
 
-const GalleryComponent = ({ galleries }) => {
+const GalleryComponent = ({ galleries, type }) => {
   return (
     <div className="space">
 <ResponsiveMasonry
@@ -37,8 +37,7 @@ const GalleryComponent = ({ galleries }) => {
                   src={Gallery.image}
                   style={{
                     width: "100%",
-                    maxHeight: "400px",
-                    objectFit: "cover",
+                    ...(type === 'Gallery' ? { } : {maxHeight: "400px", objectFit: "cover"}),
                   }}
                   alt={Gallery.title}
                   onError={(e) => {
@@ -68,8 +67,7 @@ const GalleryComponent = ({ galleries }) => {
                   playsInline
                   style={{
                     width: "100%",
-                    maxHeight: "400px",
-                    objectFit: "cover",
+                    ...(type === 'Gallery' ? {} : {maxHeight: "400px", objectFit: "cover"}),
                   }}
                 >
                   <source src={Gallery.image} type="video/mp4" />
@@ -92,8 +90,8 @@ const GalleryComponent = ({ galleries }) => {
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                 allowFullScreen
                 style={{
-                  maxHeight: "400px",
-                  objectFit: "cover",
+                  width: "100%",
+                  ...(type === 'Gallery' ? {} : {maxHeight: "400px", objectFit: "cover"}),
                 }}
               />
             </div>

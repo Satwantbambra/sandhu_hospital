@@ -183,10 +183,12 @@ class Search extends React.Component {
                                           {Service.name}
                                         </h3>
                                         <p
-                                          className="p-black-small overflow-4 mb-0"
+                                          className="p-black-small overflow-7 mb-0"
                                           style={{ textAlign: "justify" }}
-                                        >
-                                          {Service.description}
+                                          dangerouslySetInnerHTML={{
+                                __html: Service.description,
+                              }}  >
+                                     
                                         </p>
                                         <div>
                                           <div className="h-100 d-flex align-items-end justify-content-end mt-3">
@@ -223,7 +225,7 @@ class Search extends React.Component {
                                     <h3 className="p-black-bold mt-2 mb-1">
                                         Specialist in
                                       </h3>
-                                      <p className="p-black-small mb-0 overflow-1">
+                                      <p className="p-black-small mb-0 overflow-2">
                                         {Service.doctor.specialty}
                                       </p>
                                       <h3 className="p-black-bold mb-0">

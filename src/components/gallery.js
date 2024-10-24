@@ -85,7 +85,7 @@ class Gallery extends React.Component {
 
           <section id="gallery" className="space">
             <div className="container">
-            <GalleryComponent galleries={this.state.galleries} />
+            <GalleryComponent galleries={this.state.galleries} type='Gallery' />
             </div>
           </section>
         </div>

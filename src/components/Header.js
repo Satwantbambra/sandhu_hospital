@@ -206,11 +206,11 @@ export default function Header(props) {
                                 <ul className="ps-0 mb-0 ">
                                   {subServicesMap[service.id]?.map(
                                     (subService) => (
-                                      <li
+                                      <li style={{ whiteSpace: 'normal' }}
                                         key={subService.id}
                                         className="dropdown-it "
                                       >
-                                        <NavLink
+                                        <NavLink    
                                           onClick={handleNavLinkClick}
                                           to={
                                             service?.beautify === "1"
@@ -263,7 +263,7 @@ export default function Header(props) {
                   }
                   to="/team"
                 >
-                  Team
+                  Doctors
                 </NavLink>
               </li>
               <li className="nav-item">
