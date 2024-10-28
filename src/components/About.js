@@ -308,7 +308,7 @@ class About extends React.Component {
                             <div className="col-6">
                               <div className="pt-5 pb-3 ps-4">
                                 <h2 className="sub-heading-black doc-name overflow-2">
-                                  {doctor.name}dnsdnwkndkwddwed
+                                  {doctor.name}
                                 </h2>
                                 <h3 className="p-black-bold mt-2 mb-0">
                                   Qualification

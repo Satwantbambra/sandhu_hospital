@@ -250,7 +250,7 @@ export default function Service() {
                               How We Cure:
                             </h3>
                             <div
-                              className="p-black overflow-3 mt-0 mb-2"
+                              className="p-black  mt-0 mb-2"
                               dangerouslySetInnerHTML={{
                                 __html: sub_service?.description,
                               }}
@@ -306,7 +306,7 @@ export default function Service() {
                               How We Cure:
                             </h3>
                             <div
-                              className="p-black overflow-3 mt-0 mb-2"
+                              className="p-black  mt-0 mb-2"
                               dangerouslySetInnerHTML={{
                                 __html: sub_service?.description,
                               }}

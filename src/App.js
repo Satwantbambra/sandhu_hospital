@@ -39,7 +39,7 @@ function ScrollToTop() {
 function App() {
   return (
     <Router>
-      <ScrollToTop /> {/* Ensure ScrollToTop is inside Router */}
+      <ScrollToTop />
       <Header logo={logo} />
       <div className="float">
         <a href="tel:+01823222674">

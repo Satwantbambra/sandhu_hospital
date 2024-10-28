@@ -88,7 +88,7 @@ function Skin() {
   return (
     <div className="container">
       <div className="container">
-        <div className="row py-4 decob">
+        <div className="row py-5 decob">
           <ScrollAnimation
             initiallyVisible={true}
             className="col-lg-8"
@@ -219,7 +219,7 @@ function Skin() {
               animateIn="animate__fadeInUp"
               className="row space d-flex justify-content-center deco"  
             >
-              <div className="col-lg-7 col-9" id={item.name.replace(/\s+/g, '-')} >
+              <div className="col-lg-8 col-11" id={item.name.replace(/\s+/g, '-')} >
                 <div className="skin-facility-img">
                   <div className="sfacility sktreat ">
                     <p
