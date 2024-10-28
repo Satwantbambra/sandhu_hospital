@@ -240,7 +240,7 @@ animation: width 0.5s linear forwards;
   width: 100%;
   display: flex;
   align-items: end;
-  background: var(--blue-light);
+  background: #b7ddfb;
   position: relative;
   z-index: 3;
 }
@@ -635,7 +635,7 @@ border-radius: 10px;
   background: #ffc6f2;
 }
 .days-ul li:not(.off):nth-child(3n + 1) .outerday-tag {
-  background: var(--pink);
+  background: var(--mypink);
 }
 .days-ul li:not(.off):nth-child(3n + 1) .innerday-tag::before {
   border-right: 17px solid #480c3a;
@@ -643,12 +643,12 @@ border-radius: 10px;
   border-top: 14px solid #00000000;
 }
 .days-ul li:not(.off):nth-child(3n + 1) p.p-heading-white.color {
-  color: var(--pink) !important;
+  color: var(--mypink) !important;
 }
 
 /* Second item and every 3rd after */
 .days-ul li:not(.off):nth-child(3n + 2) {
-  background: #dce2ff;
+  background: #ffe9d6;
 }
 .days-ul li:not(.off):nth-child(3n + 2) .outerday-tag {
   background: var(--blue);
@@ -1092,11 +1092,7 @@ display: flex;
 .sub-dropdown-menu {
   background-color: white;
   position: absolute;
-<<<<<<< HEAD
-  border: none !important;
-=======
   border: 1px lightgrey !important;
->>>>>>> 43b291fa5a44cf04d7f752ebfa0d93211ffca6bc
   top: 0;
   left: 100%;
   width: 20rem;

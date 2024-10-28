@@ -102,25 +102,26 @@ export default function Service() {
           </div>
           <div className="col-lg-8 col-md-7 col-12">
             {service_details?.name && (
-              <h1 className="banner-black mb-3">
+              <h1 className="banner-black mb-1">
                 <span>
                   {service_details?.name}
                 </span>
               </h1>
             )}
-            {doctor_details?.qualifications && (
-              <>
-                <p  className="p-black dr_q mb-0 overflow-2">
-                  ({doctor_details?.qualifications})
-                </p>
-              </>
-            )}
+       
 
 
             {doctor_details?.name && (
-              <h2 className="sub-heading-black sdoc-name">
+              <h2 className="sub-heading-black sdoc-name mb-1">
                 {doctor_details?.name}
               </h2>
+            )}
+                 {doctor_details?.qualifications && (
+              <>
+                <p  className="p-black-bold  mb-0 overflow-2" style={{color:"var(--dull_black)"}}>
+                  ({doctor_details?.qualifications})
+                </p>
+              </>
             )}
 
             {doctor_details?.specialty && (
@@ -292,11 +293,7 @@ export default function Service() {
                               How We Cure:
                             </h3>
                             <div
-<<<<<<< HEAD
-                              className="p-black  mt-0 mb-2"
-=======
                               className="p-black mt-0 mb-2"
->>>>>>> 43b291fa5a44cf04d7f752ebfa0d93211ffca6bc
                               dangerouslySetInnerHTML={{
                                 __html: sub_service?.description,
                               }}
@@ -356,11 +353,8 @@ export default function Service() {
                               How We Cure:
                             </h3>
                             <div
-<<<<<<< HEAD
-                              className="p-black  mt-0 mb-2"
-=======
                               className="p-black mt-0 mb-2"
->>>>>>> 43b291fa5a44cf04d7f752ebfa0d93211ffca6bc
+
                               dangerouslySetInnerHTML={{
                                 __html: sub_service?.description,
                               }}

@@ -5,6 +5,7 @@
   --dark-grey: #d9d9d9;
   --neon-light: #acf9e7;
   --pink: #F07F1A;
+  --mypink:#a7398d;
   --pink-light: #ffd3f5;
   --neon: #41938c;
   --blue-light: #ff57222e;
@@ -108,7 +109,7 @@ a {
 }
 .p-heading-white {
   font-size: 16px !important;
-  line-height: 2rem;
+  line-height: 1.3rem;
   text-transform: capitalize;
   color: var(--white);
   letter-spacing: 1px;
@@ -361,10 +362,10 @@ section {
 }
 
 .overflow-1 {
-  display: -webkit-box;
+  display: -webkit-box !important;
   overflow: hidden;
   text-overflow: ellipsis;
-  width: 100%;
+  width: 100%  !important;
   -webkit-box-orient: vertical;
   -webkit-line-clamp: 1;
 }
@@ -473,7 +474,6 @@ textarea {
 
 .navbar-collapse.collapse.show {
   transition: all 0.1s;
-  background: #404680 !important;
 }
 .nav-link {
   position: relative;
