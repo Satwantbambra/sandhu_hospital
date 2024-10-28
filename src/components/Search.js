@@ -167,7 +167,7 @@ class Search extends React.Component {
                                 <div className="col-6">
                                   <div className="row h-100">
                                     {/* Service Image */}
-                                    <div className="col-lg-5 col-12">
+                                    <div className="col-lg-5">
                                       <div className="s-service">
                                         <img
                                           src={Service.image}
@@ -178,15 +178,17 @@ class Search extends React.Component {
                                     </div>
                                     {/* Service Name and Description */}
                                     <div className="col-lg-7">
-                                      <div className="py-3 px-lg-0 px-2">
+                                      <div className="py-3 px-2 px-lg-0">
                                         <h3 className="sub-heading-black mb-1 overflow-1">
                                           {Service.name}
                                         </h3>
                                         <p
-                                          className="p-black-small overflow-4 mb-0"
+                                          className="p-black-small overflow-7 mb-0"
                                           style={{ textAlign: "justify" }}
-                                        >
-                                          {Service.description}
+                                          dangerouslySetInnerHTML={{
+                                __html: Service.description,
+                              }}  >
+                                     
                                         </p>
                                         <div>
                                           <div className="h-100 d-flex align-items-end justify-content-end mt-3">
@@ -223,7 +225,7 @@ class Search extends React.Component {
                                     <h3 className="p-black-bold mt-2 mb-1">
                                         Specialist in
                                       </h3>
-                                      <p className="p-black-small mb-0 overflow-1">
+                                      <p className="p-black-small mb-0 overflow-2">
                                         {Service.doctor.specialty}
                                       </p>
                                       <h3 className="p-black-bold mb-0">

@@ -3,10 +3,9 @@ import { Link, useParams } from "react-router-dom";
 import { Fancybox } from "@fancyapps/ui";
 import dummy from "./images/dummyd.png";
 import "@fancyapps/ui/dist/fancybox/fancybox.css";
-import Masonry, { ResponsiveMasonry } from "react-responsive-masonry";
-
+import { FaCircleCheck } from "react-icons/fa6";
 import { fetchSingleService } from "./commonApis/fetchServices";
-
+import GalleryComponent from './GalleryComponent';
 export default function Service() {
   const { id } = useParams();
   const [service_details, setServiceDetails] = useState(null); // Changed to null for better handling
@@ -17,6 +16,7 @@ export default function Service() {
 
   const sub_services = service_details?.sub_services;
   const gallery = service_details?.gallery;
+  const facilities = service_details?.facilities;
 
   // Function to change the last word's color
   const changeLastWord = () => {
@@ -77,7 +77,8 @@ export default function Service() {
 
   // Handler for image load error
   const handleImageError = (e) => {
-    if (!imageError) { // Prevent infinite loop
+    if (!imageError) {
+      // Prevent infinite loop
       setImageError(true);
       e.target.src = dummy; // Ensure this path is correct
     }
@@ -86,7 +87,10 @@ export default function Service() {
   return (
     <div className="container">
       <div className="space pb-0">
-        <div className="row mt-lg-5 mt-3 px-lg-5 px-3" style={{ height: "100%" }}>
+        <div
+          className="row mt-lg-5 mt-3 px-lg-5 px-3"
+          style={{ height: "100%" }}
+        >
           <div className="col-lg-4 col-md-5 col-12">
             <div className="doc-s">
               <img
@@ -99,11 +103,19 @@ export default function Service() {
           <div className="col-lg-8 col-md-7 col-12">
             {service_details?.name && (
               <h1 className="banner-black mb-3">
-                <span style={{ color: "var(--pink)" }}>
+                <span>
                   {service_details?.name}
                 </span>
               </h1>
             )}
+            {doctor_details?.qualifications && (
+              <>
+                <p  className="p-black dr_q mb-0 overflow-2">
+                  ({doctor_details?.qualifications})
+                </p>
+              </>
+            )}
+
 
             {doctor_details?.name && (
               <h2 className="sub-heading-black sdoc-name">
@@ -113,21 +125,14 @@ export default function Service() {
 
             {doctor_details?.specialty && (
               <>
-                <h3 className="p-heading-black mt-2 mb-1">Specialist in</h3>
+                <h3 className="p-heading-black mt-2 mb-1">Specialist In</h3>
                 <p className="p-black mb-0 overflow-2">
                   {doctor_details?.specialty}
                 </p>
               </>
             )}
 
-            {doctor_details?.qualifications && (
-              <>
-                <h3 className="p-heading-black mt-2 mb-0">Qualification</h3>
-                <p className="p-black mb-0 overflow-2">
-                  {doctor_details?.qualifications}
-                </p>
-              </>
-            )}
+            
 
             {doctor_details?.phone && (
               <>
@@ -147,16 +152,15 @@ export default function Service() {
                   {doctor_details?.total_experience
                     ? doctor_details?.total_experience
                     : 0}{" "}
-                
                 </p>
               </>
             )}
 
-            {doctor_details?.detailed_bio && (
+            {doctor_details?.short_bio && (
               <>
                 <h5 className="p-heading-black mt-2 mb-1">About Doctor</h5>
                 <p className="p-black mb-3 overflow-3">
-                  {doctor_details?.detailed_bio}
+                {doctor_details?.short_bio}
                 </p>
               </>
             )}
@@ -167,7 +171,7 @@ export default function Service() {
                   Know more
                 </Link>
               </div>
-            )}
+            )} 
           </div>
 
           {/* About De-addiction Section */}
@@ -175,11 +179,39 @@ export default function Service() {
             <div className="mt-4 col-lg-12">
               <div className="mt-3 row">
                 <div className="col-lg-8 col-md-12 col-12">
-                  <h2 className="section-heading-black mb-5">
+                  <h2 className="section-heading-black mb-3">
                     About{" "}
-                    <span style={{ color: "var(--pink)" }}>{service_details?.name}</span>
+                    <span style={{ color: "var(--pink)" }}>
+                      {" "}
+                      {service_details?.name}
+                    </span>
                   </h2>
-                  <p className="p-black">{service_details?.description}</p>
+                  <p className="p-black"  dangerouslySetInnerHTML={{
+                                __html: service_details?.description,
+                              }}></p>
+
+       {/* Services Offered */}
+
+       <div className="row">
+  {facilities.length > 0 ? (
+    <>
+      <h3 className="section-heading-black mb-3 mt-3">Facilities</h3> {/* Header added here */}
+      {facilities.map((facility, index) => (
+        <div className="col-lg-6 mb-2" key={index}>
+          <div className="d-flex">
+            <FaCircleCheck
+              className="me-2"
+              style={{ color: "var(--pink)" }}
+            />
+            <p className="p-black mb-0">{facility.title}</p>
+          </div>
+        </div>
+      ))}
+    </>
+  ) : (
+    <p></p> // Optional: message when no facilities are present
+  )}
+</div>
                 </div>
                 {doctor_timings?.length > 0 && (
                   <div className="col-lg-4 col-md-7 col-12">
@@ -197,14 +229,14 @@ export default function Service() {
                           key={timing.id}
                         >
                           <div className="row">
-                            <div className="col-4">
+                            <div className="col-3">
                               <div className="outerday-tag">
                                 <p className="p-heading-white mb-0 innerday-tag">
                                   {timing?.day?.substring(0, 3)}
                                 </p>
                               </div>
                             </div>
-                            <div className="col-8 d-flex align-items-center">
+                            <div className="col-9 d-flex align-items-center">
                               <p className="p-heading-white color mb-0 px-2 py-1">
                                 {timing?.timings || "Off Day"}
                               </p>
@@ -215,6 +247,12 @@ export default function Service() {
                     </ul>
                   </div>
                 )}
+
+ 
+    
+
+
+
               </div>
             </div>
           )}
@@ -232,9 +270,13 @@ export default function Service() {
                   id={sub_service?.name.replace(/\s+/g, "-")}
                 >
                   {index % 2 === 0 ? (
-                    <div className="row mt-3">
+                    <div className="row mt-3 align-items-center">
                       {sub_service?.name && (
-                        <div className={`mb-3 mb-0 ${sub_service?.image ? 'col-lg-8' : 'col-lg-12'}`}>
+                        <div
+                          className={`mb-3 mb-0 ${
+                            sub_service?.image ? "col-lg-8" : "col-lg-12"
+                          }`}
+                        >
                           <div className="cwt p-3">
                             <h2 className="sub-heading-black mt-0 mb-2">
                               {sub_service?.name}
@@ -250,7 +292,11 @@ export default function Service() {
                               How We Cure:
                             </h3>
                             <div
+<<<<<<< HEAD
                               className="p-black  mt-0 mb-2"
+=======
+                              className="p-black mt-0 mb-2"
+>>>>>>> 43b291fa5a44cf04d7f752ebfa0d93211ffca6bc
                               dangerouslySetInnerHTML={{
                                 __html: sub_service?.description,
                               }}
@@ -266,7 +312,7 @@ export default function Service() {
                               alt={sub_service?.name || "Service Image"}
                               onError={(e) => {
                                 e.target.onerror = null;
-                                e.target.src = "/medical-symbol.png"; // Ensure correct path
+                                e.target.src = `${process.env.PUBLIC_URL}/medical-symbol.png`; // Ensure correct path
                               }}
                             />
                           </div>
@@ -274,7 +320,7 @@ export default function Service() {
                       )}
                     </div>
                   ) : (
-                    <div className="row mt-3">
+                    <div className="row mt-3 align-items-center">
                       {sub_service?.image && (
                         <div className="mb-3 mb-0 col-lg-4">
                           <div className="cwt">
@@ -283,14 +329,18 @@ export default function Service() {
                               alt={sub_service?.name || "Service Image"}
                               onError={(e) => {
                                 e.target.onerror = null;
-                                e.target.src = "/medical-symbol.png"; // Ensure correct path
+                                e.target.src = `${process.env.PUBLIC_URL}/medical-symbol.png`; // Ensure correct path
                               }}
                             />
                           </div>
                         </div>
                       )}
                       {sub_service?.name && (
-                        <div className={`mb-3 mb-0 ${sub_service?.image ? 'col-lg-8' : 'col-lg-12'}`}>
+                        <div
+                          className={`mb-3 mb-0 ${
+                            sub_service?.image ? "col-lg-8" : "col-lg-12"
+                          }`}
+                        >
                           <div className="cwt p-3">
                             <h2 className="sub-heading-black mt-0 mb-2">
                               {sub_service?.name}
@@ -306,7 +356,11 @@ export default function Service() {
                               How We Cure:
                             </h3>
                             <div
+<<<<<<< HEAD
                               className="p-black  mt-0 mb-2"
+=======
+                              className="p-black mt-0 mb-2"
+>>>>>>> 43b291fa5a44cf04d7f752ebfa0d93211ffca6bc
                               dangerouslySetInnerHTML={{
                                 __html: sub_service?.description,
                               }}
@@ -314,7 +368,6 @@ export default function Service() {
                           </div>
                         </div>
                       )}
-                    
                     </div>
                   )}
                 </div>
@@ -342,65 +395,12 @@ export default function Service() {
                   excellence in healthcare
                 </p>
               </div>
-              <div className="space">
-                <ResponsiveMasonry
-                  columnsCountBreakPoints={{ 350: 1, 750: 2, 900: 3, 1400: 4 }}
-                >
-                  <Masonry
-                    className="masonry"
-                    columnClassName="masonry-grid_column"
-                    gutter="20px"
-                  >
-                    {gallery.filter(item => item.image).map((item) => (
-        
-                      <a
-                        key={item.id || item.image}
-                        data-fancybox="gallery"
-                        href={item.image}
-                        className="gallery-cap"
-                      >
-                        <div className="gallery-capi">
-                          <p className="p-white-bold mb-0">{item.title}</p>
-                        </div>
-                        {item.media === "Video" ? (
-                          <div
-                            style={{
-                              position: "relative",
-                              width: "100%",
-                              height: "100%",
-                            }}
-                          >
-                            <div className="overlaygll m-0">
-                              <div className="play-btn m-0"></div>
-                            </div>
-                            <video
-                             loop muted playsInline  
-                              style={{ width: "100%" }}
-                              onError={(e) => {
-                                e.target.onerror = null;
-                                e.target.src = `${process.env.PUBLIC_URL}/videos/fallback.mp4`; // Optional: Fallback video
-                              }}
-                            >
-                              <source src={item.image} type="video/mp4" />
-                              Your browser does not support the video tag.
-                            </video>
-                          </div>
-                        ) : (
-                          <img
-                            src={item.image}
-                            style={{ width: "100%", display: "block" }}
-                            alt={`${service_details?.name} Gallery`}
-                            onError={(e) => {
-                              e.target.onerror = null;
-                              e.target.src = `${process.env.PUBLIC_URL}/images/dummyd.png`; // Ensure correct path
-                            }}
-                          />
-                        )}
-                      </a>
-                    ))}
-                  </Masonry>
-                </ResponsiveMasonry>
-              </div>
+            
+       {gallery && gallery.length > 0 ? (
+        <GalleryComponent galleries={gallery} />
+      ) : (
+        <p></p> // You can display a message or leave it blank if you prefer.
+      )}
             </div>
           </div>
         )}
