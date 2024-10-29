@@ -272,5 +272,12 @@
 .cwt2 img {
 object-fit: contain !important;
 }
+.dropdown-item {
+  white-space: break-spaces !important;
+
+}
+.dropdown-item:hover span {
+  white-space: break-spaces !important;
+  word-wrap: break-word !important;}
 
    }

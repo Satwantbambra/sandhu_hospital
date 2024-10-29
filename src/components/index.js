@@ -403,7 +403,7 @@ class Index extends React.Component {
                                 <img src={sandhu} alt="sandhu hospital" />
                               </div>
                             </div>
-                            <div className="mt-3">
+                            <div className="mt-2">
                               <h4 className="p-white-bold mt-0 mb-1">
                                 Leading the Way in Brain Health
                               </h4>

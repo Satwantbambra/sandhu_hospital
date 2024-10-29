@@ -194,10 +194,13 @@ export default function Header(props) {
                               : `/service/${service.id}`
                           }
                         >
+                          <div className="d-flex">
+
                           <MdDoubleArrow className="me-2" />{" "}
                           <span onClick={handleNavLinkClick}>
                             {service.name}
                           </span>
+                          </div>
                           {/* Sub-services only display when hovered */}
                           {hoveredService === service.id &&
                             subServicesMap[service.id] &&
