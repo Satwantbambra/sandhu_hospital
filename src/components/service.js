@@ -238,7 +238,7 @@ export default function Service() {
                               </div>
                             </div>
                             <div className="col-9 d-flex align-items-center">
-                              <p className="p-heading-white color mb-0 px-2 py-1">
+                              <p className="p-heading-white color mb-0 px-3">
                                 {timing?.timings || "Off Day"}
                               </p>
                             </div>

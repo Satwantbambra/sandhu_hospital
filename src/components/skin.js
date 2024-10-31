@@ -220,7 +220,7 @@ function Skin() {
                         </div>
                       </div>
                       <div className=" col-9 d-flex align-items-center">
-                        <p className="p-heading-white color mb-0">
+                        <p className="p-heading-white color mb-0 px-3">
                           {item.timings || "Off Day"}
                         </p>
                       </div>

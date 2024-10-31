@@ -69,14 +69,14 @@ class Team extends React.Component {
                       </div>
                       <div className="row">
                         <div className="col-6">
-                      <div className="col-12">
-                          <div className="pt-5 pb-1 ps-4">
+                   
+                          <div className="pt-lg-5 pt-3 ps-lg-4 ps-2">
                                 <h2 className="sub-heading-black doc-name overflow-2 mb-1">
                                   {doctor.name}
                                 </h2>
                             </div>
-                          </div>
-                          <div className="ps-4">
+                         
+                          <div className="ps-lg-4 ps-2 pt-3">
                  
                             <h3 className="p-black-bold mt-2 mb-0">
                               Qualification
