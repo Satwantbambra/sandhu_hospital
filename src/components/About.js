@@ -306,15 +306,15 @@ class About extends React.Component {
                           </div>
                           <div className="row">
                           <div className="col-12">
-                          <div className="pt-5 pb-3 ps-4">
-                                <h2 className="sub-heading-black doc-name overflow-2">
+                          <div className="pt-5  ps-4">
+                                <h2 className="sub-heading-black doc-name">
                                   {doctor.name}
                                 </h2>
                             </div>
                           </div>
                             <div className="col-6">
                               <div className="ps-4">
-                                <h3 className="p-black-bold mt-2 mb-0">
+                                <h3 className="p-black-bold mt-lg-2 mb-0">
                                   Qualification
                                 </h3>
                                 <p className="p-black mb-0 overflow-2 ">

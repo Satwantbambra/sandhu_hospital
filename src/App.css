@@ -539,10 +539,10 @@ border-radius: 10px;
   align-items: end;
   justify-content: center;
   width: 100%;
-  /*min-height: 340px; */
+ 
 }
 .team-img img{
-  height: fit-content;
+  height: 258px;
  object-fit: contain;
   width: 100%;
 
