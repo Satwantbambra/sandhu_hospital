@@ -9,7 +9,7 @@ import { Fancybox } from "@fancyapps/ui";
 import "@fancyapps/ui/dist/fancybox/fancybox.css";
 import Masonry, { ResponsiveMasonry } from "react-responsive-masonry";
 import axios from "axios";
-
+import GalleryComponent from './GalleryComponent';
 class About extends React.Component {
   constructor(props) {
     super(props);
@@ -170,7 +170,7 @@ class About extends React.Component {
                   <div
                     className="d-inline-block"
                     style={{
-                      background: "linear-gradient(45deg, #313f70, #953986)",
+                      background: "linear-gradient(45deg, #000, #555)",
                       borderRadius: 6,
                       padding: 10,
                     }}
@@ -305,12 +305,16 @@ class About extends React.Component {
                         </Link>
                           </div>
                           <div className="row">
-                            <div className="col-6">
-                              <div className="pt-5 pb-3 ps-4">
-                                <h2 className="sub-heading-black doc-name overflow-2">
-                                  {doctor.name}dnsdnwkndkwddwed
+                          <div className="col-12">
+                          <div className="pt-5  ps-4">
+                                <h2 className="sub-heading-black doc-name">
+                                  {doctor.name}
                                 </h2>
-                                <h3 className="p-black-bold mt-2 mb-0">
+                            </div>
+                          </div>
+                            <div className="col-6">
+                              <div className="ps-4">
+                                <h3 className="p-black-bold mt-lg-2 mb-0">
                                   Qualification
                                 </h3>
                                 <p className="p-black mb-0 overflow-2 ">
@@ -334,7 +338,7 @@ class About extends React.Component {
                               <div className="team-img">
                               <img
                               src={doctor.image}
-                              alt={"sdsa"}
+                              alt={doctor.name}
                               onError={(e) => {
                                 e.target.onerror = null;
                                 e.target.src = "/dummyd.png";
@@ -370,64 +374,7 @@ class About extends React.Component {
                     to excellence in healthcare.
                   </p>
                 </div>
-                <div className="space">
-                  <ResponsiveMasonry
-                    columnsCountBreakPoints={{
-                      350: 1,
-                      750: 2,
-                      900: 3,
-                      1400: 4,
-                    }}
-                  >
-                    <Masonry
-                      columnClassName="masonry-grid_column"
-                      gutter="20px"
-                    >
-                      {this.state.galleries.length > 0 ? (
-                        this.state.galleries.map((Gallery, index) =>
-                          Gallery.media === "Image" ? (
-                            <div>
-                              <a
-                                key={index}
-                                data-fancybox="gallery"
-                                href={Gallery.image}
-                              >
-                                <div className="gallery-cap">
-                                  <div className="gallery-capi">
-                                    <p className="p-white-bold mb-0">
-                                      {Gallery.title}
-                                    </p>
-                                  </div>
-                                  <img
-                                    src={Gallery.image}
-                                    style={{ width: "100%" }}
-                                    alt={Gallery.title}
-                                  />
-                                </div>
-                              </a>
-                            </div>
-                          ) : Gallery.media === "Video" ? (
-                            <a data-fancybox="gallery" href={Gallery.image} key={index}>
-                            <div className="gallery-cap" style={{ width: "100%", height: "100%" }}>
-                    <div className="overlaygll m-0">
-                      <div className="play-btn m-0"></div>
-                    </div>
-                    <div className="gallery-capi">
-                                <p className="p-white-bold mb-0">{Gallery.title}</p>
-                              </div>
-                    <video  loop muted playsInline   style={{ width: "100%" }}>
-                      <source src={Gallery.image} type="video/mp4" />
-                    </video>
-                  </div>
-                        </a>
-                          ) : null
-                        )
-                      ) : (
-                        <p>Loading GALLERY...</p>
-                      )}
-                    </Masonry>
-                  </ResponsiveMasonry>
-                </div>
+                <GalleryComponent galleries={this.state.galleries} />
               </div>
             </div>
           </div>

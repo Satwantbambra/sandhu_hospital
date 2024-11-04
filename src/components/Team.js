@@ -68,12 +68,17 @@ class Team extends React.Component {
                         </Link>
                       </div>
                       <div className="row">
+                          <div className="pt-lg-5 pt-3 ps-lg-4 ps-2 col-12">
+                                <h2 className="sub-heading-black doc-name  mb-1">
+                                  {doctor.name}
+                                </h2>
+                            </div>
+                         
                         <div className="col-6">
-                          <div className="pt-5 pb-3 ps-4">
-                            <h2 className="sub-heading-black doc-name overflow-2">
-                              {doctor.name}
-                            </h2>
-                            <h3 className="p-black-bold mt-2 mb-0">
+                   
+                          <div className="ps-lg-4 ps-2 pt-3">
+                 
+                            <h3 className="p-black-bold mt-lg-2 mb-0">
                               Qualification
                             </h3>
                             <p className="p-black mb-0 overflow-2">
@@ -97,7 +102,7 @@ class Team extends React.Component {
                           <div className="team-img">
                             <img
                               src={doctor.image}
-                              alt={"sdsa"}
+                              alt={doctor.name}
                               onError={(e) => {
                                 e.target.onerror = null;
                                 e.target.src = "/dummyd.png";

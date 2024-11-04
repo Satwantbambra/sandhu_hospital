@@ -3,10 +3,10 @@ import React, { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import ScrollAnimation from "react-animate-on-scroll";
 import { Fancybox } from "@fancyapps/ui";
+import { FaCircleCheck } from "react-icons/fa6";
 import "@fancyapps/ui/dist/fancybox/fancybox.css";
-import Masonry, { ResponsiveMasonry } from "react-responsive-masonry";
 import { fetchSingleService } from "./commonApis/fetchServices";
-
+import GalleryComponent from './GalleryComponent';
 function Skin() {
   const { id } = useParams();
   const [service_details, setServiceDetails] = useState([]);
@@ -14,7 +14,7 @@ function Skin() {
   const doctor_timings = doctor_details?.timings;
   const sub_services = service_details?.sub_services;
   const gallery = service_details?.gallery;
-
+  const facilities = service_details?.facilities;
   const changeLastWord = () => {
     const elements = document.querySelectorAll(".skin-name");
 
@@ -104,9 +104,36 @@ function Skin() {
               <h3 className="p-heading-black my-0 skin-name">
                 {service_details?.utility}
               </h3>
-              <p className="p-black my-0" style={{ textAlign: "justify" }}>
-                {service_details?.description}
+              <p className="p-black my-0" style={{ textAlign: "justify" }} dangerouslySetInnerHTML={{
+                                __html: service_details?.description,
+                              }}>
+                
               </p>
+             
+       {/* Services Offered */}
+
+       <div className="row mb-4">
+  {facilities ? (
+    <>
+      <h3 className="section-heading-black mb-3 mt-3">Facilities</h3> {/* Header added here */}
+      {facilities.map((facility, index) => (
+        <div className="col-lg-6 mb-2" key={index}>
+          <div className="d-flex">
+            <FaCircleCheck
+              className="me-2"
+              style={{ color: "var(--pink)" }}
+            />
+            <p className="p-black mb-0">{facility.title}</p>
+          </div>
+        </div>
+      ))}
+    </>
+  ) : (
+    <p></p> // Optional: message when no facilities are present
+  )}
+</div>
+
+
             </div>
           </ScrollAnimation>
           <ScrollAnimation
@@ -143,7 +170,7 @@ function Skin() {
             <h2 className="sub-heading-black sdoc-name  ">
               {doctor_details?.name}
             </h2>
-            <h3 className="p-heading-black mt-2 mb-1">Specialist in</h3>
+            <h3 className="p-heading-black mt-2 mb-1">Specialist In</h3>
             <p className="p-black mb-0 overflow-2">
               {doctor_details?.designation}{" "}
             </p>
@@ -185,15 +212,15 @@ function Skin() {
                 return (
                   <li className={!item.timings ? "off" : ""} key={index}>
                     <div className="row">
-                      <div className="  col-4">
+                      <div className="  col-3">
                         <div className=" outerday-tag">
                           <p className="p-heading-white mb-0  innerday-tag">
                             {item.day?.substring(0, 3)}
                           </p>
                         </div>
                       </div>
-                      <div className=" col-8 d-flex align-items-center">
-                        <p className="p-heading-white color mb-0">
+                      <div className=" col-9 d-flex align-items-center">
+                        <p className="p-heading-white color mb-0 px-3">
                           {item.timings || "Off Day"}
                         </p>
                       </div>
@@ -262,72 +289,11 @@ function Skin() {
           Patient<span style={{ color: "var(--pink)" }}> Care</span>
         </h2>
 
-        <div className="space">
-          {gallery ? (
-            <ResponsiveMasonry
-              columnsCountBreakPoints={{ 350: 1, 750: 2, 900: 3, 1400: 4 }}
-            >
-              <Masonry
-                className=" masonry"
-                columnClassName="masonry-grid_column"
-                gutter="20px"
-              >
-                {gallery?.filter(item => item.image).map((item, index) => {
-                  return (
-                    <a
-                      key={index}
-                      data-fancybox="gallery"
-                      href={item.image}
-                      className="gallery-cap"
-                      onError={(e) => {
-                        e.target.onerror = null;
-                        e.target.src = `${process.env.PUBLIC_URL}/medical-symbol.png`;
-                      }}
-                    >
-                      <div className="gallery-capi">
-                        <p className="p-white-bold mb-0">{item.title}</p>
-                      </div>
-                      {item.media === "Video" ? (
-                        <>
-                          <div
-                            style={{
-                              position: "relative",
-                              width: "100%",
-                              height: "100%",
-                            }}
-                          >
-                            <div className="overlaygll m-0">
-                              <div className="play-btn m-0"></div>
-                            </div>
-                            <video
-                           loop muted playsInline  
-                              style={{ width: "100%" }}
-                              onError={(e) => {
-                                e.target.onerror = null;
-                                e.target.src = `${process.env.PUBLIC_URL}/fallback.mp4`; // Optional: Fallback video
-                              }}
-                            >
-                              <source src={item.image} type="video/mp4" />
-                              Your browser does not support the video tag.
-                            </video>
-                          </div>
-                        </>
-                      ) : (
-                        <img
-                          src={item.image}
-                          style={{ width: "100%", display: "block" }}
-                          alt="sandhu hospital Nawanshahar images"
-                        />
-                      )}
-                    </a>
-                  );
-                })}
-              </Masonry>
-            </ResponsiveMasonry>
-          ) : (
-            <p>Gallery Not Found</p>
-          )}
-        </div>
+       {gallery && gallery.length > 0 ? (
+        <GalleryComponent galleries={gallery} />
+      ) : (
+        <p></p> // You can display a message or leave it blank if you prefer.
+      )}
       </div>
     </div>
   );

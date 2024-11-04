@@ -183,10 +183,12 @@ class Search extends React.Component {
                                           {Service.name}
                                         </h3>
                                         <p
-                                          className="p-black-small overflow-4 mb-0"
+                                          className="p-black-small overflow-7 mb-0"
                                           style={{ textAlign: "justify" }}
-                                        >
-                                          {Service.description}
+                                          dangerouslySetInnerHTML={{
+                                __html: Service.description,
+                              }}  >
+                                     
                                         </p>
                                         <div>
                                           <div className="h-100 d-flex align-items-end justify-content-end mt-3">
@@ -212,34 +214,34 @@ class Search extends React.Component {
                                           alt={Service.doctor.name}
                                         />
                                       </div>
-                                      <h2 className="p-black-bold doc-name overflow-1 mb-0 text-center mb-2">
+                                      <h2 className="p-black-bold doc-name overflow-2 mb-0 text-lg-center mb-lg-2">
                                         {this.styleLastWord(
                                           Service.doctor.name
                                         )}
                                       </h2>
                                     </div>
                                     {/* Doctor Qualifications and Details */}
-                                    <div className="col-lg-7 py-3 px-2 px-lg-0 d-flex flex-column justify-content-center">
-                                    <h3 className="p-black-bold mt-2 mb-1">
+                                    <div className="col-lg-7 py-lg-3 pb-3  px-lg-0 d-flex flex-column justify-content-center">
+                                    <h3 className="p-black-bold my-1">
                                         Specialist in
                                       </h3>
-                                      <p className="p-black-small mb-0 overflow-1">
+                                      <p className="p-black-small mb-0 overflow-2">
                                         {Service.doctor.specialty}
                                       </p>
-                                      <h3 className="p-black-bold mb-0">
+                                      <h3 className="p-black-bold my-1">
                                         Qualification
                                       </h3>
                                       <p className="p-black-small mb-0 overflow-1">
                                         {Service.doctor.qualifications}
                                       </p>
                                      
-                                      <h3 className="p-black-bold mt-2 mb-1">
+                                      <h3 className="p-black-bold my-1">
                                         Designation
                                       </h3>
                                       <p className="p-black-small mb-0 overflow-1">
                                         {Service.doctor.designation}
                                       </p>
-                                      <h4 className="p-black-bold mt-2 mb-1">
+                                      <h4 className="p-black-bold my-1">
                                         Experience
                                       </h4>
                                       <p className="p-black-small mb-0 overflow-1">

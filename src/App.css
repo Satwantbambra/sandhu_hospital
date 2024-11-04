@@ -161,7 +161,7 @@ height: fit-content;
 
 footer{
  
-  background:  #1e1e1e;
+  background:  #000;
   background-blend-mode: multiply;
   background-size: cover;
   background-position: top;
@@ -240,7 +240,7 @@ animation: width 0.5s linear forwards;
   width: 100%;
   display: flex;
   align-items: end;
-  background: var(--blue-light);
+  background: #b7ddfb;
   position: relative;
   z-index: 3;
 }
@@ -281,6 +281,9 @@ animation: width 0.5s linear forwards;
   justify-content: start;
   width: 100%;
   position: relative;
+
+  height: 100%;
+  background-color: #000;
 }
 .promotion .btn-close{
   position: absolute;
@@ -290,18 +293,34 @@ animation: width 0.5s linear forwards;
 
 }
 
-
+.overlay_black{
+  position: absolute;
+  top: 0;
+  bottom:0;
+  left:0;
+  right:0;
+  width: 100%;
+  height: 100%;
+  background-color: #000;
+}
 .bluepromotion{
-  /* background: linear-gradient(180deg, #3f6999, #669cda, #92c0ec, #a7d0ee); */
-  background: linear-gradient(180deg, #3f6999, #398eef, #48a0f4, #48a0f4)
+  background: linear-gradient(180deg, #7aad36, #3f660c);
+  background-image: url("../public/bg2.jpg");
   
 }
 .neonpromotion{
-  background: linear-gradient(180deg, #409089, #57bfb6, #91e1da, #b3e8e4);
+  background: linear-gradient(180deg, #f7941d, #f07f1a);
+  background-image: url("../public/bg2.jpg");
 }
 
 .pinkpromotion{
-  background: linear-gradient(180deg, #b5589f, #da5cbc, #d78ac5, #eda4dc);
+  background: linear-gradient(180deg, #5d459d, #4c3589);
+  background-image: url("../public/bg3.jpg");
+ 
+  /* background: linear-gradient(180deg, #b5589f, #da5cbc, #d78ac5, #eda4dc); */
+}
+.pinkpromotion .dateText{
+  color: #fff !important;
 }
 
 
@@ -520,10 +539,10 @@ border-radius: 10px;
   align-items: end;
   justify-content: center;
   width: 100%;
-  min-height: 340px;
+ 
 }
 .team-img img{
-  height: fit-content;
+  height: 258px;
  object-fit: contain;
   width: 100%;
 
@@ -616,7 +635,7 @@ border-radius: 10px;
   background: #ffc6f2;
 }
 .days-ul li:not(.off):nth-child(3n + 1) .outerday-tag {
-  background: var(--pink);
+  background: var(--mypink);
 }
 .days-ul li:not(.off):nth-child(3n + 1) .innerday-tag::before {
   border-right: 17px solid #480c3a;
@@ -624,12 +643,12 @@ border-radius: 10px;
   border-top: 14px solid #00000000;
 }
 .days-ul li:not(.off):nth-child(3n + 1) p.p-heading-white.color {
-  color: var(--pink) !important;
+  color: var(--mypink) !important;
 }
 
 /* Second item and every 3rd after */
 .days-ul li:not(.off):nth-child(3n + 2) {
-  background: #dce2ff;
+  background: #ffe9d6;
 }
 .days-ul li:not(.off):nth-child(3n + 2) .outerday-tag {
   background: var(--blue);
@@ -689,7 +708,7 @@ border-radius: 10px;
 
 }
 .cwt{
-  border: 1px solid var(--grey);
+  /* border: 1px solid var(--grey); */
   border-radius: 20px;
   display: flex;
   align-items: start;
@@ -700,14 +719,14 @@ border-radius: 10px;
 
 
 .cwt img{
-  border: 1px solid var(--grey);
+  /* border: 1px solid var(--grey); */
   display: flex;
   align-items: center;
   justify-content: center;
   height: 100%;
   width: 100%;
   object-fit: cover;
-  border-radius: 20px;
+  /* border-radius: 20px; */
 
 }
 
@@ -1073,13 +1092,13 @@ display: flex;
 .sub-dropdown-menu {
   background-color: white;
   position: absolute;
-  border: none !important;
+  border: 1px lightgrey !important;
   top: 0;
   left: 100%;
   width: 20rem;
   list-style-type: none;
   border-radius: 10px;
-  box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
+  box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;
   z-index: 999;
   height: fit-content;
   padding: 0;

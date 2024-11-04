@@ -68,6 +68,7 @@ function Doctor() {
               <p className="sub-heading-black">
                 {doctorDetails?.total_experience}
               </p>
+            
               <div className="d-contain">
                 <div className="d-wrap">
                   <div className="dd-title p-heading-black">Qualifications</div>
@@ -82,6 +83,7 @@ function Doctor() {
                   </div>
                 </div>
               </div>
+
               {doctorDetails?.phone && (
               <div className="d-contain">
                 <div className="d-wrap">
@@ -108,7 +110,14 @@ function Doctor() {
                 </div>
               </div>
             )}
-
+            <div className="d-contain">
+                <div className="d-wrap">
+                  <div className="dd-title p-heading-black">Specialist In</div>
+                  <p className="p-black mb-0">
+                  {doctorDetails?.specialty}
+                  </p>
+                </div>
+              </div>
             {doctorDetails?.short_bio && (
               <div className="d-contain">
                 <div className="d-wrap">
@@ -124,7 +133,9 @@ function Doctor() {
               <div className="d-contain">
                 <div className="d-wrap">
                   <div className="dd-title p-heading-black">More Info</div>
-                  <p className="p-black mb-0">{doctorDetails?.detailed_bio}</p>
+                  <p className="p-black mb-0"  dangerouslySetInnerHTML={{
+                                __html: doctorDetails?.detailed_bio,
+                              }}></p>
                 </div>
               </div>
             </div>

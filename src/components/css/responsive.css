@@ -1,5 +1,7 @@
 @media (min-width:0px) and (max-width:580px) {
-    
+    .top_small_header{
+      display: none;
+    }
     .banner{
        background-size: auto !important;
        background-position: -608px 13px !important;
@@ -240,7 +242,7 @@
       
     }
     .team-img img {
-      height: 324px !important;
+      /* height: 324px !important; */
       object-fit: contain;
       width: 100%;
   }
@@ -270,5 +272,12 @@
 .cwt2 img {
 object-fit: contain !important;
 }
+.dropdown-item {
+  white-space: break-spaces !important;
+
+}
+.dropdown-item:hover span {
+  white-space: break-spaces !important;
+  word-wrap: break-word !important;}
 
    }
